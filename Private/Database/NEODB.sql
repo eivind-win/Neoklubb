@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS Medlem(
 MedlemID int NOT NULL AUTO_INCREMENT,
 Fornavn varchar(99) NOT NULL,
 Etternavn varchar(99) NOT NULL,
-MobilNummer int NOT NULL,
+Telefon int NOT NULL,
 Epost varchar(99) NOT NULL,
 Fodselsdato date NOT NULL,
 Kjonn varchar(99) NOT NULL,
@@ -44,8 +44,8 @@ CREATE TABLE IF NOT EXISTS Aktivitet(
     AktivitetID int NOT NULL AUTO_INCREMENT,
     Aktivitet varchar(99) NOT NULL,
     Beskrivelse varchar(255) NOT NULL,
-    StartDato DATE,
-    SluttDato DATE,
+    StartDato DATETIME NOT NULL,
+    SluttDato DATETIME NOT NULL,
     PRIMARY KEY (AktivitetID)
 );
 

@@ -29,7 +29,7 @@
 </style>
 
 <?php
-include_once "db.inc.php";
+include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Neoklubb/Private/Database/DatabaseConnection.php";
 $sql = "SELECT * FROM Medlem";
 $sp = $pdo->prepare($sql);
 try {
@@ -46,7 +46,7 @@ if ($sp->rowCount() > 0) {
     echo "<th> MedlemID </th>";
     echo "<th> Fornavn </th>";
     echo "<th> Etternavn </th>";
-    echo "<th> MobilNummer </th>";
+    echo "<th> Telefon </th>";
     echo "<th> Epost </th>";
     echo "<th> Fodselsdato </th>";
     echo "<th> Kjønn </th>";
@@ -57,7 +57,7 @@ if ($sp->rowCount() > 0) {
         echo "<td>" . $Medlem->MedlemID . "</td>";
         echo "<td>" . $Medlem->Fornavn . "</td>";
         echo "<td>" . $Medlem->Etternavn . "</td>";
-        echo "<td>" . $Medlem->MobilNummer . "</td>";
+        echo "<td>" . $Medlem->Telefon . "</td>";
         echo "<td>" . $Medlem->Epost . "</td>";
         echo "<td>" . $Medlem->Fodselsdato . "</td>";
         echo "<td>" . $Medlem->Kjonn . "</td>";
