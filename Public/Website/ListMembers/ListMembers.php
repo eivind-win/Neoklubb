@@ -29,7 +29,9 @@
 </style>
 <!-- Includer config fil til databasen og velger hvilke entiteter som skal henters ut fra hvilket tabel i databasen.  -->
 <?php
+
 include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Neoklubb/Private/Database/DatabaseConnection.php";
+
 $sql = "SELECT * FROM Medlem";
 $sp = $pdo->prepare($sql);
 try {
