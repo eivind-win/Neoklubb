@@ -10,8 +10,8 @@
 
 <body>
     <?php
-    include_once "../ListMembers/db.inc.php";
-    //velger tabel og entiteter som data skal sendes til i databasen
+    include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Neoklubb/Private/Database/DatabaseConnection.php";
+
     $sql = "INSERT INTO NeoKlubb.Medlem (Fornavn, Etternavn, Telefon, Epost, Fodselsdato, Kjonn, Passord) 
         VALUES (:Fornavn, :Etternavn, :Telefon, :Epost, :Fodselsdato, :Kjonn, :Passord)";
 
@@ -49,7 +49,7 @@
             echo "Dataene er ikke satt inn i tabellen";
         }
     }
-    // Registreringsform
+
 
     ?>
     <h1> Registrer deg </h1>
@@ -112,7 +112,7 @@
         </p>
 
         <br><br>
-        <!-- <a href="Index.php">Tilbake til hjemmesiden -->
+        <a href="Index.php">Tilbake til hjemmesiden
 
 </body>
 

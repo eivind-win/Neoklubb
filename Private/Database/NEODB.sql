@@ -1,5 +1,18 @@
 CREATE DATABASE NeoKlubb;
 CREATE TABLE IF NOT EXISTS Medlem(
+<<<<<<< HEAD
+MedlemID int NOT NULL AUTO_INCREMENT,
+Fornavn varchar(99) NOT NULL,
+Etternavn varchar(99) NOT NULL,
+Telefon int NOT NULL,
+Epost varchar(99) NOT NULL,
+Fodselsdato date NOT NULL,
+Kjonn varchar(99) NOT NULL,
+RegistreringsDato TIMESTAMP NOT NULL,
+Passord varchar(255) NOT NULL,
+PRIMARY KEY (MedlemID));
+
+=======
   MedlemID int NOT NULL AUTO_INCREMENT,
   Fornavn varchar(99) NOT NULL,
   Etternavn varchar(99) NOT NULL,
@@ -11,6 +24,7 @@ CREATE TABLE IF NOT EXISTS Medlem(
   Passord varchar(255) NOT NULL,
   PRIMARY KEY (MedlemID)
 );
+>>>>>>> 48e1ec2a3da811d1ddf6d457747ffc3dc79177d9
 CREATE TABLE IF NOT EXISTS Kontigent(
   KontigentID int NOT NULL AUTO_INCREMENT,
   KontigentsStatus varchar(99) NOT NULL,
@@ -35,12 +49,21 @@ CREATE TABLE IF NOT EXISTS Adresse(
   FOREIGN KEY (MedlemID) REFERENCES Medlem(MedlemID)
 );
 CREATE TABLE IF NOT EXISTS Aktivitet(
+<<<<<<< HEAD
+    AktivitetID int NOT NULL AUTO_INCREMENT,
+    Aktivitet varchar(99) NOT NULL,
+    Beskrivelse varchar(255) NOT NULL,
+    StartDato DATETIME NOT NULL,
+    SluttDato DATETIME NOT NULL,
+    PRIMARY KEY (AktivitetID)
+=======
   AktivitetID int NOT NULL AUTO_INCREMENT,
   Aktivitet varchar(99) NOT NULL,
   Beskrivelse varchar(255) NOT NULL,
   StartDato DATE NOT NULL,
   SluttDato DATE NOT NULL,
   PRIMARY KEY (AktivitetID)
+>>>>>>> 48e1ec2a3da811d1ddf6d457747ffc3dc79177d9
 );
 CREATE TABLE IF NOT EXISTS Kurs(
   MedlemID int,
