@@ -68,7 +68,7 @@
         </p>
         <p>
             <label for="StartDato">Starter</label>
-            <input name="Startdato" type="datetime-local" required oninvalid="this.setCustomValidity('Start tidspunkt kan ikke være blankt!')" onchange="this.setCustomValidity('')" value="<?php if (isset($_POST["StartDato"])) {
+            <input name="StartDato" type="datetime-local" required oninvalid="this.setCustomValidity('Start tidspunkt kan ikke være blankt!')" onchange="this.setCustomValidity('')" value="<?php if (isset($_POST["StartDato"])) {
                                                                                                                                                                                                 echo $_POST["StartDato"];
                                                                                                                                                                                             } ?>">
         </p>
