@@ -110,10 +110,6 @@
         <p>
             <button type="Submit" name="Registrerdeg">Registrer deg</button>
         </p>
-
-        <br><br>
-        <a href="Index.php">Tilbake til hjemmesiden
-
 </body>
 
 </html>

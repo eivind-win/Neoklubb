@@ -82,9 +82,6 @@
             <button type="Submit" name="Registreraktivitet">Registrer Aktivitet</button>
         </p>
 
-        <br><br>
-        <a href="Index.php">Tilbake til hjemmesiden
-
 </body>
 
 </html>
