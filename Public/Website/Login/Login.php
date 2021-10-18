@@ -5,12 +5,12 @@ $username = "root";
 $password = "";
 $database = "NeoKlubb";
 $message = "";
-//koblet til tatabasen og gjør den klar
+//koblet til databasen og gjør den klar
 try {
     $connect = new PDO("mysql:host=$host; dbname=$database", $username, $password);
     $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    if (isset($_POST["login"])) {
-        if (!empty($_POST["Epost"]) || !empty($_POST["Password"])) {
+    if (isset($_POST["Login"])) {
+        if (!empty($_POST["Epost"]) || !empty($_POST["Passord"])) {
             $message = '<label>Begge felter må fylles ut</label>';
         } else {
             $query = "SELECT * FROM Medlem WHERE Epost = :Epost AND Passord = :Passord";
@@ -33,6 +33,7 @@ try {
 } catch (PDOException $error) {
     $message = $error->getMessage();
 }
+$sp->debugDumpParams();
 ?>
 <!DOCTYPE html>
 <html>
@@ -57,7 +58,7 @@ try {
             <input type="text" name="Epost" class="form-control" />
             <br />
             <label>Password</label>
-            <input type="Passord" name="Passord" class="form-control" />
+            <input type="Password" name="Passord" class="form-control" />
             <br />
             <input type="submit" name="login" class="btn btn-info" value="Login" />
         </form>
