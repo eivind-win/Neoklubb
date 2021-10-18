@@ -24,7 +24,7 @@ try {
             $count = $statement->rowCount();
             if ($count > 0) {
                 $_SESSION["Epost"] = $_POST["Passord"];
-                header("location:login_success.php");
+                header("location:Forside.php");
             } else {
                 $message = '<label>Wrong Data</label>';
             }
@@ -33,7 +33,6 @@ try {
 } catch (PDOException $error) {
     $message = $error->getMessage();
 }
-$sp->debugDumpParams();
 ?>
 <!DOCTYPE html>
 <html>
