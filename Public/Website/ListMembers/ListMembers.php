@@ -29,13 +29,9 @@
 </style>
 <!-- Includer config fil til databasen og velger hvilke entiteter som skal henters ut fra hvilket tabel i databasen.  -->
 <?php
-<<<<<<< Updated upstream
 
-include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Neoklubb/Private/Database/DatabaseConnection.php";
+include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Database/DatabaseConnection.php";
 
-=======
-include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Database/DatabaseConnection.php";
->>>>>>> Stashed changes
 $sql = "SELECT * FROM Medlem";
 $sp = $pdo->prepare($sql);
 try {
