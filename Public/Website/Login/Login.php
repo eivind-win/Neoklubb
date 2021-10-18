@@ -1,20 +1,14 @@
 <?php
 session_start();
-$host = "localhost";
-$username = "root";
-$password = "";
-$database = "NeoKlubb";
-$message = "";
-//koblet til databasen og gjør den klar
+include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Database/DatabaseConnection.php";
+
 try {
-    $connect = new PDO("mysql:host=$host; dbname=$database", $username, $password);
-    $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    if (isset($_POST["Login"])) {
-        if (!empty($_POST["Epost"]) || !empty($_POST["Passord"])) {
-            $message = '<label>Begge felter må fylles ut</label>';
+    if (isset($_POST["login"])) {
+        if (empty($_POST["Epost"]) || empty($_POST["Passord"])) {
+            $message = '<label>All fields are required</label>';
         } else {
             $query = "SELECT * FROM Medlem WHERE Epost = :Epost AND Passord = :Passord";
-            $statement = $connect->prepare($query);
+            $statement = $pdo->prepare($query);
             $statement->execute(
                 array(
                     'Epost'     =>     $_POST["Epost"],
@@ -23,8 +17,8 @@ try {
             );
             $count = $statement->rowCount();
             if ($count > 0) {
-                $_SESSION["Epost"] = $_POST["Passord"];
-                header("location:Forside.php");
+                $_SESSION["Epost"] = $_POST["Epost"];
+                header("location:LoginSuccess.php");
             } else {
                 $message = '<label>Wrong Data</label>';
             }
@@ -38,6 +32,7 @@ try {
 <html>
 
 <head>
+    <title>Webslesson Tutorial | PHP Login Script using PDO</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -51,13 +46,13 @@ try {
             echo '<label class="text-danger">' . $message . '</label>';
         }
         ?>
-        <h3 align="">Login Neo Ungdomsklubb</h3><br />
+        <h3 align="">PHP Login Script using PDO</h3><br />
         <form method="post">
-            <label>Epost</label>
+            <label>Username</label>
             <input type="text" name="Epost" class="form-control" />
             <br />
             <label>Password</label>
-            <input type="Password" name="Passord" class="form-control" />
+            <input type="password" name="Passord" class="form-control" />
             <br />
             <input type="submit" name="login" class="btn btn-info" value="Login" />
         </form>
