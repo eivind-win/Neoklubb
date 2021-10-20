@@ -5,7 +5,7 @@ include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Database/Da
 try {
     if (isset($_POST["login"])) {
         if (empty($_POST["Epost"]) || empty($_POST["Passord"])) {
-            $message = '<label>All fields are required</label>';
+            $message = '<label>Alle felter må fylles ut</label>';
         } else {
             $query = "SELECT * FROM Medlem WHERE Epost = :Epost AND Passord = :Passord";
             $statement = $pdo->prepare($query);
@@ -13,6 +13,7 @@ try {
                 array(
                     'Epost'     =>     $_POST["Epost"],
                     'Passord'     =>     $_POST["Passord"]
+
                 )
             );
             $count = $statement->rowCount();
@@ -20,7 +21,7 @@ try {
                 $_SESSION["Epost"] = $_POST["Epost"];
                 header("location:LoginSuccess.php");
             } else {
-                $message = '<label>Wrong Data</label>';
+                $message = '<label>Feil brukernavn eller passord!</label>';
             }
         }
     }
@@ -32,7 +33,7 @@ try {
 <html>
 
 <head>
-    <title>Webslesson Tutorial | PHP Login Script using PDO</title>
+    <!-- <title>Webslesson Tutorial | PHP Login Script using PDO</title> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -46,7 +47,7 @@ try {
             echo '<label class="text-danger">' . $message . '</label>';
         }
         ?>
-        <h3 align="">PHP Login Script using PDO</h3><br />
+        <h3 align="">Velkommen til Neo Ungdommsklubb</h3><br />
         <form method="post">
             <label>Username</label>
             <input type="text" name="Epost" class="form-control" />
