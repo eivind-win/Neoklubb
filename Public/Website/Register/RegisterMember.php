@@ -13,11 +13,18 @@
 
     include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Database/DatabaseConnection.php";
 
-
-    $sql = "INSERT INTO NeoKlubb.Medlem (Fornavn, Etternavn, Telefon, Epost, Fodselsdato, Kjonn, Passord) 
-        VALUES (:Fornavn, :Etternavn, :Telefon, :Epost, :Fodselsdato, :Kjonn, :Passord)";
+    $sql =
+        "INSERT INTO NeoKlubb.Medlem (Fornavn, Etternavn, Telefon, Epost, Fodselsdato, Kjonn, Passord)
+            VALUES (:Fornavn, :Etternavn, :Telefon, :Epost, :Fodselsdato, :Kjonn, :Passord);
+        INSERT INTO NeoKlubb.Adresse (Gateadresse, Poststed, Postnummer, MedlemID) 
+            VALUES (:Gateadresse, :Poststed, :Postnummer, last_insert_id());
+            ";
 
     $sp = $pdo->prepare($sql);
+
+
+
+
 
     $sp->bindParam(":Fornavn", $fornavn, PDO::PARAM_STR);
     $sp->bindParam(":Etternavn", $etternavn, PDO::PARAM_STR);
@@ -27,6 +34,12 @@
     $sp->bindParam(":Kjonn", $Kjonn, PDO::PARAM_STR);
     $sp->bindParam(":Passord", $passord, PDO::PARAM_STR);
 
+    $sp->bindParam(":Gateadresse", $gateadresse, PDO::PARAM_STR);
+    $sp->bindParam(":Poststed", $poststed, PDO::PARAM_STR);
+    $sp->bindParam(":Postnummer", $postnummer, PDO::PARAM_STR);
+
+
+
     $fornavn = isset($_POST['Fornavn']) ? $_POST['Fornavn'] : "";
     $etternavn = isset($_POST['Etternavn']) ? $_POST['Etternavn'] : "";
     $telefon = isset($_POST['Telefon']) ? $_POST['Telefon'] : "";
@@ -34,6 +47,11 @@
     $fodselsdato = isset($_POST['Fodselsdato']) ? $_POST['Fodselsdato'] : "";
     $Kjonn = isset($_POST['Kjonn']) ? $_POST['Kjonn'] : "";
     $passord = isset($_POST['Passord']) ? $_POST['Passord'] : "";
+
+    $gateadresse = isset($_POST['Gateadresse']) ? $_POST['Gateadresse'] : "";
+    $poststed = isset($_POST['Poststed']) ? $_POST['Poststed'] : "";
+    $postnummer = isset($_POST['Postnummer']) ? $_POST['Postnummer'] : "";
+
 
     if (isset($_POST["Registrerdeg"])) {
 
@@ -99,6 +117,24 @@
                 <option value="Kvinne">Kvinne</option>
             </select>
         </p>
+        <p>
+            <label for="Gateadresse">Gateadresse</label>
+            <input name="Gateadresse" type="text" required oninvalid="this.setCustomValidity('Gateadresse kan ikke være blank!')" onchange="this.setCustomValidity('')" value="<?php if (isset($_POST["Gateadresse"])) {
+                                                                                                                                                                                    echo $_POST["Gateadresse"];
+                                                                                                                                                                                } ?>">
+        </p>
+        <p>
+            <label for="Poststed">Poststed</label>
+            <input name="Poststed" type="text" required oninvalid="this.setCustomValidity('Poststed kan ikke være blankt!')" onchange="this.setCustomValidity('')" value="<?php if (isset($_POST["Poststed"])) {
+                                                                                                                                                                                echo $_POST["Poststed"];
+                                                                                                                                                                            } ?>">
+        </p>
+        <p>
+            <label for="Postnummer">Postnummer</label>
+            <input name="Postnummer" type="text" required oninvalid="this.setCustomValidity('Postnummer kan ikke være blankt!')" onchange="this.setCustomValidity('')" value="<?php if (isset($_POST["Postnummer"])) {
+                                                                                                                                                                                    echo $_POST["Postnummer"];
+                                                                                                                                                                                } ?>">
+        </p>
 
         <p>
             <label for="Passord">Passord</label>
@@ -106,16 +142,9 @@
                                                                                                                                                                             echo $_POST["Passord"];
                                                                                                                                                                         } ?>">
         </p>
-
-
-
         <p>
             <button type="Submit" name="Registrerdeg">Registrer deg</button>
         </p>
-
-        <br><br>
-        <a href="Index.php">Tilbake til hjemmesiden
-
 </body>
 
 </html>

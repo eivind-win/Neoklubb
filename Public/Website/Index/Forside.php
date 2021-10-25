@@ -9,12 +9,21 @@
 </head>
 
 <body>
+    <?php
+    include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Include/header.php";
+    ?>
     <h1> Velkommen til Neo Ungdomsklubb! </h1>
     <h2> Registrer deg her! </h2>
     <a href="../Register/RegisterMember.php">Registrer deg
         <br>
         <br>
         <a href="../ListMembers/ListMembers.php">List opp medlemmer
+            <br>
+            <br>
+            <a href="../EditMember/Editor.php">Endre medlemsinformasjon
+
+
+
 </body>
 
 </html>

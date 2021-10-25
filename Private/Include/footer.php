@@ -15,14 +15,15 @@
             left: 0;
             bottom: 0;
             width: 100%;
-            background-color: red;
+            position: relative;
+            background-color: white;
             color: white;
             text-align: center;
         }
     </style>
 
     <div class="footer">
-        <a href="/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Public/Website/Index/Forside.php">Tilbake til hjemmesiden
+        <a href="../Public/Website/Index/Forside.php">Tilbake til hjemmesiden
     </div>
 </body>
 

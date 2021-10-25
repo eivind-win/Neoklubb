@@ -1,6 +1,8 @@
 <?php
 session_start();
 include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Database/DatabaseConnection.php";
+include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Include/header.php";
+
 
 try {
     if (isset($_POST["login"])) {
@@ -18,7 +20,7 @@ try {
             $count = $statement->rowCount();
             if ($count > 0) {
                 $_SESSION["Epost"] = $_POST["Epost"];
-                header("location:LoginSuccess.php");
+                header("location:../index/Forside.php");
             } else {
                 $message = '<label>Wrong Data</label>';
             }
@@ -46,7 +48,7 @@ try {
             echo '<label class="text-danger">' . $message . '</label>';
         }
         ?>
-        <h3 align="">PHP Login Script using PDO</h3><br />
+        <h3 align="">Neo Ungdomsklubb</h3><br />
         <form method="post">
             <label>Username</label>
             <input type="text" name="Epost" class="form-control" />

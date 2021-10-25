@@ -54,7 +54,7 @@ if ($sp->rowCount() > 0) {
     echo "<th> Kjønn </th>";
     echo "<th> RegistreringsDato </th>";
     echo "</tr>";
-    //foreach som itererer gjennom alle feltene i tabel
+    //foreach som itererer gjennom alle feltene i tabell
     foreach ($Medlem as $Medlem) {
         echo "<tr>";
         echo "<td>" . $Medlem->MedlemID . "</td>";
@@ -65,10 +65,9 @@ if ($sp->rowCount() > 0) {
         echo "<td>" . $Medlem->Fodselsdato . "</td>";
         echo "<td>" . $Medlem->Kjonn . "</td>";
         echo "<td>" . $Medlem->RegistreringsDato . "</td>";
-        //echo $Medlem->Passord . " // ";
         echo "</tr>";
     }
     echo "</table>";
 } else {
-    echo "spørringen returnerte ingen oppføringer";
+    echo "Det er ingen medlemmer som matcher denne beskrivelsen";
 }
