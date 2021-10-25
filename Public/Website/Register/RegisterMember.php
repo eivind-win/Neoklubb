@@ -10,8 +10,8 @@
 
 <body>
     <?php
-
     include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Database/DatabaseConnection.php";
+
 
     $sql =
         "INSERT INTO NeoKlubb.Medlem (Fornavn, Etternavn, Telefon, Epost, Fodselsdato, Kjonn, Passord)
@@ -23,8 +23,7 @@
     $sp = $pdo->prepare($sql);
 
 
-
-
+    //binder parametete formavn med variablen fornavn. 
 
     $sp->bindParam(":Fornavn", $fornavn, PDO::PARAM_STR);
     $sp->bindParam(":Etternavn", $etternavn, PDO::PARAM_STR);
@@ -34,11 +33,14 @@
     $sp->bindParam(":Kjonn", $Kjonn, PDO::PARAM_STR);
     $sp->bindParam(":Passord", $passord, PDO::PARAM_STR);
 
+
     $sp->bindParam(":Gateadresse", $gateadresse, PDO::PARAM_STR);
     $sp->bindParam(":Poststed", $poststed, PDO::PARAM_STR);
     $sp->bindParam(":Postnummer", $postnummer, PDO::PARAM_STR);
 
 
+
+    // setter tomme verdier for å slippe error for tomme variabler
 
     $fornavn = isset($_POST['Fornavn']) ? $_POST['Fornavn'] : "";
     $etternavn = isset($_POST['Etternavn']) ? $_POST['Etternavn'] : "";
