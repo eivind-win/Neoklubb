@@ -11,6 +11,7 @@
 <body>
     <div class="topnav">
         <a class="active" href="../Index/Forside.php">Home</a>
+        <a href="..//Login/LogOut.php">LogOut</a>
         <a href="../Register/RegisterMember.php">Registrer Deg</a>
         <a href="../EditMember/Editor.php">Endre medlemsinformasjon</a>
         <a href="../ListMembers/ListMembers.php">List opp medlemmer</a>

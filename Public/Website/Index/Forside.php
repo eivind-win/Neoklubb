@@ -10,17 +10,26 @@
 
 <body>
     <?php
-    include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Include/header.php";
+    include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
+
+    session_start();
+    if (isset($_SESSION["Epost"])) {
+        echo "Du er nå logget inn!";
+        echo "<br>";
+        echo  $_SESSION["Epost"];
+        echo "<br>";
+        echo  $_SESSION["Fornavn"];
+        //echo print_r($_SESSION);
+    }
+
+
     ?>
     <h1> Velkommen til Neo Ungdomsklubb! </h1>
-    <h2> Registrer deg her! </h2>
-    <a href="../Register/RegisterMember.php">Registrer deg
+
+    <a href="../ListMembers/ListMembers.php">List opp medlemmer
         <br>
         <br>
-        <a href="../ListMembers/ListMembers.php">List opp medlemmer
-            <br>
-            <br>
-            <a href="../EditMember/Editor.php">Endre medlemsinformasjon
+        <a href="../EditMember/Editor.php">Endre medlemsinformasjon
 
 
 
