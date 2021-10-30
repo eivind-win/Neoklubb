@@ -32,6 +32,8 @@
 
 include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Database/DatabaseConnection.php";
 
+include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
+
 $sql = "SELECT * FROM Medlem";
 $sp = $pdo->prepare($sql);
 try {

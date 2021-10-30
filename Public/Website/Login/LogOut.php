@@ -1,5 +1,10 @@
 <?php
 //logout.php  
 session_start();
+unset($_SESSION['Fornavn']);
+unset($_SESSION["Epost"]);
+unset($_SESSION["Fornavn"]);
+unset($_SESSION["Etternavn"]);
+unset($_SESSION["Telefon"]);
 session_destroy();
 header("location:Login.php");

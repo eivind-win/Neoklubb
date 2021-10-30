@@ -1,27 +1,30 @@
 <?php
 session_start();
+
 include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Database/DatabaseConnection.php";
 include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LogoutHeader.php";
 
-
+// try catch
 try {
     if (isset($_POST["login"])) {
         if (empty($_POST["Epost"]) || empty($_POST["Passord"])) {
             $message = '<label>Alle felter må fylles ut</label>';
         } else {
-            $query = "SELECT * FROM Medlem WHERE Epost = :Epost AND Passord = :Passord";
+            $query = "SELECT * FROM Medlem WHERE Epost = :Epost";
             $statement = $pdo->prepare($query);
-            $statement->execute(
-                array(
-                    'Epost'     =>     $_POST["Epost"],
-                    'Passord'     =>     $_POST["Passord"]
+            $statement->bindParam(':Epost', $_POST["Epost"], PDO::PARAM_STR);
+            $statement->execute();
+            $Medlem = $statement->fetch(PDO::FETCH_OBJ);
+            //lager variabel som henter fra db
+            $hashedpassword = $Medlem->Passord;
 
-                )
-            );
-            $count = $statement->rowCount();
-            if ($count > 0) {
-                $_SESSION["Epost"] = $_POST["Epost"];
-                $_SESSION["Fornavn"] = $_POST["Fornavn"];
+            //metode som sjekker passord mot databasen
+            if (password_verify($_POST["Passord"], $hashedpassword)) {
+                $_SESSION["Epost"] = $Medlem->Epost;
+                $_SESSION["Fornavn"] = $Medlem->Fornavn;
+                $_SESSION["Etternavn"] = $Medlem->Etternavn;
+                $_SESSION["Telefon"] = $Medlem->Telefon;
+
                 header("location:../index/Forside.php");
             } else {
                 $message = '<label>Feil brukernavn eller passord!</label>';
@@ -48,12 +51,6 @@ try {
             echo '<label class="text-danger">' . $message . '</label>';
         }
         ?>
-        <style>
-            body {
-                background-image: url("/Neoklubb/Private/Include/bilde.jpeg");
-
-            }
-        </style>
         <h3 align="">Velkommen til Neo Ungdommsklubb</h3><br />
         <form method="post">
             <label>Username</label>
