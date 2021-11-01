@@ -11,7 +11,6 @@
 <body>
     <?php
     include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Database/DatabaseConnection.php";
-    include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LogoutHeader.php";
 
 
     $sql =
@@ -54,9 +53,6 @@
     $gateadresse = isset($_POST['Gateadresse']) ? $_POST['Gateadresse'] : "";
     $poststed = isset($_POST['Poststed']) ? $_POST['Poststed'] : "";
     $postnummer = isset($_POST['Postnummer']) ? $_POST['Postnummer'] : "";
-
-    //Hasher passord som blir lagt inn i databasen gjennom form
-    $passord = password_hash($passord, PASSWORD_DEFAULT);
 
 
     if (isset($_POST["Registrerdeg"])) {
