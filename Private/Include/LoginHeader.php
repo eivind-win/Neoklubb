@@ -13,8 +13,10 @@
         <a class="active" href="../Index/Forside.php">Home</a>
         <a href="..//Login/LogOut.php">LogOut</a>
         <a href="../Registering/RegisterMember.php">Registrer Deg</a>
-        <a href="../Editing/EditMember.php">Endre medlemsinformasjon</a>
+        <a href="../EditMember/Editor.php">Endre medlemsinformasjon</a>
         <a href="../Listing/ListMembers.php">List opp medlemmer</a>
+        <a href="../Editing/EditMember.php">Oppdatere medlemmer</a>
+
     </div>
     <style>
         .topnav {

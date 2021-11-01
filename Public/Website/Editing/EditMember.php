@@ -10,11 +10,10 @@
 <?php
 
 include "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Database/DatabaseConnection.php";
+include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
 
-$epost = $_SESSION['Epost'];
 
-// Sql query for å hente ut eksisterende informasjon om medlem
-$medlem = $pdo->query('SELECT Fornavn, Etternavn, Telefon, Epost, Fodselsdato, Kjonn, Passord FROM NeoKlubb.Medlem WHERE Epost = :Epost');
+$medlem = $pdo->query('SELECT Fornavn, Etternavn, Telefon, Epost, Fodselsdato, Kjonn, Passord FROM NeoKlubb.Medlem WHERE Epost = "anders@uia.no"');
 foreach ($medlem as $medlem) {
     $medlem['Fornavn'] . "\n";
     $medlem['Telefon'] . "\n";
@@ -28,7 +27,7 @@ $hashedpassword = $medlem['Passord'];
 // Sql query for å oppdatere informasjon om medlemmet om noe forandres
 $updateSql =
     'UPDATE NeoKlubb.Medlem SET Fornavn = :Fornavn, Etternavn = :Etternavn , Telefon = :Telefon , Epost = :Epost
-        , Fodselsdato = :Fodselsdato , Kjonn = :Kjonn , Passord = :Passord WHERE Epost = "omandersen@uia.no"';
+        , Fodselsdato = :Fodselsdato , Kjonn = :Kjonn , Passord = :Passord WHERE Epost = "anders@uia.no"';
 
 $update = $pdo->prepare($updateSql);
 
