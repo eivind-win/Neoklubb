@@ -13,18 +13,20 @@
     include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Database/DatabaseConnection.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LogoutHeader.php";
 
-
+    // Sql for insert av registrert medlem i medlemtabell og adressetabell
     $sql =
         "INSERT INTO NeoKlubb.Medlem (Fornavn, Etternavn, Telefon, Epost, Fodselsdato, Kjonn, Passord)
             VALUES (:Fornavn, :Etternavn, :Telefon, :Epost, :Fodselsdato, :Kjonn, :Passord);
         INSERT INTO NeoKlubb.Adresse (Gateadresse, Poststed, Postnummer, MedlemID) 
             VALUES (:Gateadresse, :Poststed, :Postnummer, last_insert_id());
+        INSERT INTO NeoKlubb.Kontigent (KontigentsStatus, MedlemID) 
+            VALUES ('Ubetalt', last_insert_id());
             ";
 
     $sp = $pdo->prepare($sql);
 
 
-    //binder parametete formavn med variablen fornavn. 
+    //binder variabler med insert parametere 
 
     $sp->bindParam(":Fornavn", $fornavn, PDO::PARAM_STR);
     $sp->bindParam(":Etternavn", $etternavn, PDO::PARAM_STR);
@@ -41,7 +43,7 @@
 
 
 
-    // setter tomme verdier for å slippe error for tomme variabler
+    // setter tomme verdier for å slippe error for tomme variabler samt at variablene er eventuelt HTML input
 
     $fornavn = isset($_POST['Fornavn']) ? $_POST['Fornavn'] : "";
     $etternavn = isset($_POST['Etternavn']) ? $_POST['Etternavn'] : "";

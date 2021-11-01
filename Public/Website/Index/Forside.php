@@ -26,10 +26,10 @@ if (isset($_SESSION["Epost"])) {
 ?>
 <h1> Velkommen til Neo Ungdomsklubb! </h1>
 
-<a href="../ListMembers/ListMembers.php">List opp medlemmer
+<a href="../Listing/ListMembers.php">List opp medlemmer
     <br>
     <br>
-    <a href="../EditMember/Editor.php">Endre medlemsinformasjon
+    <a href="../Editing/EditMember.php">Endre medlemsinformasjon
 
 
 

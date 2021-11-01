@@ -11,7 +11,7 @@
 <body>
     <div class="topnav">
         <a class="active" href="../Index/Forside.php">Home</a>
-        <a href="../Register/RegisterMember.php">Registrer Deg</a>
+        <a href="../Registering/RegisterMember.php">Registrer Deg</a>
 
     </div>
     <style>

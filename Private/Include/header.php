@@ -11,9 +11,9 @@
 <body>
     <div class="topnav">
         <a class="active" href="../Index/Forside.php">Home</a>
-        <a href="../Register/RegisterMember.php">Registrer Deg</a>
-        <a href="../EditMember/Editor.php">Endre medlemsinformasjon</a>
-        <a href="../ListMembers/ListMembers.php">List opp medlemmer</a>
+        <a href="../Registering/RegisterMember.php">Registrer Deg</a>
+        <a href="../Editing/EditMember.php">Endre medlemsinformasjon</a>
+        <a href="../Listing/ListMembers.php">List opp medlemmer</a>
     </div>
     <style>
         .topnav {

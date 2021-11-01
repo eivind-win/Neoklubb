@@ -10,9 +10,11 @@
 <?php
 
 include "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Database/DatabaseConnection.php";
-//include "test2.php";
 
-$medlem = $pdo->query('SELECT Fornavn, Etternavn, Telefon, Epost, Fodselsdato, Kjonn, Passord FROM NeoKlubb.Medlem WHERE Epost = "omandersen@uia.no"');
+$epost = $_SESSION['Epost'];
+
+// Sql query for å hente ut eksisterende informasjon om medlem
+$medlem = $pdo->query('SELECT Fornavn, Etternavn, Telefon, Epost, Fodselsdato, Kjonn, Passord FROM NeoKlubb.Medlem WHERE Epost = :Epost');
 foreach ($medlem as $medlem) {
     $medlem['Fornavn'] . "\n";
     $medlem['Telefon'] . "\n";
@@ -21,14 +23,16 @@ foreach ($medlem as $medlem) {
     $medlem['Kjonn'] . "\n";
     $medlem['Passord'] . "\n";
 }
+$hashedpassword = $medlem['Passord'];
 
+// Sql query for å oppdatere informasjon om medlemmet om noe forandres
 $updateSql =
     'UPDATE NeoKlubb.Medlem SET Fornavn = :Fornavn, Etternavn = :Etternavn , Telefon = :Telefon , Epost = :Epost
         , Fodselsdato = :Fodselsdato , Kjonn = :Kjonn , Passord = :Passord WHERE Epost = "omandersen@uia.no"';
 
 $update = $pdo->prepare($updateSql);
 
-
+// Binder parameter med variabler
 $update->bindParam(":Fornavn", $fornavn, PDO::PARAM_STR);
 $update->bindParam(":Etternavn", $etternavn, PDO::PARAM_STR);
 $update->bindParam(":Telefon", $telefon, PDO::PARAM_STR);
@@ -37,6 +41,8 @@ $update->bindParam(":Fodselsdato", $fodselsdato);
 $update->bindParam(":Kjonn", $kjonn, PDO::PARAM_STR);
 $update->bindParam(":Passord", $passord, PDO::PARAM_STR);
 
+
+// Setter variablene som tomme for å unngå error, samt at de er input fra HTML
 $fornavn = isset($_POST['Fornavn']) ? $_POST['Fornavn'] : "";
 $etternavn = isset($_POST['Etternavn']) ? $_POST['Etternavn'] : "";
 $telefon = isset($_POST['Telefon']) ? $_POST['Telefon'] : "";
@@ -44,6 +50,10 @@ $epost = isset($_POST['Epost']) ? $_POST['Epost'] : "";
 $fodselsdato = isset($_POST['Fodselsdato']) ? $_POST['Fodselsdato'] : "";
 $kjonn = isset($_POST['Kjonn']) ? $_POST['Kjonn'] : "";
 $passord = isset($_POST['Passord']) ? $_POST['Passord'] : "";
+
+// Hasher passord om det blir forandret
+$passord = password_hash($passord, PASSWORD_DEFAULT);
+
 
 
 if (isset($_POST["Lagreendringer"])) {
@@ -53,7 +63,7 @@ if (isset($_POST["Lagreendringer"])) {
     } catch (PDOException $e) {
         echo $e->getMessage() . "<br>";
     }
-    //$update->debugDumpParams();
+    // $update->debugDumpParams();
 
     if ($update->rowCount() > 0) {
         echo $update->rowCount() . " oppføring" . ($update->rowCount() > 1 ? "er" : "") . " ble oppdatert.";
@@ -63,6 +73,7 @@ if (isset($_POST["Lagreendringer"])) {
 }
 
 ?>
+<!-- HTML form som tar alt relevant input. Standard verdiene er satt til å være eksisterende informasjon om medlemmet -->
 
 <body>
     <h1> Endre opplysninger </h1>
@@ -100,7 +111,7 @@ if (isset($_POST["Lagreendringer"])) {
         </p>
         <p>
             <label for="Passord">Passord</label>
-            <input name="Passord" type="text" required oninvalid="this.setCustomValidity('Passord kan ikke være blank')" onchange="this.setCustomValidity('')" value="<?php echo $medlem["Passord"]; ?>">
+            <input name="Passord" type="text" required oninvalid="this.setCustomValidity('Passord kan ikke være blank')" onchange="this.setCustomValidity('')">
         </p>
         <p>
             <button type="Submit" name="Lagreendringer">Lagre endringer</button>
