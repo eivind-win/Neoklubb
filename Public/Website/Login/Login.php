@@ -4,7 +4,7 @@ session_start();
 include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Database/DatabaseConnection.php";
 include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LogoutHeader.php";
 
-// try catch
+// prepare statement, sjekker om feltene er gyllt ut og samsvarer med data i databsen.
 try {
     if (isset($_POST["login"])) {
         if (empty($_POST["Epost"]) || empty($_POST["Passord"])) {
@@ -24,6 +24,8 @@ try {
                 $_SESSION["Fornavn"] = $Medlem->Fornavn;
                 $_SESSION["Etternavn"] = $Medlem->Etternavn;
                 $_SESSION["Telefon"] = $Medlem->Telefon;
+                $_SESSION["RegistreringsDato"] = $Medlem->RegistreringsDato;
+                // Redirecter til forside dersom passord stemmer
 
                 header("location:../index/Forside.php");
             } else {

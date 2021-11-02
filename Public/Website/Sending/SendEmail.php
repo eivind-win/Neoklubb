@@ -1,3 +1,7 @@
+<?php
+include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

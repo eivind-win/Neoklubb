@@ -3,10 +3,10 @@ require_once "PHPMailer/src/PHPMailer.php";
 require_once "PHPMailer/src/Exception.php";
 require_once "PHPMailer/src/SMTP.php";
 $mail = new PHPMailer\PHPMailer\PHPMailer();
-$fnavn = "Silje";
-$enavn = "Johansen";
-$kode = "abc";
-$epost = "peter@pox.no";
+$fnavn = "Eivind";
+$enavn = "Win";
+$kode = "123";
+$epost = "eivind.win95@gmail.com";
 
 try {
     $mail->IsSMTP();
