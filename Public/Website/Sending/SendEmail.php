@@ -17,27 +17,15 @@ include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/Log
     require_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Include/PHPMailer/src/PHPMailer.php";
     require_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Include/PHPMailer/src/Exception.php";
     require_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Include/PHPMailer/src/SMTP.php";
+
+    // Diverse variabler for sending av enkelt mail
     $mail = new PHPMailer\PHPMailer\PHPMailer();
     $mail->CharSet = "UTF-8";
     $fornavn = $_POST['Fornavn'];
     $etternavn = $_POST['Etternavn'];
-    $kode = rand(1, 5);
     $epost = $_POST['Epost'];
 
-    /* $sql = "SELECT
-    Medlem.Fornavn,
-    Medlem.Etternavn,
-    Medlem.Epost,
-    Kontigent.Kontigentsstatus
-    FROM Medlem
-    INNER JOIN Kontigent
-    ON Medlem.MedlemID = Kontigent.MedlemID 
-    WHERE Kontigentsstatus = 'Ubetalt'";
-    foreach ($pdo->query($sql) as $row) {
-        $email->AddAddress($row["Epost"]);
-    }
-
-*/
+    // Om knappen "SendMail" blir trykket, vil koden under kjøre
     if (isset($_POST["SendMail"])) {
         try {
             $mail->IsSMTP();
@@ -49,10 +37,10 @@ include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/Log
             $mail->Username = "neoklubboe@gmail.com";
             $mail->Password = "Neoklubb2021";
 
-            /* Meldingstekst for HTML-mottakere */
+            // Meldingstekst for HTML-mottakere 
             $mld  = "Kjære " . $fornavn . ". <br><br>";
 
-            /* Meldingstekst for de som ikke kan motta HTML-epost */
+            // Meldingstekst for de som ikke kan motta HTML-epost 
             $amld  = "Kjære " . $fornavn . ". <br><br>";
 
             $mail->isHTML(true);
@@ -71,8 +59,7 @@ include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/Log
     }
     ?>
     <h1>Send Email</h1>
-    <!-- HTML form som tar relevant informasjon i input, lagt inn isset for å reprinte inngitt verdi dersom noe annet skulle være feil, hindrer at bruker må fylle inn alt på nytt-->
-
+    <!--  HTML form for å hente inn relevant informasjon for sending av mail  -->
     <form method="POST" action="">
         <p>
             <label for="Fornavn">Fornavn</label>
