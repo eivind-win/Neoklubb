@@ -10,8 +10,10 @@
 <?php
 
 include "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Database/DatabaseConnection.php";
+include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
+include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LogInChecker.php";
 
-session_start();
+
 $epost = $_SESSION["Epost"];
 
 // Sql query for å hente ut eksisterende informasjon om medlem
