@@ -10,11 +10,11 @@
 <?php
 
 include "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Database/DatabaseConnection.php";
-
-$epost = $_SESSION['Epost'];
+session_start();
+$epost = $_SESSION["Epost"];
 
 // Sql query for å hente ut eksisterende informasjon om medlem
-$medlem = $pdo->query('SELECT Fornavn, Etternavn, Telefon, Epost, Fodselsdato, Kjonn, Passord FROM NeoKlubb.Medlem WHERE Epost = :Epost');
+$medlem = $pdo->query("SELECT Fornavn, Etternavn, Telefon, Epost, Fodselsdato, Kjonn, Passord FROM NeoKlubb.Medlem WHERE Epost = '$epost'");
 foreach ($medlem as $medlem) {
     $medlem['Fornavn'] . "\n";
     $medlem['Telefon'] . "\n";
@@ -23,12 +23,11 @@ foreach ($medlem as $medlem) {
     $medlem['Kjonn'] . "\n";
     $medlem['Passord'] . "\n";
 }
-$hashedpassword = $medlem['Passord'];
 
 // Sql query for å oppdatere informasjon om medlemmet om noe forandres
 $updateSql =
-    'UPDATE NeoKlubb.Medlem SET Fornavn = :Fornavn, Etternavn = :Etternavn , Telefon = :Telefon , Epost = :Epost
-        , Fodselsdato = :Fodselsdato , Kjonn = :Kjonn , Passord = :Passord WHERE Epost = "omandersen@uia.no"';
+    "UPDATE NeoKlubb.Medlem SET Fornavn = :Fornavn, Etternavn = :Etternavn , Telefon = :Telefon , Epost = :Epost
+        , Fodselsdato = :Fodselsdato , Kjonn = :Kjonn , Passord = :Passord WHERE Epost = '$epost'";
 
 $update = $pdo->prepare($updateSql);
 
@@ -120,5 +119,6 @@ if (isset($_POST["Lagreendringer"])) {
 
 
 </body>
+<a href="../Index/Forside.php">Tilbake til hjemmesiden
 
 </html>

@@ -1,0 +1,20 @@
+<?php
+
+session_start();
+
+if (!isset($_SESSION['Epost'])) {
+
+    header("location: /Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Public/Website/Index/Forside.php");
+}
+// dersom session blir startet printer ut session variabler. 
+if (isset($_SESSION["Epost"])) {
+    echo "Du er nå logget inn!";
+    echo "<br>";
+    echo  $_SESSION["Epost"];
+    echo "<br>";
+    echo  $_SESSION["Fornavn"];
+    echo "<br>";
+    echo  $_SESSION["Etternavn"];
+    echo "<br>";
+    echo  $_SESSION["Telefon"];
+}

@@ -29,7 +29,7 @@ if (isset($_SESSION["Epost"])) {
 <a href="../Listing/ListMembers.php">List opp medlemmer
     <br>
     <br>
-    <a href="../Editing/EditMember.php">Endre medlemsinformasjon
+    <a href="../Editing/Editor.php">Endre medlemsinformasjon
 
 
 

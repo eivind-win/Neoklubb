@@ -12,7 +12,6 @@ CREATE TABLE IF NOT EXISTS Medlem(
   PRIMARY KEY (MedlemID)
 );
 CREATE TABLE IF NOT EXISTS Kontigent(
-  KontigentID int NOT NULL AUTO_INCREMENT,
   KontigentsStatus varchar(99) NOT NULL,
   MedlemID int,
   PRIMARY KEY (KontigentID),
