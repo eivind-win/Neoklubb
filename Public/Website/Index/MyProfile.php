@@ -57,7 +57,8 @@ include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/Log
         <h1> <?php echo $_SESSION["Fornavn"] ?></h1>
         <h1> <?php echo $_SESSION["Etternavn"] ?></h1>
         <h2> <?php echo $_SESSION["Epost"] ?></h2>
-        <h2> <?php echo "tlf" .  $_SESSION["Telefon"] ?></h2>
+        <h2> <?php echo "tlf" . " " .  $_SESSION["Telefon"] ?></h2>
+        <h3> <?php echo "Medlem siden " . "<br>" ?></h3>
         <h3> <?php echo $_SESSION["RegistreringsDato"] ?></h3>
         <p class="title">IT-Student</p>
         <p>Universitetet i Agder</p>
