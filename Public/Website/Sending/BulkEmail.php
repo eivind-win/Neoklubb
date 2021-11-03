@@ -15,11 +15,13 @@
     require_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Include/PHPMailer/src/SMTP.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Database/DatabaseConnection.php";
 
+    //Om knappen "SendMail" blir trykket, vil koden inni kjøre
     if (isset($_POST["SendMail"])) {
-
+        //Sender både melding for HTML og de som ikke kan motta HTML
         $mld = $_POST['Melding'];
         $amld = $_POST['Melding'];
 
+        //SQL query med innerjoin for å hente ut medleminformasjon samt kontigentsstatus
         $sql = "SELECT
         Medlem.Fornavn,
         Medlem.Epost,
@@ -29,18 +31,21 @@
         ON Medlem.MedlemID = Kontigent.MedlemID 
         WHERE Kontigentsstatus = 'Ubetalt'";
 
+        //Prepared statement
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
 
+        //While loop for å hente ut fornavn, epost og kontigentsstatus
         while ($row = $stmt->fetch()) {
             $fornavn = $row['Fornavn'];
             $epost = $row['Epost'];
             $kontigentsstatus = $row['KontigentsStatus'];
 
+            //Kaller SendEmail funksjon
             SendEmail($fornavn, $epost, $kontigentsstatus, $mld, $amld);
         }
     }
-
+    // Funksjon for å sende email
     function SendEmail($fornavn, $epost, $kontigentsstatus, $mld, $amld)
     {
         $mail = new PHPMailer\PHPMailer\PHPMailer();
@@ -79,6 +84,7 @@
         }
     }
     ?>
+    <!-- HTML form for å legge inn melding som skal sendes til medlemmer -->
     <form method="POST" action="">
         <p>
         <p>

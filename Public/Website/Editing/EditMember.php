@@ -10,18 +10,13 @@
 <?php
 
 include "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Database/DatabaseConnection.php";
-<<<<<<< HEAD
+
 session_start();
 $epost = $_SESSION["Epost"];
 
 // Sql query for å hente ut eksisterende informasjon om medlem
 $medlem = $pdo->query("SELECT Fornavn, Etternavn, Telefon, Epost, Fodselsdato, Kjonn, Passord FROM NeoKlubb.Medlem WHERE Epost = '$epost'");
-=======
-include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
 
-
-$medlem = $pdo->query('SELECT Fornavn, Etternavn, Telefon, Epost, Fodselsdato, Kjonn, Passord FROM NeoKlubb.Medlem WHERE Epost = "anders@uia.no"');
->>>>>>> a281fba07df1a01b69c1ed9d205b8d72ddc49706
 foreach ($medlem as $medlem) {
     $medlem['Fornavn'] . "\n";
     $medlem['Telefon'] . "\n";
@@ -33,13 +28,8 @@ foreach ($medlem as $medlem) {
 
 // Sql query for å oppdatere informasjon om medlemmet om noe forandres
 $updateSql =
-<<<<<<< HEAD
     "UPDATE NeoKlubb.Medlem SET Fornavn = :Fornavn, Etternavn = :Etternavn , Telefon = :Telefon , Epost = :Epost
         , Fodselsdato = :Fodselsdato , Kjonn = :Kjonn , Passord = :Passord WHERE Epost = '$epost'";
-=======
-    'UPDATE NeoKlubb.Medlem SET Fornavn = :Fornavn, Etternavn = :Etternavn , Telefon = :Telefon , Epost = :Epost
-        , Fodselsdato = :Fodselsdato , Kjonn = :Kjonn , Passord = :Passord WHERE Epost = "anders@uia.no"';
->>>>>>> a281fba07df1a01b69c1ed9d205b8d72ddc49706
 
 $update = $pdo->prepare($updateSql);
 
@@ -122,7 +112,7 @@ if (isset($_POST["Lagreendringer"])) {
         </p>
         <p>
             <label for="Passord">Passord</label>
-            <input name="Passord" type="text" required oninvalid="this.setCustomValidity('Passord kan ikke være blank')" onchange="this.setCustomValidity('')">
+            <input name="Passord" type="text">
         </p>
         <p>
             <button type="Submit" name="Lagreendringer">Lagre endringer</button>
