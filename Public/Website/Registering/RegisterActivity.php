@@ -13,6 +13,8 @@
 
     <?php
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Database/DatabaseConnection.php";
+    include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LogInChecker.php";
+
 
     $sql = "INSERT INTO NeoKlubb.Aktivitet (Aktivitet, Beskrivelse, StartDato, SluttDato) 
     VALUES (:Aktivitet, :Beskrivelse, :StartDato, :SluttDato)";

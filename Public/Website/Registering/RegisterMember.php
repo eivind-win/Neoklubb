@@ -17,11 +17,15 @@
     $sql =
         "INSERT INTO NeoKlubb.Medlem (Fornavn, Etternavn, Telefon, Epost, Fodselsdato, Kjonn, Passord)
             VALUES (:Fornavn, :Etternavn, :Telefon, :Epost, :Fodselsdato, :Kjonn, :Passord);
-        INSERT INTO NeoKlubb.Adresse (Gateadresse, Poststed, Postnummer, MedlemID) 
-            VALUES (:Gateadresse, :Poststed, :Postnummer, last_insert_id());
         INSERT INTO NeoKlubb.Kontigent (KontigentsStatus, MedlemID) 
             VALUES ('Ubetalt', last_insert_id());
-            ";
+        INSERT INTO NeoKlubb.Adresse (Gateadresse, Poststed, Postnummer, MedlemID) 
+            VALUES (:Gateadresse, :Poststed, :Postnummer, last_insert_id());
+        ";
+
+
+
+
 
     $sp = $pdo->prepare($sql);
 

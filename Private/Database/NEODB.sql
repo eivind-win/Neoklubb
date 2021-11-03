@@ -20,9 +20,14 @@ CREATE TABLE IF NOT EXISTS Kontigent(
 CREATE TABLE IF NOT EXISTS Interesser(
   InteresseID int NOT NULL AUTO_INCREMENT,
   Interesser varchar(99) NOT NULL,
-  MedlemID int,
   PRIMARY KEY (InteresseID),
-  FOREIGN KEY (MedlemID) REFERENCES Medlem(MedlemID)
+);
+
+CREATE TABLE IF NOT EXISTS MineInteresser(
+  MedlemID int NOT NULL,
+  InteresseID int NOT NULL,
+  FOREIGN KEY (MEDLEMID) REFERENCES Medlem(MedlemID),
+  FOREIGN KEY (InteresseID) REFERENCES Interesser(InteresseID)
 );
 CREATE TABLE IF NOT EXISTS Adresse(
   AdresseID int NOT NULL AUTO_INCREMENT,
