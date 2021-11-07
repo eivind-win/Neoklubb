@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS Medlem(
   MedlemID int NOT NULL AUTO_INCREMENT,
   Fornavn varchar(99) NOT NULL,
   Etternavn varchar(99) NOT NULL,
-  MobilNummer int NOT NULL,
+  Telefon int NOT NULL,
   Epost varchar(99) NOT NULL,
   Fodselsdato date NOT NULL,
   Kjonn varchar(99) NOT NULL,
@@ -22,7 +22,6 @@ CREATE TABLE IF NOT EXISTS Interesser(
   Interesser varchar(99) NOT NULL,
   PRIMARY KEY (InteresseID),
 );
-
 CREATE TABLE IF NOT EXISTS MineInteresser(
   MedlemID int NOT NULL,
   InteresseID int NOT NULL,
