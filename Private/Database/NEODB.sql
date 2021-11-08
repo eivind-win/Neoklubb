@@ -14,13 +14,12 @@ CREATE TABLE IF NOT EXISTS Medlem(
 CREATE TABLE IF NOT EXISTS Kontigent(
   KontigentsStatus varchar(99) NOT NULL,
   MedlemID int,
-  PRIMARY KEY (KontigentID),
   FOREIGN KEY (MedlemID) REFERENCES Medlem(MedlemID)
 );
 CREATE TABLE IF NOT EXISTS Interesser(
   InteresseID int NOT NULL AUTO_INCREMENT,
   Interesser varchar(99) NOT NULL,
-  PRIMARY KEY (InteresseID),
+  PRIMARY KEY (InteresseID)
 );
 CREATE TABLE IF NOT EXISTS MineInteresser(
   MedlemID int NOT NULL,
@@ -28,6 +27,21 @@ CREATE TABLE IF NOT EXISTS MineInteresser(
   FOREIGN KEY (MEDLEMID) REFERENCES Medlem(MedlemID),
   FOREIGN KEY (InteresseID) REFERENCES Interesser(InteresseID)
 );
+
+CREATE TABLE IF NOT EXISTS Roller(
+  RolleID int NOT NULL AUTO_INCREMENT,
+  Rolle varchar(99) NOT NULL,
+  PRIMARY KEY (RolleID)
+);
+
+CREATE TABLE IF NOT EXISTS MineRoller(
+MedlemID int NOT NULL,
+RolleID int NOT NULL,
+  FOREIGN KEY (MEDLEMID) REFERENCES Medlem(MedlemID),
+  FOREIGN KEY (RolleID) REFERENCES Roller(RolleID)
+
+);
+
 CREATE TABLE IF NOT EXISTS Adresse(
   AdresseID int NOT NULL AUTO_INCREMENT,
   Gateadresse varchar(99) NOT NULL,
@@ -51,17 +65,8 @@ CREATE TABLE IF NOT EXISTS Kurs(
   FOREIGN KEY (MedlemID) REFERENCES Medlem(MedlemID),
   FOREIGN KEY (AktivitetID) REFERENCES Aktivitet(AktivitetID)
 );
-CREATE TABLE IF NOT EXISTS Roller(
-  RolleID int NOT NULL AUTO_INCREMENT,
-  RolleNavn varchar(99) NOT NULL,
-  MedlemID int,
-  PRIMARY KEY (RolleID),
-  FOREIGN KEY (MedlemID) REFERENCES Medlem(MedlemID)
-);
 CREATE TABLE IF NOT EXISTS Status(
-  StatusID int NOT NULL AUTO_INCREMENT,
   Status varchar(99) NOT NULL,
   MedlemID int,
-  PRIMARY KEY (StatusID),
   FOREIGN KEY (MedlemID) REFERENCES Medlem(MedlemID)
 );

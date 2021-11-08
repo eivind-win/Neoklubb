@@ -24,6 +24,7 @@ try {
                 $_SESSION["Fornavn"] = $Medlem->Fornavn;
                 $_SESSION["Etternavn"] = $Medlem->Etternavn;
                 $_SESSION["Telefon"] = $Medlem->Telefon;
+                $_SESSION["MedlemID"] = $Medlem->MedlemID;
                 $_SESSION["RegistreringsDato"] = $Medlem->RegistreringsDato;
                 // Redirecter til forside dersom passord stemmer
 

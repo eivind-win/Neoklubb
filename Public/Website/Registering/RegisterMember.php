@@ -19,6 +19,10 @@
             VALUES (:Fornavn, :Etternavn, :Telefon, :Epost, :Fodselsdato, :Kjonn, :Passord);
         INSERT INTO NeoKlubb.Kontigent (KontigentsStatus, MedlemID) 
             VALUES ('Ubetalt', last_insert_id());
+        INSERT INTO NeoKlubb.Status (Status, MedlemID) 
+            VALUES ('Aktiv', last_insert_id());
+        INSERT INTO NeoKlubb.Roller (Roller, MedlemID)
+            VALUES ('Medlem', last_insert_id());
         INSERT INTO NeoKlubb.Adresse (Gateadresse, Poststed, Postnummer, MedlemID) 
             VALUES (:Gateadresse, :Poststed, :Postnummer, last_insert_id());
         ";

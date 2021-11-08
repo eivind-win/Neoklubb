@@ -33,7 +33,7 @@
 include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Database/DatabaseConnection.php";
 include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
 
-$sql = "SELECT * FROM Medlem";
+$sql = "SELECT * FROM Medlem INNER JOIN Status ON Medlem.MedlemID = Status.MedlemID";
 $sp = $pdo->prepare($sql);
 try {
     $sp->execute();
@@ -54,6 +54,7 @@ if ($sp->rowCount() > 0) {
     echo "<th> Fodselsdato </th>";
     echo "<th> Kjønn </th>";
     echo "<th> RegistreringsDato </th>";
+    echo "<th> Status </th>";
     echo "</tr>";
 
     //foreach som itererer gjennom alle feltene i tabell
@@ -69,6 +70,9 @@ if ($sp->rowCount() > 0) {
         echo "<td>" . $Medlem->Fodselsdato . "</td>";
         echo "<td>" . $Medlem->Kjonn . "</td>";
         echo "<td>" . $Medlem->RegistreringsDato . "</td>";
+        echo "<td>" . $Medlem->Status . "</td>";
+
+
         echo "</tr>";
     }
     echo "</table>";

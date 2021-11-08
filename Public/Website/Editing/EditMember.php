@@ -14,24 +14,27 @@ include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/Log
 include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LogInChecker.php";
 
 
-$epost = $_SESSION["Epost"];
+$medlemid = $_SESSION["MedlemID"];
 
 // Sql query for å hente ut eksisterende informasjon om medlem
-$medlem = $pdo->query("SELECT Fornavn, Etternavn, Telefon, Epost, Fodselsdato, Kjonn, Passord FROM NeoKlubb.Medlem WHERE Epost = '$epost'");
-
+$medlem = $pdo->query("SELECT Medlem.Fornavn, Medlem.Etternavn, Medlem.Telefon, Medlem.Epost, Medlem.Fodselsdato, Medlem.Kjonn, Medlem.Passord, Status.Status FROM Medlem Inner JOIN Status ON Medlem.MedlemID = Status.MedlemID");
 foreach ($medlem as $medlem) {
+    $medlem['MedlemID'] . "\n";
     $medlem['Fornavn'] . "\n";
     $medlem['Telefon'] . "\n";
     $medlem['Epost'] . "\n";
     $medlem['Fodselsdato'] . "\n";
     $medlem['Kjonn'] . "\n";
     $medlem['Passord'] . "\n";
+    $medlem['Status'] . "\n";
 }
+
 
 // Sql query for å oppdatere informasjon om medlemmet om noe forandres
 $updateSql =
     "UPDATE NeoKlubb.Medlem SET Fornavn = :Fornavn, Etternavn = :Etternavn , Telefon = :Telefon , Epost = :Epost
-        , Fodselsdato = :Fodselsdato , Kjonn = :Kjonn , Passord = :Passord WHERE Epost = '$epost'";
+        , Fodselsdato = :Fodselsdato , Kjonn = :Kjonn , Passord = :Passord WHERE MedlemID = '$medlemid';
+    UPDATE Neoklubb.Status SET Status = :Status WHERE MedlemID = '$medlemid'";
 
 $update = $pdo->prepare($updateSql);
 
@@ -44,6 +47,8 @@ $update->bindParam(":Fodselsdato", $fodselsdato);
 $update->bindParam(":Kjonn", $kjonn, PDO::PARAM_STR);
 $update->bindParam(":Passord", $passord, PDO::PARAM_STR);
 
+$update->bindParam(":Status", $status, PDO::PARAM_STR);
+
 
 // Setter variablene som tomme for å unngå error, samt at de er input fra HTML
 $fornavn = isset($_POST['Fornavn']) ? $_POST['Fornavn'] : "";
@@ -53,6 +58,9 @@ $epost = isset($_POST['Epost']) ? $_POST['Epost'] : "";
 $fodselsdato = isset($_POST['Fodselsdato']) ? $_POST['Fodselsdato'] : "";
 $kjonn = isset($_POST['Kjonn']) ? $_POST['Kjonn'] : "";
 $passord = isset($_POST['Passord']) ? $_POST['Passord'] : "";
+
+$status = isset($_POST['Status']) ? $_POST['Status'] : "";
+
 
 // Hasher passord om det blir forandret
 $passord = password_hash($passord, PASSWORD_DEFAULT);
@@ -110,6 +118,15 @@ if (isset($_POST["Lagreendringer"])) {
                 <option selected><?php echo $medlem["Kjonn"]; ?> </option>
                 <option value="Mann">Mann</option>
                 <option value="Kvinne">Kvinne</option>
+            </select>
+        </p>
+        <p>
+            <label for="Status">Status</label>
+            <select id="Status" name="Status" required oninvalid="this.setCustomValidity('Status kan ikke være blankt!')" onchange="this.setCustomValidity('')">
+
+                <option selected><?php echo $medlem["Status"]; ?></option>
+                <option value="Aktiv">Aktiv</option>
+                <option value="Inaktiv">Inaktiv</option>
             </select>
         </p>
         <p>
