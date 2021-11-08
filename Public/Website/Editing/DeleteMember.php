@@ -20,10 +20,10 @@
 
     //SQL for å slette alt relatert til Medlemmet, rekkefølgen er for å slette alt som refererer til MedlemID først
     $sql = "DELETE FROM NeoKlubb.Kontigent WHERE MedlemID = :MedlemID;
-                DELETE FROM NeoKlubb.Interesser WHERE MedlemID = :MedlemID;
+                DELETE FROM NeoKlubb.MineInteresser WHERE MedlemID = :MedlemID;
                 DELETE FROM NeoKlubb.Kurs WHERE MedlemID = :MedlemID;
                 DELETE FROM NeoKlubb.Status WHERE MedlemID = :MedlemID;
-                DELETE FROM NeoKlubb.Roller WHERE MedlemID = :MedlemID;
+                DELETE FROM NeoKlubb.MineRoller WHERE MedlemID = :MedlemID;
                 DELETE FROM NeoKlubb.Adresse WHERE MedlemID = :MedlemID;
                 DELETE FROM NeoKlubb.Medlem WHERE MedlemID = :MedlemID;";
 
@@ -38,7 +38,7 @@
     if (isset($_POST["SlettMedlem"])) {
         try {
             $sp->execute();
-            header("Refresh:0; url=DeleteMember.php");
+            echo "<meta http-equiv='refresh' content='0'>";
         } catch (PDOException $e) {
             echo $e->getMessage() . "<br>";
         }

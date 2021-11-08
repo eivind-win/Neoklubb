@@ -22,8 +22,12 @@ include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/Log
     $mail = new PHPMailer\PHPMailer\PHPMailer();
     $mail->CharSet = "UTF-8";
     $fornavn = $_POST['Fornavn'];
-    $etternavn = $_POST['Etternavn'];
     $epost = $_POST['Epost'];
+    $emne = $_POST['Emne'];
+    $mld = $_POST['Melding'];
+    $amld = $_POST['Melding'];
+
+
 
     // Om knappen "SendMail" blir trykket, vil koden under kjøre
     if (isset($_POST["SendMail"])) {
@@ -37,17 +41,12 @@ include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/Log
             $mail->Username = "neoklubboe@gmail.com";
             $mail->Password = "Neoklubb2021";
 
-            // Meldingstekst for HTML-mottakere 
-            $mld  = "Kjære " . $fornavn . ". <br><br>";
-
-            // Meldingstekst for de som ikke kan motta HTML-epost 
-            $amld  = "Kjære " . $fornavn . ". <br><br>";
 
             $mail->isHTML(true);
             $mail->From = "NeoKlubbOE@gmail.com";
-            $mail->FromName = "Ikke svar";
+            $mail->FromName = "Neo Ungdomsklubb";
             $mail->addAddress($epost, $fornavn . " " . $etternavn);
-            $mail->Subject = "Registrering: kun ett steg unna nå!";
+            $mail->Subject = $emne;
             $mail->Body = $mld;
             $mail->AltBody = $amld;
             $mail->send();
@@ -66,12 +65,16 @@ include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/Log
             <input name="Fornavn" type="text" required oninvalid="this.setCustomValidity('Fornavn kan ikke være blankt!')" onchange="this.setCustomValidity('')">
         </p>
         <p>
-            <label for="Etternavn">Etternavn</label>
-            <input name="Etternavn" type="text" required oninvalid="this.setCustomValidity('Etternavn kan ikke være blankt!')" onchange="this.setCustomValidity('')">
-        </p>
-        <p>
             <label for="Epost">Epost</label>
             <input name="Epost" type="text" required oninvalid="this.setCustomValidity('Epost kan ikke være blankt!')" onchange="this.setCustomValidity('')">
+        </p>
+        <p>
+            <label for="Emne">Emne</label>
+            <input name="Emne" type="text" required oninvalid="this.setCustomValidity('Emne kan ikke være blank!')" onchange="this.setCustomValidity('')">
+        </p>
+        <p>
+            <label for="Melding">Melding</label>
+            <input name="Melding" type="text" required oninvalid="this.setCustomValidity('Meldingen kan ikke være blank!')" onchange="this.setCustomValidity('')">
         </p>
 
 
