@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <h1> Her kan du slette profilen din og all informasjonen som er lagret om deg. </h1>
+    <h2> Her kan du slette all informasjon om profilen din fra databasen </h2>
     <?php
 
     //Include for å liste opp eksisterende medlemmer
