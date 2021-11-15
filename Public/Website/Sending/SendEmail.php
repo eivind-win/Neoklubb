@@ -9,7 +9,7 @@ include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/Log
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Send Email</title>
+    <title>send email</title>
 </head>
 
 <body>
@@ -26,10 +26,12 @@ include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/Log
     $emne = $_POST['Emne'];
     $mld = $_POST['Melding'];
     $amld = $_POST['Melding'];
+    echo $fornavn;
 
 
 
     // Om knappen "SendMail" blir trykket, vil koden under kjøre
+    // Definerer div som få være på plass for at mail protocol skal fungere. 
     if (isset($_POST["SendMail"])) {
         try {
             $mail->IsSMTP();
@@ -43,7 +45,7 @@ include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/Log
 
 
             $mail->isHTML(true);
-            $mail->From = "NeoKlubbOE@gmail.com";
+            $mail->From = "eivind@gmail.com";
             $mail->FromName = "Neo Ungdomsklubb";
             $mail->addAddress($epost, $fornavn . " " . $etternavn);
             $mail->Subject = $emne;
@@ -60,13 +62,14 @@ include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/Log
     <h1>Send Email</h1>
     <!--  HTML form for å hente inn relevant informasjon for sending av mail  -->
     <form method="POST" action="">
-        <p>
-            <label for="Fornavn">Fornavn</label>
-            <input name="Fornavn" type="text" required oninvalid="this.setCustomValidity('Fornavn kan ikke være blankt!')" onchange="this.setCustomValidity('')">
-        </p>
+
         <p>
             <label for="Epost">Epost</label>
             <input name="Epost" type="text" required oninvalid="this.setCustomValidity('Epost kan ikke være blankt!')" onchange="this.setCustomValidity('')">
+        </p>
+        <p>
+            <label for="Fornavn">Fornavn</label>
+            <input name="Fornavn" type="text" required oninvalid="this.setCustomValidity('Fornavn kan ikke være blankt!')" onchange="this.setCustomValidity('')">
         </p>
         <p>
             <label for="Emne">Emne</label>

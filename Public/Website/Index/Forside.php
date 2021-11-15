@@ -31,13 +31,6 @@ if (isset($_SESSION["Epost"])) {
 ?>
 <h1> Velkommen til Neo Ungdomsklubb! </h1>
 
-<a href="../Listing/ListMembers.php">List opp medlemmer
-    <br>
-    <br>
-    <a href="../Editing/Editor.php">Endre medlemsinformasjon
-
-
-
-        </body>
+</body>
 
 </html>

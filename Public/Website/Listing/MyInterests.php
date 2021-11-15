@@ -4,7 +4,9 @@
 include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Database/DatabaseConnection.php";
 include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
 
-$sql = "SELECT Medlem.MedlemID, Medlem.Fornavn, Medlem.Etternavn, Interesser.Interesser FROM Medlem INNER JOIN MineInteresser ON Medlem.MedlemID = MineInteresser.MedlemID INNER JOIN Interesser ON MineInteresser.InteresseID = Interesser.InteresseID";
+$sql = "SELECT Medlem.MedlemID, Medlem.Fornavn, Medlem.Etternavn, Interesser.Interesser 
+FROM Medlem INNER JOIN MineInteresser ON Medlem.MedlemID = MineInteresser.MedlemID 
+INNER JOIN Interesser ON MineInteresser.InteresseID = Interesser.InteresseID";
 $sp = $pdo->prepare($sql);
 try {
     $sp->execute();

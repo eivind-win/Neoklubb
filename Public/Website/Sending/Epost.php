@@ -1,7 +1,8 @@
 <?php
-require_once "PHPMailer/src/PHPMailer.php";
-require_once "PHPMailer/src/Exception.php";
-require_once "PHPMailer/src/SMTP.php";
+require_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Include/PHPMailer/src/PHPMailer.php";
+require_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Include/PHPMailer/src/Exception.php";
+require_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Include/PHPMailer/src/SMTP.php";
+
 $mail = new PHPMailer\PHPMailer\PHPMailer();
 $fnavn = "Eivind";
 $enavn = "Win";
@@ -15,8 +16,8 @@ try {
     $mail->SMTPSecure = "tls"; // påkrevd for Gmail
     $mail->Host = "smtp.gmail.com";
     $mail->Port = 587;
-    $mail->Username = "***@gmail.com";
-    $mail->Password = "";
+    $mail->Username = "NeoKlubbOE@gmail.com";
+    $mail->Password = "Neoklubb2021";
 
     /* Meldingstekst for HTML-mottakere */
     $mld  = "Kjære " . $fnavn . ". <br><br>";
