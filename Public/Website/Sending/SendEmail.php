@@ -24,8 +24,13 @@ include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/Log
     $fornavn = $_POST['Fornavn'];
     $epost = $_POST['Epost'];
     $emne = $_POST['Emne'];
-    $mld = $_POST['Melding'];
+    $mld = " Hei ";
+    $mld .= $_POST['Fornavn'];
+    $mld .= " , ";
+    $mld .= $_POST['Melding'];
     $amld = $_POST['Melding'];
+
+
     echo $fornavn;
 
 
