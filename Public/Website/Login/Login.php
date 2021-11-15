@@ -26,7 +26,7 @@ try {
                 $_SESSION["Telefon"] = $Medlem->Telefon;
                 $_SESSION["MedlemID"] = $Medlem->MedlemID;
                 $_SESSION["RegistreringsDato"] = $Medlem->RegistreringsDato;
-                // Redirecter til forside dersom passord stemmer
+                // Redirecter til forside dersom passord stemmer 
 
                 header("location:../index/Forside.php");
             } else {
