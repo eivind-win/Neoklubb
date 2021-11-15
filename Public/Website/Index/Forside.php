@@ -10,7 +10,7 @@ if (!isset($_SESSION['Epost'])) {
     header("location: ../Login/Login.php");
 }
 // dersom session blir startet printer ut session variabler. 
-/*if (isset($_SESSION["Epost"])) {
+if (isset($_SESSION["Epost"])) {
     echo "Du er nå logget inn!";
     echo "<br>";
     echo  $_SESSION["Epost"];
@@ -20,8 +20,10 @@ if (!isset($_SESSION['Epost'])) {
     echo  $_SESSION["Etternavn"];
     echo "<br>";
     echo  $_SESSION["Telefon"];
+    echo "<br>";
+    echo  $_SESSION["MedlemID"];
 }
-*/
+
 
 ?>
 <h1> Velkommen til Neo Ungdomsklubb! </h1>

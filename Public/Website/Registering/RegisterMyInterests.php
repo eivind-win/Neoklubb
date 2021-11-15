@@ -14,13 +14,17 @@
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LogInChecker.php";
 
     $medlemid = $_SESSION["MedlemID"];
-    $interesseid = $output['InteresseID'];
+
 
     $sql = "SELECT Interesser, InteresseID from Interesser ORDER BY InteresseID";
-    $sqlAdd = "INSERT INTO MineInteresser Values :MedlemID, :InteresseID";
 
-    //$sp->bindParam(":MedlemID", $medlemid, PDO::PARAM_INT);
-    // $sp->bindParam(":InteresseID", $interesseid, PDO::PARAM_INT);
+    $updateSql = "INSERT INTO MineInteresser VALUES :MedlemID, :InteresseID";
+
+    // $update->bindParam(":MedlemID", $medlemid, PDO::PARAM_STR);
+    // $update->bindParam(":InteresseID", $interesseid, PDO::PARAM_STR);
+
+    $update = $pdo->prepare($updateSql);
+
 
     try {
         $sp = $pdo->prepare($sql);
@@ -30,27 +34,16 @@
         echo $e->getMessage() . "<br>";
     }
 
-    if (isset($_POST["RegistrerDineInteresser"])) {
-
+    if (isset($_POST["RegistrerMineInteresser"])) {
 
         try {
-            $sp->execute($sqlAdd);
+            $update->execute();
+            echo "<meta http-equiv='refresh' content='0'>";
         } catch (PDOException $e) {
             echo $e->getMessage() . "<br>";
         }
-        //$sp->debugDumpParams();
-
-        if ($pdo->lastInsertId() > 0) {
-            echo "Dataene er satt inn i tabellen";
-        } else {
-            echo "Dataene er ikke satt inn i tabellen";
-        }
+        $update->debugDumpParams();
     }
-
-
-
-
-
 
     ?>
     <h1> Registrer dine interesser </h1>
@@ -58,11 +51,11 @@
     <form method="POST" action="">
         <p>
             <label>Interesse
-                <select>
-                    <option> Velg interesse </option>
-                    <?php foreach ($resultat as $output) { ?>
-                        <option><?php echo $output['Interesser']; ?></option>
-                    <?php } ?>
+                <select name="Interesser" id="Interesser">
+                    <?php foreach ($resultat as $row) : ?>
+                        <option><?= $row["Interesser"]; ?></option>
+                    <?php endforeach ?>
+                </select>
         </p>
 
         <p>

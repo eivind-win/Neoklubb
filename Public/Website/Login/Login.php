@@ -4,17 +4,17 @@ session_start();
 include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Database/DatabaseConnection.php";
 include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LogoutHeader.php";
 
-// prepare statement, sjekker om feltene er gyllt ut og samsvarer med data i databsen.
+// prepare sp, sjekker om feltene er gyllt ut og samsvarer med data i databsen.
 try {
     if (isset($_POST["login"])) {
         if (empty($_POST["Epost"]) || empty($_POST["Passord"])) {
             $message = '<label>Alle felter må fylles ut</label>';
         } else {
-            $query = "SELECT * FROM Medlem WHERE Epost = :Epost";
-            $statement = $pdo->prepare($query);
-            $statement->bindParam(':Epost', $_POST["Epost"], PDO::PARAM_STR);
-            $statement->execute();
-            $Medlem = $statement->fetch(PDO::FETCH_OBJ);
+            $sql = "SELECT * FROM Medlem WHERE Epost = :Epost";
+            $sp = $pdo->prepare($sql);
+            $sp->bindParam(':Epost', $_POST["Epost"], PDO::PARAM_STR);
+            $sp->execute();
+            $Medlem = $sp->fetch(PDO::FETCH_OBJ);
             //lager variabel som henter fra db
             $hashedpassword = $Medlem->Passord;
 
@@ -54,13 +54,13 @@ try {
             echo '<label class="text-danger">' . $message . '</label>';
         }
         ?>
-        <h3 align="">Velkommen til Neo Ungdommsklubb</h3><br />
+        <h3 align="">Velkommen til Neo Ungdomsklubb</h3><br />
         <form method="post">
-            <label>Username</label>
+            <label>Epost</label>
             <input type="text" name="Epost" class="form-control" />
             <br />
-            <label>Password</label>
-            <input type="password" name="Passord" class="form-control" />
+            <label>Passord</label>
+            <input type="passord" name="Passord" class="form-control" />
             <br />
             <input type="submit" name="login" class="btn btn-info" value="Login" />
         </form>

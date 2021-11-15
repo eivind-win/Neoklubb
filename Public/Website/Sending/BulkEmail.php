@@ -17,15 +17,14 @@
 
     //Om knappen "SendMail" blir trykket, vil koden inni kjøre
     if (isset($_POST["SendMail"])) {
-        //Sender både melding for HTML og de som ikke kan motta HTML
-        $mld = $_POST['Melding'];
-        $amld = $_POST['Melding'];
+
+
 
         //SQL query med innerjoin for å hente ut medleminformasjon samt kontigentsstatus
         $sql = "SELECT
         Medlem.Fornavn,
         Medlem.Epost,
-        Kontigent.Kontigentsstatus
+        Kontigent.KontigentsStatus
         FROM Medlem
         INNER JOIN Kontigent
         ON Medlem.MedlemID = Kontigent.MedlemID 
@@ -40,6 +39,8 @@
             $fornavn = $row['Fornavn'];
             $epost = $row['Epost'];
             $kontigentsstatus = $row['KontigentsStatus'];
+
+            $fornavn = $row['Fornavn'];
 
             //Kaller SendEmail funksjon
             SendEmail($fornavn, $epost, $kontigentsstatus, $mld, $amld);
@@ -61,11 +62,11 @@
         $mail->Password = "Neoklubb2021";
 
         /* Meldingstekst for HTML-mottakere */
-        //$mld  = "Hei " . $fornavn . " din kontigentsstatus er " . $kontigentsstatus . " vennligst husk å betale kontigent hos Neo Ungdomsklubb.";
+        $mld  = "Hei " . $fornavn . " din kontigentsstatus er " . $kontigentsstatus . " vennligst husk å betale kontigent hos Neo Ungdomsklubb.";
 
 
         /* Meldingstekst for de som ikke kan motta HTML-epost */
-        //$amld  = "Hei " . $fornavn . " din kontigentsstatus er " . $kontigentsstatus . " vennligst husk å betale kontigent hos Neo Ungdomsklubb.";
+        $amld  = "Hei " . $fornavn . " din kontigentsstatus er " . $kontigentsstatus . " vennligst husk å betale kontigent hos Neo Ungdomsklubb.";
 
         $mail->isHTML(true);
         $mail->From = "NeoKlubbOE@gmail.com";
@@ -87,12 +88,7 @@
     <!-- HTML form for å legge inn melding som skal sendes til medlemmer -->
     <form method="POST" action="">
         <p>
-        <p>
-            <label for="Melding">Melding</label>
-            <input name="Melding" type="text" required oninvalid="this.setCustomValidity('Melding kan ikke være blank!')" onchange="this.setCustomValidity('')">
-        </p>
-
-        <button type="Submit" name="SendMail">Send bulk mail til de som ikke har betalt kontigent</button>
+            <button type="Submit" name="SendMail">Send bulk mail til de som ikke har betalt kontigent</button>
         </p>
 </body>
 

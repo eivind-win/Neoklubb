@@ -21,8 +21,8 @@
             VALUES ('Ubetalt', last_insert_id());
         INSERT INTO NeoKlubb.Status (Status, MedlemID) 
             VALUES ('Aktiv', last_insert_id());
-        INSERT INTO NeoKlubb.Roller (Roller, MedlemID)
-            VALUES ('Medlem', last_insert_id());
+        INSERT INTO NeoKlubb.MineRoller (MedlemID, RolleID)
+            VALUES  (last_insert_id(), 1);
         INSERT INTO NeoKlubb.Adresse (Gateadresse, Poststed, Postnummer, MedlemID) 
             VALUES (:Gateadresse, :Poststed, :Postnummer, last_insert_id());
         ";

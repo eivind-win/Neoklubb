@@ -71,6 +71,7 @@ if (isset($_POST["Lagreendringer"])) {
 
     try {
         $update->execute();
+        echo "<meta http-equiv='refresh' content='0'>";
     } catch (PDOException $e) {
         echo $e->getMessage() . "<br>";
     }
