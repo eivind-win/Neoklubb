@@ -62,7 +62,7 @@
         $mail->Password = "Neoklubb2021";
 
         /* Meldingstekst for HTML-mottakere */
-        $mld  = "Hei " . $fornavn . " din kontigentsstatus er " . $kontigentsstatus . " vennligst husk å betale kontigent hos Neo Ungdomsklubb.";
+        $mld  = "Hei " . $fornavn . " din kontigentsstatus er " . $kontigentsstatus . "<br>" . " vennligst husk å betale kontigent hos Neo Ungdomsklubb.";
 
 
         /* Meldingstekst for de som ikke kan motta HTML-epost */

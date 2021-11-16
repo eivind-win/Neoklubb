@@ -47,8 +47,8 @@
     }
     ?>
 
-    <h1> Registrer deg </h1>
-    <h2> Legg til informasjon </h2>
+    <h1> Betaling av kontigent</h1>
+    <h2> Legg til betalingsinformasjon</h2>
 
     <!-- HTML form som tar relevant informasjon i input, lagt inn isset for å reprinte inngitt verdi dersom noe annet skulle være feil, hindrer at bruker må fylle inn alt på nytt-->
 

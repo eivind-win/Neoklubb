@@ -1,14 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrering</title>
-</head>
-
-<body>
     <?php
     include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Database/DatabaseConnection.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LogoutHeader.php";
@@ -88,79 +77,94 @@
 
 
     ?>
-    <h1> Registrer deg </h1>
-    <h2> Legg til informasjon </h2>
+    <!DOCTYPE html>
+    <html lang="en">
 
-    <!-- HTML form som tar relevant informasjon i input, lagt inn isset for å reprinte inngitt verdi dersom noe annet skulle være feil, hindrer at bruker må fylle inn alt på nytt-->
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-    <form method="POST" action="">
-        <p>
-            <label for="Fornavn">Fornavn</label>
-            <input name="Fornavn" type="text" required oninvalid="this.setCustomValidity('Fornavn kan ikke være blankt!')" onchange="this.setCustomValidity('')" value="<?php if (isset($_POST["Fornavn"])) {
-                                                                                                                                                                            echo $_POST["Fornavn"];
-                                                                                                                                                                        } ?>">
-        </p>
-        <p>
-            <label for="Etternavn">Etternavn</label>
-            <input name="Etternavn" type="text" required oninvalid="this.setCustomValidity('Etternavn kan ikke være blankt!')" onchange="this.setCustomValidity('')" value="<?php if (isset($_POST["Etternavn"])) {
-                                                                                                                                                                                echo $_POST["Etternavn"];
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Registrering</title>
+    </head>
+
+    <body>
+        <h1> Registrer deg </h1>
+        <h2> Legg til informasjon </h2>
+
+        <!-- HTML form som tar relevant informasjon i input, lagt inn isset for å reprinte inngitt verdi dersom noe annet skulle være feil, hindrer at bruker må fylle inn alt på nytt-->
+
+        <form method="POST" action="">
+            <p>
+                <label for="Fornavn">Fornavn</label>
+                <input name="Fornavn" type="text" required oninvalid="this.setCustomValidity('Fornavn kan ikke være blankt!')" onchange="this.setCustomValidity('')" value="<?php if (isset($_POST["Fornavn"])) {
+                                                                                                                                                                                echo $_POST["Fornavn"];
                                                                                                                                                                             } ?>">
-        </p>
-        <p>
-            <label for="Telefon">Telefon</label>
-            <input name="Telefon" type="text" required oninvalid="this.setCustomValidity('Telefonnummer kan ikke være blankt!')" onchange="this.setCustomValidity('')" value="<?php if (isset($_POST["Telefon"])) {
-                                                                                                                                                                                    echo $_POST["Telefon"];
+            </p>
+            <p>
+                <label for="Etternavn">Etternavn</label>
+                <input name="Etternavn" type="text" required oninvalid="this.setCustomValidity('Etternavn kan ikke være blankt!')" onchange="this.setCustomValidity('')" value="<?php if (isset($_POST["Etternavn"])) {
+                                                                                                                                                                                    echo $_POST["Etternavn"];
                                                                                                                                                                                 } ?>">
-        </p>
-        <p>
-            <label for="Epost">Epost</label>
-            <input name="Epost" type="text" required oninvalid="this.setCustomValidity('Epost kan ikke være blankt!')" onchange="this.setCustomValidity('')" value="<?php if (isset($_POST["Epost"])) {
-                                                                                                                                                                        echo $_POST["Epost"];
-                                                                                                                                                                    } ?>">
-        </p>
-        <p>
-            <label for="Fodselsdato">Fødselsdato</label>
-            <input name="Fodselsdato" type="date" required oninvalid="this.setCustomValidity('Fødselsdato kan ikke være blankt!')" onchange="this.setCustomValidity('')" value="<?php if (isset($_POST["Fodselsdato"])) {
-                                                                                                                                                                                    echo $_POST["Fodselsdato"];
-                                                                                                                                                                                } ?>">
-        </p>
-        <p>
-            <label for="Kjonn">Kjønn</label>
-            <select id="Kjonn" name="Kjonn" required oninvalid="this.setCustomValidity('Kjønn kan ikke være blankt!')" onchange="this.setCustomValidity('')">
-
-                <option value="" disabled selected></option>
-                <option value="Mann">Mann</option>
-                <option value="Kvinne">Kvinne</option>
-            </select>
-        </p>
-        <p>
-            <label for="Gateadresse">Gateadresse</label>
-            <input name="Gateadresse" type="text" required oninvalid="this.setCustomValidity('Gateadresse kan ikke være blank!')" onchange="this.setCustomValidity('')" value="<?php if (isset($_POST["Gateadresse"])) {
-                                                                                                                                                                                    echo $_POST["Gateadresse"];
-                                                                                                                                                                                } ?>">
-        </p>
-        <p>
-            <label for="Poststed">Poststed</label>
-            <input name="Poststed" type="text" required oninvalid="this.setCustomValidity('Poststed kan ikke være blankt!')" onchange="this.setCustomValidity('')" value="<?php if (isset($_POST["Poststed"])) {
-                                                                                                                                                                                echo $_POST["Poststed"];
-                                                                                                                                                                            } ?>">
-        </p>
-        <p>
-            <label for="Postnummer">Postnummer</label>
-            <input name="Postnummer" type="text" required oninvalid="this.setCustomValidity('Postnummer kan ikke være blankt!')" onchange="this.setCustomValidity('')" value="<?php if (isset($_POST["Postnummer"])) {
-                                                                                                                                                                                    echo $_POST["Postnummer"];
-                                                                                                                                                                                } ?>">
-        </p>
-
-        <p>
-            <label for="Passord">Passord</label>
-            <input name="Passord" type="text" required oninvalid="this.setCustomValidity('Passord kan ikke være blankt!')" onchange="this.setCustomValidity('')" value="<?php if (isset($_POST["Passord"])) {
-                                                                                                                                                                            echo $_POST["Passord"];
+            </p>
+            <p>
+                <label for="Telefon">Telefon</label>
+                <input name="Telefon" type="text" required oninvalid="this.setCustomValidity('Telefonnummer kan ikke være blankt!')" onchange="this.setCustomValidity('')" value="<?php if (isset($_POST["Telefon"])) {
+                                                                                                                                                                                        echo $_POST["Telefon"];
+                                                                                                                                                                                    } ?>">
+            </p>
+            <p>
+                <label for="Epost">Epost</label>
+                <input name="Epost" type="text" required oninvalid="this.setCustomValidity('Epost kan ikke være blankt!')" onchange="this.setCustomValidity('')" value="<?php if (isset($_POST["Epost"])) {
+                                                                                                                                                                            echo $_POST["Epost"];
                                                                                                                                                                         } ?>">
-        </p>
-        <p>
-            <button type="Submit" name="Registrerdeg">Registrer deg</button>
-        </p>
-</body>
+            </p>
+            <p>
+                <label for="Fodselsdato">Fødselsdato</label>
+                <input name="Fodselsdato" type="date" required oninvalid="this.setCustomValidity('Fødselsdato kan ikke være blankt!')" onchange="this.setCustomValidity('')" value="<?php if (isset($_POST["Fodselsdato"])) {
+                                                                                                                                                                                        echo $_POST["Fodselsdato"];
+                                                                                                                                                                                    } ?>">
+            </p>
+            <p>
+                <label for="Kjonn">Kjønn</label>
+                <select id="Kjonn" name="Kjonn" required oninvalid="this.setCustomValidity('Kjønn kan ikke være blankt!')" onchange="this.setCustomValidity('')">
 
-</html>
+                    <option value="" disabled selected></option>
+                    <option value="Mann">Mann</option>
+                    <option value="Kvinne">Kvinne</option>
+                </select>
+            </p>
+            <p>
+                <label for="Gateadresse">Gateadresse</label>
+                <input name="Gateadresse" type="text" required oninvalid="this.setCustomValidity('Gateadresse kan ikke være blank!')" onchange="this.setCustomValidity('')" value="<?php if (isset($_POST["Gateadresse"])) {
+                                                                                                                                                                                        echo $_POST["Gateadresse"];
+                                                                                                                                                                                    } ?>">
+            </p>
+            <p>
+                <label for="Poststed">Poststed</label>
+                <input name="Poststed" type="text" required oninvalid="this.setCustomValidity('Poststed kan ikke være blankt!')" onchange="this.setCustomValidity('')" value="<?php if (isset($_POST["Poststed"])) {
+                                                                                                                                                                                    echo $_POST["Poststed"];
+                                                                                                                                                                                } ?>">
+            </p>
+            <p>
+                <label for="Postnummer">Postnummer</label>
+                <input name="Postnummer" type="text" required oninvalid="this.setCustomValidity('Postnummer kan ikke være blankt!')" onchange="this.setCustomValidity('')" value="<?php if (isset($_POST["Postnummer"])) {
+                                                                                                                                                                                        echo $_POST["Postnummer"];
+                                                                                                                                                                                    } ?>">
+            </p>
+
+            <p>
+                <label for="Passord">Passord</label>
+                <input name="Passord" type="Password" required oninvalid="this.setCustomValidity('Passord kan ikke være blankt!')" onchange="this.setCustomValidity('')" value="<?php if (isset($_POST["Passord"])) {
+                                                                                                                                                                                    echo $_POST["Passord"];
+                                                                                                                                                                                } ?>">
+            </p>
+            <p>
+                <button type="Submit" name="Registrerdeg">Registrer deg</button>
+            </p>
+    </body>
+
+    </html>

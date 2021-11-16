@@ -60,7 +60,7 @@ try {
             <input type="text" name="Epost" class="form-control" />
             <br />
             <label>Passord</label>
-            <input type="passord" name="Passord" class="form-control" />
+            <input type="password" name="Passord" class="form-control" />
             <br />
             <input type="submit" name="login" class="btn btn-info" value="Login" />
         </form>

@@ -16,7 +16,7 @@
     $medlemid = $_SESSION["MedlemID"];
 
 
-    $sql = "SELECT Interesser, InteresseID from Interesser ORDER BY InteresseID";
+    $sql = "SELECT Interesser, InteresseID from Interesser ORDER BY Interesser";
 
     $updateSql = "INSERT INTO MineInteresser VALUES :MedlemID, :InteresseID";
 

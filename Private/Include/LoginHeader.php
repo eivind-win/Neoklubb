@@ -17,9 +17,8 @@
             </button>
             <div class="dropdown-content">
                 <a href="../Index/MyProfile.php">Min profil</a>
-                <a href="../Registering/RegisterMember.php">Registrer deg</a>
                 <a href="../Listing/ListMembers.php"> Oversikt medlemmer</a>
-                <a href="../Listing/MyInterests.php"> Oversikt Interesser</a>
+                <a href="../Listing/ListMyInterests.php"> Oversikt Interesser</a>
                 <a href="../Editing/EditMember.php">Endre opplysninger</a>
                 <a href="../Editing/DeleteMember.php">Slett medlemmer</a>
                 <a href="..//Sending/SendEmail.php">Send Epost</a>

@@ -15,6 +15,8 @@ if (!isset($_SESSION['Epost'])) {
 ?>
 <h1> Velkommen til Neo Ungdomsklubb! </h1>
 
+
+
 </body>
 
 </html>
