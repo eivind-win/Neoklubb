@@ -4,6 +4,7 @@ require_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Include/PHP
 require_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Include/PHPMailer/src/SMTP.php";
 
 $mail = new PHPMailer\PHPMailer\PHPMailer();
+$mail->CharSet = "UTF-8";
 $fnavn = "Eivind";
 $enavn = "Win";
 $kode = "123";
@@ -39,6 +40,7 @@ try {
     $mail->addAddress($epost, $fnavn . " " . $enavn);
     $mail->Subject = "Registrering: kun ett steg unna nå!";
     $mail->Body = $mld;
+    //$mail->Body =
     $mail->AltBody = $amld;
     $mail->send();
     echo "E-post er sendt";
