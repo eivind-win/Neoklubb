@@ -6,7 +6,7 @@ include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Include/Log
 include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Public/Resources/Style/Table.html";
 
 
-$sql = "SELECT * FROM Aktivitet WHERE StartDato >= curdate()";
+$sql = "SELECT * FROM interesser";
 $sp = $pdo->prepare($sql);
 try {
     $sp->execute();
@@ -15,34 +15,28 @@ try {
     //denne meldingen bør vi logge isstedenfor å skrive ut på skjermen
 }
 //Lager en tabell og som inneholder alle radene 
-$Aktivitet = $sp->fetchAll(PDO::FETCH_OBJ);
+$Interesser = $sp->fetchAll(PDO::FETCH_OBJ);
 if ($sp->rowCount() > 0) {
     echo "<table>";
     echo "<tr>";
-    echo "<th> AktivitetID </th>";
-    echo "<th> Aktivitet </th>";
-    echo "<th> Beskrivelse </th>";
-    echo "<th> Starter </th>";
-    echo "<th> Slutter </th>";
+    echo "<th> InteresseID </th>";
+    echo "<th> Interesser </th>";
     echo "<th> Bli med </th>";
     echo "</tr>";
 
     //foreach som itererer gjennom alle feltene og printer ut i en tabell
-    foreach ($Aktivitet as $Aktivitet) {
+    foreach ($Interesser as $Interesser) {
         echo "<tr>";
-        echo "<td>" . $Aktivitet->AktivitetID . "</td>";
-        echo "<td>" . $Aktivitet->Aktivitet . "</td>";
-        echo "<td>" . $Aktivitet->Beskrivelse . "</td>";
-        echo "<td>" . $Aktivitet->StartDato . "</td>";
-        echo "<td>" . $Aktivitet->SluttDato . "</td>";
+        echo "<td>" . $Interesser->InteresseID . "</td>";
+        echo "<td>" . $Interesser->Interesser . "</td>";
         echo "<td>"
 ?>
         <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?> ">
             <fieldset>
-                <input type="checkbox" name="AktivitetID" id="ID" value="<?php echo $Aktivitet->AktivitetID; ?>">
+                <input type="checkbox" name="interesseID" id="ID" value="<?php echo $Interesser->InteresseID; ?>">
                 <br>
                 </p>
-                <button type="Submit" name="blimed">Blimed</button>
+                <button type="Submit" name="LeggTilInteresse">Legg til interesse</button>
             </fieldset>
         </form>
         </p>
@@ -55,13 +49,13 @@ if ($sp->rowCount() > 0) {
     echo "Det er ingen aktiviteter som matcher denne beskrivelsen";
 }
 
-if (isset($_POST["blimed"])) {
-    $aktivitetid = $_POST['AktivitetID'];
+if (isset($_POST["LeggTilInteresse"])) {
+    $interesseID = $_POST['interesseID'];
     $medlemid = $_SESSION['MedlemID'];
     // sett inn spørring her
-    $sql = "INSERT INTO Kurs (MedlemID, AktivitetID) VALUES (:MedlemID, :AktivitetID)";
+    $sql = "INSERT INTO MineInteresser (MedlemID, InteresseID) VALUES (:MedlemID, :InteresseID)";
     $sp = $pdo->prepare($sql);
-    $sp->bindParam(":AktivitetID", $aktivitetid, PDO::PARAM_INT);
+    $sp->bindParam(":InteresseID", $interesseID, PDO::PARAM_INT);
     $sp->bindParam(":MedlemID", $medlemid, PDO::PARAM_INT);
     try {
         $sp->execute();
