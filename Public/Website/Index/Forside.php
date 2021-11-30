@@ -11,6 +11,10 @@
 <body>
     <?php
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
+    ?>
+    <h1> Velkommen til Neo Ungdomsklubb! </h1>
+    <?php
+    include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Public/Website/Listing/ListActivities.php";
     session_start();
     // dersom det IKKE er startet noe session blir med redirectet til loginsiden igjen.
     if (!isset($_SESSION['Epost'])) {
@@ -21,7 +25,7 @@
 
 
     ?>
-    <h1> Velkommen til Neo Ungdomsklubb! </h1>
+
 
 
 

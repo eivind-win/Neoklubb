@@ -22,8 +22,8 @@
                 <a href="../Editing/EditMember.php">Endre opplysninger</a>
                 <a href="../Editing/DeleteMember.php">Slett medlemmer</a>
                 <a href="../Registering/RegisterActivity.php">Registrer aktiviteter</a>
-                <a href="..//Sending/SendEmail.php">Send Epost</a>
-                <a href="..//Login/LogOut.php">Log Out</a>
+                <a href="../Sending/SendEmail.php">Send Epost</a>
+                <a href="../Login/LogOut.php">Log Out</a>
             </div>
 
         </div>
