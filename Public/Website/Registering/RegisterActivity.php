@@ -9,11 +9,16 @@
 </head>
 
 <body>
+    <?php
+    include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
+    ?>
     <h1> Registrer aktivitet for Neo Ungdomsklubb </h1>
 
     <?php
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Database/DatabaseConnection.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LogInChecker.php";
+
+
 
 
     $sql = "INSERT INTO NeoKlubb.Aktivitet (Aktivitet, Beskrivelse, StartDato, SluttDato) 
