@@ -35,10 +35,9 @@ foreach ($medlemStatus as $medlemStatus) {
 }
 
 // Sql query for å oppdatere informasjon om medlemmet om noe forandres
-$updateSql =
-    "UPDATE NeoKlubb.Medlem SET Fornavn = :Fornavn, Etternavn = :Etternavn , Telefon = :Telefon , Epost = :Epost
+$updateSql = "UPDATE NeoKlubb.Medlem SET Fornavn = :Fornavn, Etternavn = :Etternavn , Telefon = :Telefon , Epost = :Epost
         , Fodselsdato = :Fodselsdato , Kjonn = :Kjonn , Passord = :Passord WHERE MedlemID = '$medlemid';
-    UPDATE Neoklubb.Status SET Status = :Status WHERE MedlemID = '$medlemid'";
+    UPDATE Neoklubb.Status SET Status = :status WHERE MedlemID = '$medlemid'";
 
 $update = $pdo->prepare($updateSql);
 
@@ -50,7 +49,6 @@ $update->bindParam(":Epost", $epost, PDO::PARAM_STR);
 $update->bindParam(":Fodselsdato", $fodselsdato);
 $update->bindParam(":Kjonn", $kjonn, PDO::PARAM_STR);
 $update->bindParam(":Passord", $passord, PDO::PARAM_STR);
-
 $update->bindParam(":Status", $status, PDO::PARAM_STR);
 
 // Setter variablene som tomme for å unngå error, samt at de er input fra HTML

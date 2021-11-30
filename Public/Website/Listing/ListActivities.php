@@ -5,8 +5,6 @@ include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/Log
 include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Include/LoginChecker.php";
 include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Public/Resources/Style/Table.html";
 
-$medlemid = $_SESSION['MedlemID'];
-
 
 $sql = "SELECT * FROM Aktivitet WHERE StartDato >= curdate()";
 $sp = $pdo->prepare($sql);
@@ -27,7 +25,6 @@ if ($sp->rowCount() > 0) {
     echo "<th> Starter </th>";
     echo "<th> Slutter </th>";
     echo "<th> Bli med </th>";
-
     echo "</tr>";
 
     //foreach som itererer gjennom alle feltene og printer ut i en tabell
@@ -40,7 +37,15 @@ if ($sp->rowCount() > 0) {
         echo "<td>" . $Aktivitet->SluttDato . "</td>";
         echo "<td>"
 ?>
-        <input type="checkbox" /> <? $Aktivitet['AktivitetID'] ?>
+        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?> ">
+            <fieldset>
+                <input type="checkbox" name="AktivitetID" id="ID" value="<?php echo $Aktivitet->AktivitetID; ?>">
+                <br>
+                </p>
+                <button type="Submit" name="blimed">Blimed</button>
+            </fieldset>
+        </form>
+        </p>
 <?php
         "</td>";
         echo "</tr>";
@@ -50,25 +55,20 @@ if ($sp->rowCount() > 0) {
     echo "Det er ingen aktiviteter som matcher denne beskrivelsen";
 }
 
-if (isset($_POST["BliMed"])) {
-
+if (isset($_POST["blimed"])) {
+    $aktivitetid = $_POST['AktivitetID'];
+    $medlemid = $_SESSION['MedlemID'];
     // sett inn spørring her
-
+    $sql = "INSERT INTO Kurs (MedlemID, AktivitetID) VALUES (:MedlemID, :AktivitetID)";
+    $sp = $pdo->prepare($sql);
+    $sp->bindParam(":AktivitetID", $aktivitetid, PDO::PARAM_INT);
+    $sp->bindParam(":MedlemID", $medlemid, PDO::PARAM_INT);
     try {
-        $bm->execute();
+        $sp->execute();
     } catch (PDOException $e) {
         echo $e->getMessage() . "<br>";
     }
-    //$sp->debugDumpParams();
-
-    if ($pdo->lastInsertId() > 0) {
-        echo "Dataene er satt inn i tabellen";
-    } else {
-        echo "Dataene er ikke satt inn i tabellen";
-    }
+} else {
+    echo "Klarer ikke hente data";
 }
 ?>
-
-<p>
-    <button type="Submit" name="BliMed">Bli med</button>
-</p>
