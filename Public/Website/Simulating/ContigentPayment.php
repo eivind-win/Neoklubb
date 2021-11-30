@@ -38,12 +38,6 @@
             echo $e->getMessage() . "<br>";
         }
         // $update->debugDumpParams();
-
-        if ($update->rowCount() > 0) {
-            echo $update->rowCount() . " oppføring" . ($update->rowCount() > 1 ? "er" : "") . " ble oppdatert.";
-        } else {
-            echo "Oppdatering feilet, ingen endringer er lagret";
-        }
     }
     ?>
 

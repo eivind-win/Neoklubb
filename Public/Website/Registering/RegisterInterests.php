@@ -12,6 +12,8 @@
     <?php
     include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Database/DatabaseConnection.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LogInChecker.php";
+    include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
+
 
 
     $sql = "INSERT INTO INTERESSER(INTERESSER) VALUES (:Interesser);";

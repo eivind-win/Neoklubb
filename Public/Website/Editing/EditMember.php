@@ -8,16 +8,19 @@
     <title>Endre medlem</title>
 </head>
 <?php
-require_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Public/Resources/Style/style.html";
-include "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Database/DatabaseConnection.php";
 include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
+include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Database/DatabaseConnection.php";
 include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LogInChecker.php";
 
-
-$medlemid = $_SESSION["MedlemID"];
+$medlemid = $_SESSION['MedlemID'];
 
 // Sql query for å hente ut eksisterende informasjon om medlem
-$medlem = $pdo->query("SELECT Medlem.Fornavn, Medlem.Etternavn, Medlem.Telefon, Medlem.Epost, Medlem.Fodselsdato, Medlem.Kjonn, Medlem.Passord, Status.Status FROM Medlem Inner JOIN Status ON Medlem.MedlemID = Status.MedlemID");
+$medlem = $pdo->query("SELECT Medlem.Fornavn, Medlem.Etternavn, Medlem.Telefon, Medlem.Epost, Medlem.Fodselsdato, 
+Medlem.Kjonn, Medlem.Passord FROM Neoklubb.Medlem Where MedlemID = $medlemid;");
+
+$medlemStatus = $pdo->query("SELECT Status.Status FROM Neoklubb.Status WHERE MedlemID = $medlemid");
+
+// Foreach loop som printer ut eksisterende informasjon om medlemmet
 foreach ($medlem as $medlem) {
     $medlem['MedlemID'] . "\n";
     $medlem['Fornavn'] . "\n";
@@ -26,9 +29,10 @@ foreach ($medlem as $medlem) {
     $medlem['Fodselsdato'] . "\n";
     $medlem['Kjonn'] . "\n";
     $medlem['Passord'] . "\n";
-    $medlem['Status'] . "\n";
 }
-
+foreach ($medlemStatus as $medlemStatus) {
+    $medlemStatus['Status'] . "\n";
+}
 
 // Sql query for å oppdatere informasjon om medlemmet om noe forandres
 $updateSql =
@@ -48,7 +52,6 @@ $update->bindParam(":Kjonn", $kjonn, PDO::PARAM_STR);
 $update->bindParam(":Passord", $passord, PDO::PARAM_STR);
 
 $update->bindParam(":Status", $status, PDO::PARAM_STR);
-
 
 // Setter variablene som tomme for å unngå error, samt at de er input fra HTML
 $fornavn = isset($_POST['Fornavn']) ? $_POST['Fornavn'] : "";
@@ -71,7 +74,6 @@ if (isset($_POST["Lagreendringer"])) {
 
     try {
         $update->execute();
-        echo "<meta http-equiv='refresh' content='0'>";
     } catch (PDOException $e) {
         echo $e->getMessage() . "<br>";
     }
@@ -125,7 +127,7 @@ if (isset($_POST["Lagreendringer"])) {
             <label for="Status">Status</label>
             <select id="Status" name="Status" required oninvalid="this.setCustomValidity('Status kan ikke være blankt!')" onchange="this.setCustomValidity('')">
 
-                <option selected><?php echo $medlem["Status"]; ?></option>
+                <option selected><?php echo $medlemStatus["Status"]; ?></option>
                 <option value="Aktiv">Aktiv</option>
                 <option value="Inaktiv">Inaktiv</option>
             </select>
@@ -141,6 +143,5 @@ if (isset($_POST["Lagreendringer"])) {
 
 
 </body>
-<a href="../Index/Forside.php">Tilbake til hjemmesiden
 
 </html>

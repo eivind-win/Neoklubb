@@ -5,62 +5,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Legg til interesser</title>
+    <title>Registrer mine interesser</title>
 </head>
 
 <body>
     <?php
     include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Database/DatabaseConnection.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LogInChecker.php";
+    include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
 
-    $medlemid = $_SESSION["MedlemID"];
+    $medlemid = $_SESSION['MedlemID'];
+    $interessid = $_POST['Interesser'];
+
+    $sp = $pdo->prepare('SELECT * FROM Interesser');
+    $sp->execute();
+    $interesser = $sp->fetchAll();
+
+    $sql = "INSERT INTO NeoKlubb.MineInteresser VALUES $medlemid, $interessid";
+    $update = $pdo->prepare($sql);
 
 
-    $sql = "SELECT Interesser, InteresseID from Interesser ORDER BY Interesser";
 
-    $updateSql = "INSERT INTO MineInteresser VALUES :MedlemID, :InteresseID";
-
-    // $update->bindParam(":MedlemID", $medlemid, PDO::PARAM_STR);
-    // $update->bindParam(":InteresseID", $interesseid, PDO::PARAM_STR);
-
-    $update = $pdo->prepare($updateSql);
-
-
-    try {
-        $sp = $pdo->prepare($sql);
-        $sp->execute();
-        $resultat = $sp->fetchAll();
-    } catch (PDOException $e) {
-        echo $e->getMessage() . "<br>";
-    }
-
-    if (isset($_POST["RegistrerMineInteresser"])) {
-
+    if (isset($_POST["RegistrerMinInteresse"])) {
         try {
             $update->execute();
-            echo "<meta http-equiv='refresh' content='0'>";
         } catch (PDOException $e) {
             echo $e->getMessage() . "<br>";
         }
-        $update->debugDumpParams();
     }
 
     ?>
-    <h1> Registrer dine interesser </h1>
-
-    <form method="POST" action="">
-        <p>
-            <label>Interesse
-                <select name="Interesser" id="Interesser">
-                    <?php foreach ($resultat as $row) : ?>
-                        <option><?= $row["Interesser"]; ?></option>
-                    <?php endforeach ?>
-                </select>
-        </p>
-
-        <p>
-            <button type="Submit" name="RegistrerDineInteresser">Registrer min interesse</button>
-        </p>
+    <h1> Velg interesser </h1>
+    <select name="Interesser" id="Interesser">
+        <?php foreach ($interesser as $row) : ?>
+            <option><?= $row["Interesser"] ?></option>
+        <?php endforeach ?>
+    </select>
+    <p>
+        <button type="Submit" name="RegistrerMinInteresse">Registrer ny interesse</button>
+    </p>
 
 
 </body>
