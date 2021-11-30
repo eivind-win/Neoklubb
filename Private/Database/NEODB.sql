@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS Interesser(
 CREATE TABLE IF NOT EXISTS MineInteresser(
   MedlemID int NOT NULL,
   InteresseID int NOT NULL,
-  FOREIGN KEY (MEDLEMID) REFERENCES Medlem(MedlemID),
+  FOREIGN KEY (MedlemID) REFERENCES Medlem(MedlemID),
   FOREIGN KEY (InteresseID) REFERENCES Interesser(InteresseID)
 );
 

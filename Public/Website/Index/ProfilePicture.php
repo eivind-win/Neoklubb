@@ -45,6 +45,7 @@ if (isset($_REQUEST['upload-send'])) {
         $pos = strrpos($_FILES['upload-file']['type'], "/");
         $suffix = substr($_FILES['upload-file']['type'], $pos + 1);
 
+
         //Setter sammen variabel for navn og filtype
         do {
             $filename  =  $navn . "." . $suffix;
@@ -63,6 +64,9 @@ if (isset($_REQUEST['upload-send'])) {
         if (count($messages) < 1) {
             // Lagrer filen i tilegnet mappe
             $filepath = $directory . $filename;
+            if (file_exists("/NeoKlubb/Public/Resources/Image/" . $filename)) {
+                unlink("/NeoKlubb/Public/Resources/Image/" . $filename);
+            }
             $uploaded_file = move_uploaded_file($_FILES['upload-file']['tmp_name'], $filepath);
 
             if (!$uploaded_file) {

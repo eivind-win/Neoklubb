@@ -9,12 +9,15 @@
 </head>
 
 <body>
-    <h2> Her kan du slette all informasjon om profilen din fra databasen </h2>
     <?php
 
     //Include for å liste opp eksisterende medlemmer
     include_once "../Listing/ListMembers.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
+
+    ?>
+    <h3> Her kan du slette all informasjon om profilen din fra databasen </h3>
+    <?php
 
 
 
