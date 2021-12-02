@@ -6,5 +6,6 @@ unset($_SESSION["Epost"]);
 unset($_SESSION["Fornavn"]);
 unset($_SESSION["Etternavn"]);
 unset($_SESSION["Telefon"]);
+unset($_SESSION["MedlemID"]);
 session_destroy();
 header("location:Login.php");

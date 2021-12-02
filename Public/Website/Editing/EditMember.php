@@ -37,7 +37,7 @@ foreach ($medlemStatus as $medlemStatus) {
 // Sql query for å oppdatere informasjon om medlemmet om noe forandres
 $updateSql = "UPDATE NeoKlubb.Medlem SET Fornavn = :Fornavn, Etternavn = :Etternavn , Telefon = :Telefon , Epost = :Epost
         , Fodselsdato = :Fodselsdato , Kjonn = :Kjonn , Passord = :Passord WHERE MedlemID = '$medlemid';
-    UPDATE Neoklubb.Status SET Status = :status WHERE MedlemID = '$medlemid'";
+    UPDATE Neoklubb.Status SET Status = :Status WHERE MedlemID = '$medlemid'";
 
 $update = $pdo->prepare($updateSql);
 
@@ -125,7 +125,7 @@ if (isset($_POST["Lagreendringer"])) {
             <label for="Status">Status</label>
             <select id="Status" name="Status" required oninvalid="this.setCustomValidity('Status kan ikke være blankt!')" onchange="this.setCustomValidity('')">
 
-                <option selected><?php echo $medlemStatus["Status"]; ?></option>
+                <option disabled selected><?php echo $medlemStatus["Status"]; ?></option>
                 <option value="Aktiv">Aktiv</option>
                 <option value="Inaktiv">Inaktiv</option>
             </select>
