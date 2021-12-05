@@ -76,8 +76,7 @@ if (isset($_POST["Lagreendringer"])) {
 <!-- HTML form som tar alt relevant input. Standard verdiene er satt til å være eksisterende informasjon om medlemmet -->
 
 <body>
-    <h1> Endre opplysninger </h1>
-    <h2> Legg til endringer </h2>
+    <h1> Endre personopplysninger </h1>
     <form method="POST" action="">
         <p>
             <label for="Fornavn">Fornavn</label>

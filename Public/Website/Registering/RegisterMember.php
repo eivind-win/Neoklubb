@@ -30,7 +30,6 @@
 
         $sp = $pdo->prepare($sql);
 
-
         //binder variabler med insert parametere 
 
         $sp->bindParam(":Fornavn", $fornavn, PDO::PARAM_STR);
@@ -101,7 +100,7 @@
 
         <body>
             <h1> Registrer deg </h1>
-            <h2> Legg til informasjon </h2>
+            <h2> Fyll ut informasjon nedenfor </h2>
 
             <!-- HTML form som tar relevant informasjon i input, lagt inn isset for å reprinte inngitt verdi dersom noe annet skulle være feil, hindrer at bruker må fylle inn alt på nytt-->
 
