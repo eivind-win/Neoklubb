@@ -10,7 +10,6 @@
 
 <body>
     <?php
-    require_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Public/Resources/Style/style.html";
     require_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Include/PHPMailer/src/PHPMailer.php";
     require_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Include/PHPMailer/src/Exception.php";
     require_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Include/PHPMailer/src/SMTP.php";
@@ -57,7 +56,6 @@
     <h1>Send Tilbakemelding</h1>
     <!--  HTML form for å hente inn relevant informasjon for sending av mail  -->
     <form method="POST" action="">
-
         <p>
             <label for="Fornavn">Fornavn</label>
             <input name="Fornavn" type="text" required oninvalid="this.setCustomValidity('Fornavn kan ikke være blankt!')" onchange="this.setCustomValidity('')">
@@ -80,11 +78,8 @@
 
             <button type="Submit" name="SendMail">Send Mail</button>
         </p>
-</body>
 
 </html>
-
-
 
 </body>
 

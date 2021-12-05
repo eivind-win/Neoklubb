@@ -28,10 +28,6 @@
             VALUES (:Gateadresse, :Poststed, :Postnummer, last_insert_id());
         ";
 
-
-
-
-
         $sp = $pdo->prepare($sql);
 
 

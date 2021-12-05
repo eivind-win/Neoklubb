@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Endre medlem</title>
-</head>
 <?php
 include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
 include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Database/DatabaseConnection.php";
@@ -59,14 +50,11 @@ $epost = isset($_POST['Epost']) ? $_POST['Epost'] : "";
 $fodselsdato = isset($_POST['Fodselsdato']) ? $_POST['Fodselsdato'] : "";
 $kjonn = isset($_POST['Kjonn']) ? $_POST['Kjonn'] : "";
 $passord = isset($_POST['Passord']) ? $_POST['Passord'] : "";
-
 $status = isset($_POST['Status']) ? $_POST['Status'] : "";
 
 
 // Hasher passord om det blir forandret
 $passord = password_hash($passord, PASSWORD_DEFAULT);
-
-
 
 if (isset($_POST["Lagreendringer"])) {
 
