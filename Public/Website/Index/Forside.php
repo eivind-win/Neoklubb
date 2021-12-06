@@ -10,13 +10,11 @@
 
 <body>
     <?php
-    include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LogInChecker.php";
+    include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Include/LoginChecker.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
     // dersom det IKKE er startet noe session blir med redirectet til loginsiden igjen.
     ?>
     <h1> Velkommen til Neo Ungdomsklubb! </h1>
-
-
 
 </body>
 
