@@ -70,6 +70,13 @@
             VALUES (:Gateadresse, :Poststed, :Postnummer, last_insert_id());
         ";
 
+<<<<<<< Updated upstream
+=======
+
+
+
+
+>>>>>>> Stashed changes
     $sp = $pdo->prepare($sql);
 
     //binder variabler med insert parametere 

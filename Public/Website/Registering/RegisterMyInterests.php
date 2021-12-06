@@ -4,65 +4,59 @@ include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Database/Da
 include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
 include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Include/LoginChecker.php";
 //include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Public/Resources/Style/Table.html";
-
-
-$sql = "SELECT * FROM interesser";
-$sp = $pdo->prepare($sql);
-try {
-    $sp->execute();
-} catch (PDOException $e) {
-    echo $e->getMessage() . "<br>";
-    //denne meldingen bør vi logge isstedenfor å skrive ut på skjermen
-}
-//Lager en tabell og som inneholder alle radene 
-$Interesser = $sp->fetchAll(PDO::FETCH_OBJ);
-if ($sp->rowCount() > 0) {
-    echo "<table>";
-    echo "<tr>";
-    echo "<th> InteresseID </th>";
-    echo "<th> Interesser </th>";
-    echo "<th> Bli med </th>";
-    echo "</tr>";
-
-    //foreach som itererer gjennom alle feltene og printer ut i en tabell
-    foreach ($Interesser as $Interesser) {
-        echo "<tr>";
-        echo "<td>" . $Interesser->InteresseID . "</td>";
-        echo "<td>" . $Interesser->Interesser . "</td>";
-        echo "<td>"
 ?>
-        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?> ">
-            <fieldset>
-                <input type="checkbox" name="interesseID" id="ID" value="<?php echo $Interesser->InteresseID; ?>">
-                <br>
-                </p>
-                <button type="Submit" name="LeggTilInteresse">Legg til interesse</button>
-            </fieldset>
-        </form>
-        </p>
-<?php
-        "</td>";
-        echo "</tr>";
-    }
-    echo "</table>";
-} else {
-    echo "Det er ingen aktiviteter som matcher denne beskrivelsen";
-}
 
-if (isset($_POST["LeggTilInteresse"])) {
-    $interesseID = $_POST['interesseID'];
-    $medlemid = $_SESSION['MedlemID'];
-    // sett inn spørring her
-    $sql = "INSERT INTO MineInteresser (MedlemID, InteresseID) VALUES (:MedlemID, :InteresseID)";
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mine Interesser</title>
+</head>
+
+<body>
+    <?php
+    //Diverse include filer for db connection, header og table utseende
+    include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Database/DatabaseConnection.php";
+    include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
+    include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LogInChecker.php";
+    include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Public/Resources/Style/Table.html";
+
+
+    //SQL query for å hente ut relevant informasjon i forhold til interesser
+    $sql = "SELECT Medlem.MedlemID, Medlem.Fornavn, Medlem.Etternavn, Interesser.Interesser 
+FROM Medlem INNER JOIN MineInteresser ON Medlem.MedlemID = MineInteresser.MedlemID 
+INNER JOIN Interesser ON MineInteresser.InteresseID = Interesser.InteresseID";
     $sp = $pdo->prepare($sql);
-    $sp->bindParam(":InteresseID", $interesseID, PDO::PARAM_INT);
-    $sp->bindParam(":MedlemID", $medlemid, PDO::PARAM_INT);
     try {
         $sp->execute();
     } catch (PDOException $e) {
         echo $e->getMessage() . "<br>";
     }
-} else {
-    echo "Klarer ikke hente data";
-}
-?>
+    //Lager en tabell om rowcount er over 1, om ikke blir det gitt en error
+    $Medlem = $sp->fetchAll(PDO::FETCH_OBJ);
+    if ($sp->rowCount() > 0) {
+        echo "<table>";
+        echo "<tr>";
+        echo "<th> Fornavn </th>";
+        echo "<th> Etternavn </th>";
+        echo "<th> Interesser </th>";
+
+        echo "</tr>";
+
+
+        //foreach som itererer gjennom alle feltene og printer ut i en tabell
+        foreach ($Medlem as $Medlem) {
+            echo "<tr>";
+            echo "<td>" . $Medlem->Fornavn . "</td>";
+            echo "<td>" . $Medlem->Etternavn . "</td>";
+            echo "<td>" . $Medlem->Interesser . "</td>";
+            echo "</tr>";
+        }
+        echo "</table>";
+    } else {
+        echo "Det er ingen medlemmer som matcher denne beskrivelsen";
+    }
+    ?>
+</body>
+
+</html>
