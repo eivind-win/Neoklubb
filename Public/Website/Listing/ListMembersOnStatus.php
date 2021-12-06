@@ -15,9 +15,6 @@
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LogInChecker.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Public/Resources/Style/Table.html";
 
-
-
-
     if (isset($_POST["ListeAktive"])) {
 
         $sql = "SELECT * FROM ((Medlem INNER JOIN Status ON Medlem.MedlemID = Status.MedlemID) 
@@ -45,10 +42,8 @@
             echo "<th> RegistreringsDato </th>";
             echo "<th> Status </th>";
             echo "<th> Kontigent </th>";
-
             echo "</tr>";
 
-            //foreach som itererer gjennom alle feltene i tabell
 
             //foreach som itererer gjennom alle feltene og printer ut i en tabell
             foreach ($aktiveMedlemmer as $aktiveMedlemmer) {

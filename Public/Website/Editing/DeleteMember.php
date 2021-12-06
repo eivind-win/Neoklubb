@@ -1,13 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slett profil</title>
-</head>
-
 <body>
     <?php
 
@@ -18,8 +8,6 @@
     ?>
     <h3> Her kan du slette all informasjon om profilen din fra databasen </h3>
     <?php
-
-
 
     //SQL for å slette alt relatert til Medlemmet, rekkefølgen er for å slette alt som refererer til MedlemID først
     $sql = "DELETE FROM NeoKlubb.Kontigent WHERE MedlemID = :MedlemID;

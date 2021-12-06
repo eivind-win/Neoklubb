@@ -5,7 +5,7 @@ include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/Log
 include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Include/LoginChecker.php";
 include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Public/Resources/Style/Table.html";
 
-
+//Spørring som henter ut aktiviteter fra nå eller i fremtiden. 
 $sql = "SELECT * FROM Aktivitet WHERE StartDato >= curdate()";
 $sp = $pdo->prepare($sql);
 try {
@@ -33,8 +33,8 @@ if ($sp->rowCount() > 0) {
         echo "<td>" . $Aktivitet->AktivitetID . "</td>";
         echo "<td>" . $Aktivitet->Aktivitet . "</td>";
         echo "<td>" . $Aktivitet->Beskrivelse . "</td>";
-        echo "<td>" . $Aktivitet->StartDato . "</td>";
-        echo "<td>" . $Aktivitet->SluttDato . "</td>";
+        echo "<td>" . date("d-m-Y k\l. H:i", strtotime($Aktivitet->StartDato)) . "</td>";
+        echo "<td>" . date("d-m-Y k\l. H:i", strtotime($Aktivitet->SluttDato)) . "</td>";
         echo "<td>"
 ?>
         <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?> ">
@@ -54,7 +54,6 @@ if ($sp->rowCount() > 0) {
 } else {
     echo "Det er ingen aktiviteter som matcher denne beskrivelsen";
 }
-
 if (isset($_POST["blimed"])) {
     $aktivitetid = $_POST['AktivitetID'];
     $medlemid = $_SESSION['MedlemID'];

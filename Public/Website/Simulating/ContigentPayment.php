@@ -12,6 +12,7 @@
     <?php
     include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Database/DatabaseConnection.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LogInChecker.php";
+    include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
 
     $medlemid = $_SESSION["MedlemID"];
 
@@ -21,11 +22,9 @@
         $medlem['Fornavn'] . "\n";
     }
 
-
     $sql = "UPDATE Kontigent SET KontigentsStatus = 'Betalt' WHERE MedlemID = :MedlemID";
 
     $sp = $pdo->prepare($sql);
-
 
     $sp->bindParam(":MedlemID", $medlemid, PDO::PARAM_STR);
 

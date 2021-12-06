@@ -28,6 +28,7 @@
             VALUES (:Gateadresse, :Poststed, :Postnummer, last_insert_id());
         ";
 
+<<<<<<< HEAD
 
 
 
@@ -36,6 +37,11 @@
 
 
     //binder variabler med insert parametere 
+=======
+        $sp = $pdo->prepare($sql);
+
+        //binder variabler med insert parametere 
+>>>>>>> 48627b78dc7b7e326fbf61adcd7def9e9e229f68
 
     $sp->bindParam(":Fornavn", $fornavn, PDO::PARAM_STR);
     $sp->bindParam(":Etternavn", $etternavn, PDO::PARAM_STR);
@@ -80,6 +86,7 @@
         }
         //$sp->debugDumpParams();
 
+<<<<<<< HEAD
         if ($pdo->lastInsertId() > 0) {
             echo "Dataene er satt inn i tabellen";
         } else {
@@ -123,6 +130,35 @@
             <label for="Fodselsdato">Fødselsdato</label>
             <input name="Fodselsdato" type="date" required oninvalid="this.setCustomValidity('Fødselsdato kan ikke være blankt!')" onchange="this.setCustomValidity('')" value="<?php if (isset($_POST["Fodselsdato"])) {
                                                                                                                                                                                     echo $_POST["Fodselsdato"];
+=======
+
+        ?>
+        <!DOCTYPE html>
+        <html lang="en">
+
+        <head>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Registrering</title>
+        </head>
+
+        <body>
+            <h1> Registrer deg </h1>
+            <h2> Fyll ut informasjon nedenfor </h2>
+
+            <!-- HTML form som tar relevant informasjon i input, lagt inn isset for å reprinte inngitt verdi dersom noe annet skulle være feil, hindrer at bruker må fylle inn alt på nytt-->
+
+            <form method="POST" action="">
+                <p>
+                    <label for="Fornavn">Fornavn</label>
+                    <input name="Fornavn" type="text" required oninvalid="this.setCustomValidity('Fornavn kan ikke være blankt!')" onchange="this.setCustomValidity('')" value="<?php if (isset($_POST["Fornavn"])) {
+                                                                                                                                                                                    echo $_POST["Fornavn"];
+>>>>>>> 48627b78dc7b7e326fbf61adcd7def9e9e229f68
                                                                                                                                                                                 } ?>">
         </p>
         <p>

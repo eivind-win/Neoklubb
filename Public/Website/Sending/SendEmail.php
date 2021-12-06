@@ -14,7 +14,7 @@ include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/Log
 
 <body>
     <?php
-    require_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Public/Resources/Style/style.html";
+    //require_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Public/Resources/Style/style.html";
     require_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Include/PHPMailer/src/PHPMailer.php";
     require_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Include/PHPMailer/src/Exception.php";
     require_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Include/PHPMailer/src/SMTP.php";
@@ -30,11 +30,6 @@ include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/Log
     $mld .= " , ";
     $mld .= $_POST['Melding'];
     $amld = $_POST['Melding'];
-
-
-    echo $fornavn;
-
-
 
     // Om knappen "SendMail" blir trykket, vil koden under kjøre
     // Definerer div som få være på plass for at mail protocol skal fungere. 
