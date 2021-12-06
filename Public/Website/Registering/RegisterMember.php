@@ -14,6 +14,48 @@
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LogoutHeader.php";
     require_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Public/Resources/Style/style.html";
 
+    if (isset($_POST["Registrerdeg"])) {
+        $messages = array();
+
+        if (empty($_POST['Fornavn'])) {
+            $messages[] = 'Du må fylle inn fornavn!';
+        }
+        if (empty($_POST['Etternavn'])) {
+            $messages[] = 'Du må fylle inn etternavn!';
+        }
+        if (empty($_POST['Telefon'])) {
+            $messages[] = 'Du må fylle inn telefon!';
+        }
+        if (empty($_POST['Epost'])) {
+            $messages[] = 'Du må fylle inn epost!';
+        }
+        if (empty($_POST['Fodselsdato'])) {
+            $messages[] = 'Du må fylle inn fødselsdato!';
+        }
+        if (empty($_POST['Kjonn'])) {
+            $messages[] = 'Du må fylle inn kjønn!';
+        }
+        if (empty($_POST['Gateadresse'])) {
+            $messages[] = 'Du må fylle inn gateadresse!';
+        }
+        if (empty($_POST['Poststed'])) {
+            $messages[] = 'Du må fylle inn poststed!';
+        }
+        if (empty($_POST['Postnummer'])) {
+            $messages[] = 'Du må fylle inn postnummer!';
+        }
+        if (empty($_POST['Passord'])) {
+            $messages[] = 'Du må fylle inn passord!';
+        }
+        // om det ikke forekommer noen feilmelding så skjer det ingenting, men om for loopen teller over og finner noe så vil den sende ut den spesifikke advarselen
+        if (empty($messages)) {
+        } else {
+            for ($i = 0; $i < count($messages); $i++) {
+                echo $messages[$i] . "<br>";
+            }
+        }
+    }
+
     // Sql for insert av registrert medlem i medlemtabell og adressetabell
     $sql =
         "INSERT INTO NeoKlubb.Medlem (Fornavn, Etternavn, Telefon, Epost, Fodselsdato, Kjonn, Passord)
@@ -28,20 +70,9 @@
             VALUES (:Gateadresse, :Poststed, :Postnummer, last_insert_id());
         ";
 
-<<<<<<< HEAD
-
-
-
-
     $sp = $pdo->prepare($sql);
 
-
     //binder variabler med insert parametere 
-=======
-        $sp = $pdo->prepare($sql);
-
-        //binder variabler med insert parametere 
->>>>>>> 48627b78dc7b7e326fbf61adcd7def9e9e229f68
 
     $sp->bindParam(":Fornavn", $fornavn, PDO::PARAM_STR);
     $sp->bindParam(":Etternavn", $etternavn, PDO::PARAM_STR);
@@ -76,7 +107,7 @@
     $passord = password_hash($passord, PASSWORD_DEFAULT);
 
 
-    if (isset($_POST["Registrerdeg"])) {
+    if (isset($_POST["Registrerdeg"]) && empty($messages)) {
 
 
         try {
@@ -86,7 +117,6 @@
         }
         //$sp->debugDumpParams();
 
-<<<<<<< HEAD
         if ($pdo->lastInsertId() > 0) {
             echo "Dataene er satt inn i tabellen";
         } else {
@@ -97,7 +127,9 @@
 
     ?>
     <h1> Registrer deg </h1>
-    <h2> Legg til informasjon </h2>
+    <br>
+    <h3> Legg til informasjon </h3>
+    <br>
 
     <!-- HTML form som tar relevant informasjon i input, lagt inn isset for å reprinte inngitt verdi dersom noe annet skulle være feil, hindrer at bruker må fylle inn alt på nytt-->
 
@@ -130,35 +162,6 @@
             <label for="Fodselsdato">Fødselsdato</label>
             <input name="Fodselsdato" type="date" required oninvalid="this.setCustomValidity('Fødselsdato kan ikke være blankt!')" onchange="this.setCustomValidity('')" value="<?php if (isset($_POST["Fodselsdato"])) {
                                                                                                                                                                                     echo $_POST["Fodselsdato"];
-=======
-
-        ?>
-        <!DOCTYPE html>
-        <html lang="en">
-
-        <head>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-            <meta charset="UTF-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Registrering</title>
-        </head>
-
-        <body>
-            <h1> Registrer deg </h1>
-            <h2> Fyll ut informasjon nedenfor </h2>
-
-            <!-- HTML form som tar relevant informasjon i input, lagt inn isset for å reprinte inngitt verdi dersom noe annet skulle være feil, hindrer at bruker må fylle inn alt på nytt-->
-
-            <form method="POST" action="">
-                <p>
-                    <label for="Fornavn">Fornavn</label>
-                    <input name="Fornavn" type="text" required oninvalid="this.setCustomValidity('Fornavn kan ikke være blankt!')" onchange="this.setCustomValidity('')" value="<?php if (isset($_POST["Fornavn"])) {
-                                                                                                                                                                                    echo $_POST["Fornavn"];
->>>>>>> 48627b78dc7b7e326fbf61adcd7def9e9e229f68
                                                                                                                                                                                 } ?>">
         </p>
         <p>

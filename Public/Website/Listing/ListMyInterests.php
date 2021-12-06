@@ -16,11 +16,13 @@
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LogInChecker.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Public/Resources/Style/Table.html";
 
+    $medlemid = $_SESSION['MedlemID'];
 
     //SQL query for å hente ut relevant informasjon i forhold til interesser
     $sql = "SELECT Medlem.MedlemID, Medlem.Fornavn, Medlem.Etternavn, Interesser.Interesser 
-FROM Medlem INNER JOIN MineInteresser ON Medlem.MedlemID = MineInteresser.MedlemID 
-INNER JOIN Interesser ON MineInteresser.InteresseID = Interesser.InteresseID";
+    FROM Medlem INNER JOIN MineInteresser ON Medlem.MedlemID = MineInteresser.MedlemID 
+    INNER JOIN Interesser ON MineInteresser.InteresseID = Interesser.InteresseID";
+
     $sp = $pdo->prepare($sql);
     try {
         $sp->execute();
