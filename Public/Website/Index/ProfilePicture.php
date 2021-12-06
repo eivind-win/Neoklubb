@@ -47,9 +47,8 @@ if (isset($_REQUEST['upload-send'])) {
 
 
         //Setter sammen variabel for navn og filtype
-        do {
-            $filename  =  $navn . "." . $suffix;
-        } while (file_exists($directory . $filename));
+
+        $filename  =  $navn . "." . $suffix;
 
         if (file_exists("/NeoKlubb/Public/Resources/Image/" . $filename)) {
             unlink("/NeoKlubb/Public/Resources/Image/" . $filename);

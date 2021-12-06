@@ -74,6 +74,6 @@ CREATE TABLE IF NOT EXISTS Status(
   FOREIGN KEY (MedlemID) REFERENCES Medlem(MedlemID)
 );
 
-INSERT INTO Roller(RolleID, Rolle) VALUES (1,'Medlem'), (2,'Admin');
+INSERT INTO Roller(RolleID, Rolle) VALUES (1,'Medlem'), (2,'Admin'), (3,'Nestleder'), (4,'Kursansvarlig');
 
 INSERT INTO Interesser(Interesser) VALUES ('Fotball'), ('Basketball'), ('Håndball'), ('Gaming'), ('Svømming');

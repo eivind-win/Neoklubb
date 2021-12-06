@@ -21,7 +21,7 @@
     //SQL query for å hente ut relevant informasjon i forhold til interesser
     $sql = "SELECT Medlem.MedlemID, Medlem.Fornavn, Medlem.Etternavn, Interesser.Interesser 
     FROM Medlem INNER JOIN MineInteresser ON Medlem.MedlemID = MineInteresser.MedlemID 
-    INNER JOIN Interesser ON MineInteresser.InteresseID = Interesser.InteresseID";
+    INNER JOIN Interesser ON MineInteresser.InteresseID = Interesser.InteresseID WHERE Medlem.MedlemID = '$medlemid'";
 
     $sp = $pdo->prepare($sql);
     try {
