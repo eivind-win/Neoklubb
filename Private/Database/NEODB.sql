@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS Interesser(
 CREATE TABLE IF NOT EXISTS MineInteresser(
   MedlemID int NOT NULL,
   InteresseID int NOT NULL,
+  PRIMARY KEY (MedlemID, InteresseID),
   FOREIGN KEY (MedlemID) REFERENCES Medlem(MedlemID),
   FOREIGN KEY (InteresseID) REFERENCES Interesser(InteresseID)
 );
@@ -37,6 +38,7 @@ CREATE TABLE IF NOT EXISTS Roller(
 CREATE TABLE IF NOT EXISTS MineRoller(
 MedlemID int NOT NULL,
 RolleID int NOT NULL,
+PRIMARY KEY (MedlemID, RolleID),
   FOREIGN KEY (MEDLEMID) REFERENCES Medlem(MedlemID),
   FOREIGN KEY (RolleID) REFERENCES Roller(RolleID)
 
@@ -55,13 +57,14 @@ CREATE TABLE IF NOT EXISTS Aktivitet(
   AktivitetID int NOT NULL AUTO_INCREMENT,
   Aktivitet varchar(99) NOT NULL,
   Beskrivelse varchar(255) NOT NULL,
-  StartDato DATE NOT NULL,
-  SluttDato DATE NOT NULL,
+  StartDato DATETIME NOT NULL,
+  SluttDato DATETIME NOT NULL,
   PRIMARY KEY (AktivitetID)
 );
 CREATE TABLE IF NOT EXISTS Kurs(
   MedlemID int,
   AktivitetID int,
+  PRIMARY KEY (MedlemID, AktivitetID),
   FOREIGN KEY (MedlemID) REFERENCES Medlem(MedlemID),
   FOREIGN KEY (AktivitetID) REFERENCES Aktivitet(AktivitetID)
 );
@@ -70,3 +73,7 @@ CREATE TABLE IF NOT EXISTS Status(
   MedlemID int,
   FOREIGN KEY (MedlemID) REFERENCES Medlem(MedlemID)
 );
+
+INSERT INTO Roller(RolleID, Rolle) VALUES (1,'Medlem'), (2,'Admin');
+
+INSERT INTO Interesser(Interesser) VALUES ('Fotball'), ('Basketball'), ('Håndball'), ('Gaming'), ('Svømming');

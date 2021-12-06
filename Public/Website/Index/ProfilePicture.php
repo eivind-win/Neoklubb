@@ -51,6 +51,10 @@ if (isset($_REQUEST['upload-send'])) {
             $filename  =  $navn . "." . $suffix;
         } while (file_exists($directory . $filename));
 
+        if (file_exists("/NeoKlubb/Public/Resources/Image/" . $filename)) {
+            unlink("/NeoKlubb/Public/Resources/Image/" . $filename);
+        }
+
         //Sjekker etter feil i filtypen
         if (!in_array($filetype, $accepted_types)) {
             $types = implode(", ", $accepted_types);
@@ -64,9 +68,7 @@ if (isset($_REQUEST['upload-send'])) {
         if (count($messages) < 1) {
             // Lagrer filen i tilegnet mappe
             $filepath = $directory . $filename;
-            if (file_exists("/NeoKlubb/Public/Resources/Image/" . $filename)) {
-                unlink("/NeoKlubb/Public/Resources/Image/" . $filename);
-            }
+
             $uploaded_file = move_uploaded_file($_FILES['upload-file']['tmp_name'], $filepath);
 
             if (!$uploaded_file) {
