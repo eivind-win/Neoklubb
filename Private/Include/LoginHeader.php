@@ -18,7 +18,7 @@
             <div class="dropdown-content">
                 <a href="../Index/MyProfile.php">Min profil</a>
                 <a href="../Listing/ListMembersOnStatus.php"> Oversikt medlemmer</a>
-                <a href="../Listing/ListMyInterests.php"> Oversikt Interesser</a>
+                <a href="../Listing/ListMyInterests.php"> Mine interesser</a>
                 <a href="../Editing/EditMember.php">Endre opplysninger</a>
                 <a href="../Editing/DeleteMember.php">Slett medlemmer</a>
                 <a href="../Registering/RegisterActivity.php">Registrer aktiviteter</a>

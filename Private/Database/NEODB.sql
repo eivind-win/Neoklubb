@@ -28,22 +28,18 @@ CREATE TABLE IF NOT EXISTS MineInteresser(
   FOREIGN KEY (MedlemID) REFERENCES Medlem(MedlemID),
   FOREIGN KEY (InteresseID) REFERENCES Interesser(InteresseID)
 );
-
 CREATE TABLE IF NOT EXISTS Roller(
   RolleID int NOT NULL AUTO_INCREMENT,
   Rolle varchar(99) NOT NULL,
   PRIMARY KEY (RolleID)
 );
-
 CREATE TABLE IF NOT EXISTS MineRoller(
-MedlemID int NOT NULL,
-RolleID int NOT NULL,
-PRIMARY KEY (MedlemID, RolleID),
+  MedlemID int NOT NULL,
+  RolleID int NOT NULL,
+  PRIMARY KEY (MedlemID, RolleID),
   FOREIGN KEY (MEDLEMID) REFERENCES Medlem(MedlemID),
   FOREIGN KEY (RolleID) REFERENCES Roller(RolleID)
-
 );
-
 CREATE TABLE IF NOT EXISTS Adresse(
   AdresseID int NOT NULL AUTO_INCREMENT,
   Gateadresse varchar(99) NOT NULL,
@@ -73,7 +69,18 @@ CREATE TABLE IF NOT EXISTS Status(
   MedlemID int,
   FOREIGN KEY (MedlemID) REFERENCES Medlem(MedlemID)
 );
-
-INSERT INTO Roller(RolleID, Rolle) VALUES (1,'Medlem'), (2,'Admin'), (3,'Nestleder'), (4,'Kursansvarlig');
-
-INSERT INTO Interesser(Interesser) VALUES ('Fotball'), ('Basketball'), ('Håndball'), ('Gaming'), ('Svømming');
+INSERT INTO
+  Roller(RolleID, Rolle)
+VALUES
+  (1, 'Medlem'),
+  (2, 'Admin'),
+  (3, 'Nestleder'),
+  (4, 'Kursansvarlig');
+INSERT INTO
+  Interesser(Interesser)
+VALUES
+  ('Fotball'),
+  ('Basketball'),
+  ('Håndball'),
+  ('Gaming'),
+  ('Svømming');
