@@ -36,7 +36,7 @@ include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/Log
     if (isset($_POST["SendMail"])) {
         try {
             $mail->IsSMTP();
-            $mail->SMTPDebug = 1; // debugging: 1 = feil og melding, 2 = kun meldinger
+            $mail->SMTPDebug = 0; // debugging: 1 = feil og melding, 2 = kun meldinger
             $mail->SMTPAuth = true;
             $mail->SMTPSecure = "tls"; // påkrevd for Gmail
             $mail->Host = "smtp.gmail.com";

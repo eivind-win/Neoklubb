@@ -44,7 +44,7 @@
                     $_SESSION["RegistreringsDato"] = $Medlem->RegistreringsDato;
                     // Redirecter til forside dersom passord stemmer 
 
-                    header("location:../index/Forside.php");
+                    header("location:../index/FrontPage.php");
                 } else {
                     $message = '<label>Feil brukernavn eller passord!</label>';
                 }

@@ -19,7 +19,7 @@
     <h2 style="text-align:center">Min profil</h2>
     <!-- Printer ut variabler i profile card basert på session -->
     <div class="card">
-        <img class="avatar" width="200" height="200" src="../../Resources/Image/<?php echo $medlemid ?>.jpeg" alt="Not Found" onerror="this.onerror=null; this.src='../../Resources/Image/avatar.jpeg'">
+        <img class="avatar" width="200" height="200" src="../../Resources/Image/<?php echo $medlemid ?>.jpeg" alt="Not Found" onerror="this.onerror=null; this.src='../../Resources/Image/<?php echo $medlemid ?>.png'" onerror="this.onerror=null; this.src='../../Resources/Image/avatar.jpeg'">
 
         <br>
         <u><a href="../Index/ProfilePicture.php">Bytt profilbilde</a></u>

@@ -10,7 +10,7 @@
 
 <body>
     <div class="topnav">
-        <a class="active" href="../Index/Forside.php">Home</a>
+        <a class="active" href="../Index/FrontPage.php">Home</a>
         <a href="../Registering/RegisterMember.php">Registrer Deg</a>
 
     </div>
