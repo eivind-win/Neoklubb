@@ -23,9 +23,9 @@
             <button class="subnavbtn">Medlemmer <i class="fa fa-caret-down"></i></button>
             <div class="subnav-content">
                 <a href="../Listing/ListMembersOnStatus.php">Medlemsstatus</a>
-                <a href="../Listing/ListMembers">Medlems interesser</a>
+                <a href="../Listing/ListMembersOnInterests.php">Medlems interesser</a>
                 <a href="#package">Endre roller</a>
-                <a href="#express">Slett medlemmer</a>
+                <a href="../Editing/DeleteMember.php">Slett medlemmer</a>
             </div>
         </div>
         <div class="subnav">
@@ -33,7 +33,7 @@
             <div class="subnav-content">
                 <a href="../Sending/SendEmail.php">Send epost</a>
                 <a href="../Sending/BulkEmail.php">Epost i bulk </a>
-                <a href="../Sending/Welcome">Nyhetsbrev</a>
+                <a href="../Sending/NewsLetter.php">Nyhetsbrev</a>
             </div>
         </div>
         <div class="subnav">
