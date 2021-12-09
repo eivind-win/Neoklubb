@@ -47,7 +47,8 @@
         }
     }
     // Funksjon for å sende email
-    function SendEmail($fornavn, $epost, $kontigentsstatus)
+    function SendEmail($fornavn, $epost, $kontigentsstatus,)
+
     {
         $mail = new PHPMailer\PHPMailer\PHPMailer();
         $mail->CharSet = "UTF-8";

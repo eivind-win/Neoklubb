@@ -17,6 +17,7 @@
                 <a href="../Editing/EditMember.php">Endre opplysninger </a>
                 <a href="../Listing/ListMyInterests.php">Mine interesser </a>
                 <a href="../Registering/registermyinterests.php">Legg til interesser </a>
+                <a href="../Simulating/ContigentPayment.php">Betal Kontigent </a>
             </div>
         </div>
         <div class="subnav">
@@ -24,7 +25,11 @@
             <div class="subnav-content">
                 <a href="../Listing/ListMembersOnStatus.php">Medlemsstatus</a>
                 <a href="../Listing/ListMembersOnInterests.php">Medlems interesser</a>
+<<<<<<< HEAD
+                <a href="#package">Endre roller</a>
+=======
                 <a href="../Editing/EditRoles.php">Endre roller</a>
+>>>>>>> Dev
                 <a href="../Editing/DeleteMember.php">Slett medlemmer</a>
             </div>
         </div>
@@ -33,7 +38,7 @@
             <div class="subnav-content">
                 <a href="../Sending/SendEmail.php">Send epost</a>
                 <a href="../Sending/BulkEmail.php">Epost i bulk </a>
-                <a href="../Sending/Welcome">Nyhetsbrev</a>
+                <a href="../Sending/NewsLetter.php">Nyhetsbrev</a>
             </div>
         </div>
         <div class="subnav">

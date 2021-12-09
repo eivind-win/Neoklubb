@@ -14,8 +14,8 @@
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Include/LoginChecker.php";
 
-    $medlemid = $_POST['MedlemID'];
-    $rolleid = $_POST['RolleID'];
+    $medlemid = $medlem['MedlemID'];
+    $rolleid = $rolle['RolleID'];
 
     $sql = "SELECT MedlemID, Fornavn FROM Medlem order by Fornavn";
 
@@ -32,8 +32,8 @@
     $sp->execute();
     $sp2->execute();
 
-    $medlem = $sp->fetchAll();
-    $rolle = $sp2->fetchAll();
+    $medlemmer = $sp->fetchAll();
+    $roller = $sp2->fetchAll();
 
     $update->bindParam(":MedlemID", $medlemid, PDO::PARAM_STR);
     $update->bindParam(":RolleID", $rolleid, PDO::PARAM_STR);
@@ -77,14 +77,14 @@
     ?>
     <br>
     <select>
-        <?php foreach ($medlem as $medlem) : ?>
+        <?php foreach ($medlemmer as $medlem) : ?>
             <option value="<?= $medlem['MedlemID']; ?>"><?= $medlem['Fornavn']; ?></option>
         <?php endforeach; ?>
     </select>
     <br>
     <br>
     <select>
-        <?php foreach ($rolle as $rolle) : ?>
+        <?php foreach ($roller as $rolle) : ?>
             <option value="<?= $rolle['RolleID']; ?>"><?= $rolle['Rolle']; ?></option>
         <?php endforeach; ?>
     </select>
