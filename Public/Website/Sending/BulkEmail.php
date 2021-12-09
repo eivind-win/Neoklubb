@@ -1,4 +1,12 @@
-<title>Send epost i bulk</title>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epost i bulk</title>
+</head>
 
 <body>
     <?php
@@ -6,6 +14,8 @@
     require_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Include/PHPMailer/src/Exception.php";
     require_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Include/PHPMailer/src/SMTP.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Database/DatabaseConnection.php";
+    include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
+    include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Include/LoginChecker.php";
 
     //Om knappen "SendMail" blir trykket, vil koden inni kjøre
     if (isset($_POST["SendMail"])) {
@@ -32,19 +42,19 @@
             $epost = $row['Epost'];
             $kontigentsstatus = $row['KontigentsStatus'];
 
-
             //Kaller SendEmail funksjon
-            SendEmail($fornavn, $epost, $kontigentsstatus, $mld, $amld);
+            SendEmail($fornavn, $epost, $kontigentsstatus);
         }
     }
     // Funksjon for å sende email
     function SendEmail($fornavn, $epost, $kontigentsstatus,)
+
     {
         $mail = new PHPMailer\PHPMailer\PHPMailer();
         $mail->CharSet = "UTF-8";
 
         $mail->IsSMTP();
-        $mail->SMTPDebug = 1; // debugging: 1 = feil og melding, 2 = kun meldinger
+        $mail->SMTPDebug = 0; // debugging: 1 = feil og melding, 2 = kun meldinger
         $mail->SMTPAuth = true;
         $mail->SMTPSecure = "tls"; // påkrevd for Gmail
         $mail->Host = "smtp.gmail.com";

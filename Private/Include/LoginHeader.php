@@ -25,7 +25,11 @@
             <div class="subnav-content">
                 <a href="../Listing/ListMembersOnStatus.php">Medlemsstatus</a>
                 <a href="../Listing/ListMembersOnInterests.php">Medlems interesser</a>
+<<<<<<< HEAD
                 <a href="#package">Endre roller</a>
+=======
+                <a href="../Editing/EditRoles.php">Endre roller</a>
+>>>>>>> Dev
                 <a href="../Editing/DeleteMember.php">Slett medlemmer</a>
             </div>
         </div>
@@ -100,7 +104,7 @@
         display: none;
         position: absolute;
         left: 0;
-        background-color: green;
+        background-color: #04AA6D;
         width: 100%;
         z-index: 1;
     }

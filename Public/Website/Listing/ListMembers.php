@@ -6,7 +6,7 @@
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LogInChecker.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Public/Resources/Style/Table.html";
 
-    $sql = "SELECT * FROM ((Medlem INNER JOIN Status ON Medlem.MedlemID = Status.MedlemID) INNER JOIN Kontigent ON Medlem.MedlemID = Kontigent.MedlemID) order by Fornavn";
+    $sql = "SELECT * FROM ((Medlem INNER JOIN Status ON Medlem.MedlemID = Status.MedlemID) INNER JOIN Kontigent ON Medlem.MedlemID = Kontigent.MedlemID) order by Medlem.MedlemID";
     $sp = $pdo->prepare($sql);
 
     try {
