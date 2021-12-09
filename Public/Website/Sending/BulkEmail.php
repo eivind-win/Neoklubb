@@ -32,14 +32,13 @@
             $epost = $row['Epost'];
             $kontigentsstatus = $row['KontigentsStatus'];
 
-            $fornavn = $row['Fornavn'];
 
             //Kaller SendEmail funksjon
             SendEmail($fornavn, $epost, $kontigentsstatus, $mld, $amld);
         }
     }
     // Funksjon for å sende email
-    function SendEmail($fornavn, $epost, $kontigentsstatus, $mld, $amld)
+    function SendEmail($fornavn, $epost, $kontigentsstatus,)
     {
         $mail = new PHPMailer\PHPMailer\PHPMailer();
         $mail->CharSet = "UTF-8";

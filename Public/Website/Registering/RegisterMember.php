@@ -81,8 +81,6 @@
     $sp->bindParam(":Fodselsdato", $fodselsdato);
     $sp->bindParam(":Kjonn", $Kjonn, PDO::PARAM_STR);
     $sp->bindParam(":Passord", $passord, PDO::PARAM_STR);
-
-
     $sp->bindParam(":Gateadresse", $gateadresse, PDO::PARAM_STR);
     $sp->bindParam(":Poststed", $poststed, PDO::PARAM_STR);
     $sp->bindParam(":Postnummer", $postnummer, PDO::PARAM_STR);
@@ -98,7 +96,6 @@
     $fodselsdato = isset($_POST['Fodselsdato']) ? $_POST['Fodselsdato'] : "";
     $Kjonn = isset($_POST['Kjonn']) ? $_POST['Kjonn'] : "";
     $passord = isset($_POST['Passord']) ? $_POST['Passord'] : "";
-
     $gateadresse = isset($_POST['Gateadresse']) ? $_POST['Gateadresse'] : "";
     $poststed = isset($_POST['Poststed']) ? $_POST['Poststed'] : "";
     $postnummer = isset($_POST['Postnummer']) ? $_POST['Postnummer'] : "";

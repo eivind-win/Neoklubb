@@ -15,7 +15,6 @@
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
 
 
-
     $sql = "INSERT INTO INTERESSER(INTERESSER) VALUES (:Interesser);";
 
     $sp = $pdo->prepare($sql);

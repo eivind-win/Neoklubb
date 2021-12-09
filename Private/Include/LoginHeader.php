@@ -17,6 +17,7 @@
                 <a href="../Editing/EditMember.php">Endre opplysninger </a>
                 <a href="../Listing/ListMyInterests.php">Mine interesser </a>
                 <a href="../Registering/registermyinterests.php">Legg til interesser </a>
+                <a href="../Simulating/ContigentPayment.php">Betal Kontigent </a>
             </div>
         </div>
         <div class="subnav">
