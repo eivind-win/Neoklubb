@@ -17,9 +17,10 @@
 
     if (isset($_POST["ListeAktive"])) {
 
-        $sql = "SELECT * FROM ((Medlem INNER JOIN Status ON Medlem.MedlemID = Status.MedlemID) 
-        INNER JOIN Kontigent ON Medlem.MedlemID = Kontigent.MedlemID) 
-        WHERE Status.Status = 'Aktiv'";
+        $sql = "SELECT * FROM Medlem INNER JOIN Status ON Medlem.MedlemID = Status.MedlemID
+        INNER JOIN Kontigent ON Medlem.MedlemID = Kontigent.MedlemID 
+        INNER JOIN MineRoller ON Medlem.MedlemID = MineRoller.MedlemID
+        INNER JOIN Roller ON Roller.RolleID = MineRoller.RolleID WHERE Status.Status = 'Aktiv'";
         $aktiv = $pdo->prepare($sql);
 
         try {
@@ -41,6 +42,7 @@
             echo "<th> Kjønn </th>";
             echo "<th> RegistreringsDato </th>";
             echo "<th> Status </th>";
+            echo "<th> Roller </th>";
             echo "<th> Kontigent </th>";
             echo "</tr>";
 
@@ -57,6 +59,7 @@
                 echo "<td>" . $aktiveMedlemmer->Kjonn . "</td>";
                 echo "<td>" . $aktiveMedlemmer->RegistreringsDato . "</td>";
                 echo "<td>" . $aktiveMedlemmer->Status . "</td>";
+                echo "<td>" . $aktiveMedlemmer->Rolle . "</td>";
                 echo "<td>" . $aktiveMedlemmer->KontigentsStatus . "</td>";
 
                 echo "</tr>";
@@ -69,8 +72,10 @@
 
     if (isset($_POST["ListeInaktive"])) {
 
-        $sql = "SELECT * FROM ((Medlem INNER JOIN Status ON Medlem.MedlemID = Status.MedlemID) 
-        INNER JOIN Kontigent ON Medlem.MedlemID = Kontigent.MedlemID) 
+        $sql = "SELECT * FROM Medlem INNER JOIN Status ON Medlem.MedlemID = Status.MedlemID 
+        INNER JOIN Kontigent ON Medlem.MedlemID = Kontigent.MedlemID
+        INNER JOIN MineRoller ON Medlem.MedlemID = MineRoller.MedlemID
+        INNER JOIN Roller ON Roller.RolleID = MineRoller.RolleID 
         WHERE Status.Status = 'Inaktiv'";
         $inaktiv = $pdo->prepare($sql);
 
@@ -93,6 +98,7 @@
             echo "<th> Kjønn </th>";
             echo "<th> RegistreringsDato </th>";
             echo "<th> Status </th>";
+            echo "<th> Roller </th>";
             echo "<th> Kontigent </th>";
 
             echo "</tr>";
@@ -111,6 +117,7 @@
                 echo "<td>" . $inaktiveMedlemmer->Kjonn . "</td>";
                 echo "<td>" . $inaktiveMedlemmer->RegistreringsDato . "</td>";
                 echo "<td>" . $inaktiveMedlemmer->Status . "</td>";
+                echo "<td>" . $inaktiveMedlemmer->Rolle . "</td>";
                 echo "<td>" . $inaktiveMedlemmer->KontigentsStatus . "</td>";
 
                 echo "</tr>";
