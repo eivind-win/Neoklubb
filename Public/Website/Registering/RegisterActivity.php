@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrer aktivitet</title>
+    <title>Registrer Kurs</title>
 </head>
 
 <body>
@@ -14,7 +14,7 @@
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Database/DatabaseConnection.php";
     ?>
-    <h1> Registrer aktivitet for Neo Ungdomsklubb </h1>
+    <h1> Registrer kurs eller aktivitet for Neo Ungdomsklubb </h1>
     <?php
 
     // Sjekker at input i form ikke er tomme

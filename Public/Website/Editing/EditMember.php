@@ -3,6 +3,22 @@ include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/Log
 include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Database/DatabaseConnection.php";
 include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LogInChecker.php";
 
+
+// Tvinger bruker til å bekrefte endring med passord (Foreløpig ikke satt opp en sjekk for riktig passord)
+if (isset($_POST["Lagreendringer"])) {
+    $messages = array();
+
+    if (empty($_POST['Passord'])) {
+        $messages[] = 'Vennligst bekreft endringen ved å skrive inn passordet ditt';
+    }
+    if (empty($messages)) {
+    } else {
+        for ($i = 0; $i < count($messages); $i++) {
+            echo $messages[$i] . "<br>";
+        }
+    }
+}
+
 $medlemid = $_SESSION['MedlemID'];
 
 // Sql query for å hente ut eksisterende informasjon om medlem
@@ -56,7 +72,7 @@ $status = isset($_POST['Status']) ? $_POST['Status'] : "";
 // Hasher passord om det blir forandret
 $passord = password_hash($passord, PASSWORD_DEFAULT);
 
-if (isset($_POST["Lagreendringer"])) {
+if (isset($_POST["Lagreendringer"]) && empty($messages)) {
 
     try {
         $update->execute();
@@ -119,7 +135,7 @@ if (isset($_POST["Lagreendringer"])) {
         </p>
         <p>
             <label for="Passord">Passord</label>
-            <input name="Passord" type="text">
+            <input name="Passord" type="Password">
         </p>
         <p>
             <button type="Submit" name="Lagreendringer">Lagre endringer</button>
