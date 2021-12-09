@@ -23,17 +23,19 @@
         <div class="subnav">
             <button class="subnavbtn">Medlemmer <i class="fa fa-caret-down"></i></button>
             <div class="subnav-content">
-                <a href="../Listing/ListMembersOnStatus.php">Medlemsstatus</a>
-                <a href="../Listing/ListMembersOnInterests.php">Medlems interesser</a>
+                <a href="../Listing/ListMembersOnStatus.php">List på status</a>
+                <a href="../Listing/ListMembersOnInterests.php">List på interesser</a>
+                <a href="../Registering/RegisterInterests.php">Registrer nye interesser</a>
                 <a href="../Editing/EditRoles.php">Endre roller</a>
+                <a href="../Editing/EditStatus.php">Endre status</a>
                 <a href="../Editing/DeleteMember.php">Slett medlemmer</a>
             </div>
         </div>
         <div class="subnav">
             <button class="subnavbtn">Epost <i class="fa fa-caret-down"></i></button>
             <div class="subnav-content">
-                <a href="../Sending/SendEmail.php">Send epost</a>
-                <a href="../Sending/BulkEmail.php">Epost i bulk </a>
+                <a href="../Sending/SendEmail.php">Send</a>
+                <a href="../Sending/BulkEmail.php">Bulk </a>
                 <a href="../Sending/NewsLetter.php">Nyhetsbrev</a>
             </div>
         </div>

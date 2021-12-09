@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS Medlem(
   Fornavn varchar(99) NOT NULL,
   Etternavn varchar(99) NOT NULL,
   Telefon int NOT NULL,
-  Epost varchar(99) NOT NULL,
+  Epost varchar(99) NOT NULL UNIQUE,
   Fodselsdato date NOT NULL,
   Kjonn varchar(99) NOT NULL,
   RegistreringsDato TIMESTAMP NOT NULL,
@@ -13,11 +13,11 @@ CREATE TABLE IF NOT EXISTS Medlem(
 );
 CREATE TABLE IF NOT EXISTS Kontigent(
   KontigentsStatus varchar(99) NOT NULL,
-  MedlemID int,
+  MedlemID int UNIQUE,
   FOREIGN KEY (MedlemID) REFERENCES Medlem(MedlemID)
 );
 CREATE TABLE IF NOT EXISTS Interesser(
-  InteresseID int NOT NULL AUTO_INCREMENT,
+  InteresseID int NOT NULL AUTO_INCREMENT UNIQUE,
   Interesser varchar(99) NOT NULL,
   PRIMARY KEY (InteresseID)
 );

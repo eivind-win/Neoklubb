@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Endre roller til medlemmer</title>
+    <title>Endre status på medlemmer</title>
 </head>
 
 <body>
@@ -16,38 +16,26 @@
 
 
     $medlemid = $_POST['MedlemID'];
-    $rolleid = $_POST['RolleID'];
+    $status = $_POST['Status'];
 
     $sql = "SELECT MedlemID, Fornavn, Etternavn FROM Medlem order by Fornavn";
 
-    $sql2 = "SELECT RolleID, Rolle FROM Roller order by Rolle";
+    $sql2 = "UPDATE Status SET Status = :Status WHERE MedlemID = :MedlemID";
 
-    $sql3 = "INSERT INTO MineRoller (MedlemID, RolleID) VALUES (:MedlemID, :RolleID)";
-
-    $sql4 = "DELETE FROM MineRoller WHERE MedlemID = :MedlemID and RolleID = :RolleID";
 
     $sp = $pdo->prepare($sql);
-    $sp2 = $pdo->prepare($sql2);
-    $update = $pdo->prepare($sql3);
-    $delete = $pdo->prepare($sql4);
+    $update = $pdo->prepare($sql2);
 
     $sp->execute();
-    $sp2->execute();
 
     $medlemmer = $sp->fetchAll();
-    $roller = $sp2->fetchAll();
 
     $update->bindParam(":MedlemID", $medlemid);
-    $update->bindParam(":RolleID", $rolleid);
+    $update->bindParam(":Status", $status);
 
-    $delete->bindParam(":MedlemID", $medlemid);
-    $delete->bindParam(":RolleID", $rolleid);
-
-
-
-    if (isset($_POST["LagreRolle"])) {
+    if (isset($_POST["OppdaterStatus"])) {
         $medlemid = $_POST['MedlemID'];
-        $rolleid = $_POST['RolleID'];
+        $status = $_POST['Status'];
 
         try {
             $update->execute();
@@ -62,24 +50,6 @@
             echo "Oppdatering feilet, ingen endringer er lagret";
         }
     }
-    if (isset($_POST["FjernRolle"])) {
-        $medlemid = $_POST['MedlemID'];
-        $rolleid = $_POST['RolleID'];
-
-        try {
-            $delete->execute();
-        } catch (PDOException $e) {
-            echo $e->getMessage() . "<br>";
-        }
-        //$delete->debugDumpParams();
-
-        if ($delete->rowCount() > 0) {
-            echo $delete->rowCount() . " oppføring" . ($delete->rowCount() > 1 ? "er" : "") . " ble oppdatert.";
-        } else {
-            echo "Oppdatering feilet, ingen endringer er lagret";
-        }
-    }
-
     ?>
 
     <body>
@@ -93,19 +63,16 @@
                 </select>
             </div>
             <br>
-            <div>
-                <select name="RolleID">
-                    <?php foreach ($roller as $rolle) : ?>
-                        <option value="<?= $rolle['RolleID']; ?>"><?= $rolle['Rolle']; ?></option>
-                    <?php endforeach; ?>
+            <p>
+                <label for="Status">Status</label>
+                <select id="Status" name="Status" required oninvalid="this.setCustomValidity('Status kan ikke være blankt!')" onchange="this.setCustomValidity('')">
+                    <option disabled selected></option>
+                    <option value="Aktiv">Aktiv</option>
+                    <option value="Inaktiv">Inaktiv</option>
                 </select>
-            </div>
-            <p>
-                <button type="Submit" name="LagreRolle">Lagre rolle</button>
             </p>
-
             <p>
-                <button type="Submit" name="FjernRolle">Fjern rolle</button>
+                <button type="Submit" name="OppdaterStatus">Lagre status</button>
             </p>
         </form>
 

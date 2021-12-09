@@ -119,7 +119,7 @@ if (isset($_POST["Lagreendringer"])) {
         </p>
         <p>
             <label for="Passord">Passord</label>
-            <input name="Passord" type="text">
+            <input name="Passord" type="Password">
         </p>
         <p>
             <button type="Submit" name="Lagreendringer">Lagre endringer</button>

@@ -23,7 +23,6 @@
         $sp->execute();
     } catch (PDOException $e) {
         echo $e->getMessage() . "<br>";
-        //denne meldingen bør vi logge isstedenfor å skrive ut på skjermen
     }
     //Lager en tabell og som inneholder alle radene 
     $Aktivitet = $sp->fetchAll(PDO::FETCH_OBJ);
