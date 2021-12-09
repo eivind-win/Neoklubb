@@ -65,7 +65,7 @@
     }
     ?>
     <form method="POST" action="">
-
+        <br>
         <div>
             <select name="InteresseID">
                 <?php foreach ($muligeInteresser as $muligInteresse) : ?>
