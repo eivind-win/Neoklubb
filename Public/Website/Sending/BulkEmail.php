@@ -21,7 +21,6 @@
     if (isset($_POST["SendMail"])) {
 
 
-
         //SQL query med innerjoin for å hente ut medleminformasjon samt kontigentsstatus
         $sql = "SELECT
         Medlem.Fornavn,

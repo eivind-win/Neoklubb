@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS Kontigent(
 );
 CREATE TABLE IF NOT EXISTS Interesser(
   InteresseID int NOT NULL AUTO_INCREMENT UNIQUE,
-  Interesser varchar(99) NOT NULL,
+  Interesser varchar(99) NOT NULL UNIQUE,
   PRIMARY KEY (InteresseID)
 );
 CREATE TABLE IF NOT EXISTS MineInteresser(
@@ -29,8 +29,8 @@ CREATE TABLE IF NOT EXISTS MineInteresser(
   FOREIGN KEY (InteresseID) REFERENCES Interesser(InteresseID)
 );
 CREATE TABLE IF NOT EXISTS Roller(
-  RolleID int NOT NULL AUTO_INCREMENT,
-  Rolle varchar(99) NOT NULL,
+  RolleID int NOT NULL AUTO_INCREMENT UNIQUE,
+  Rolle varchar(99) NOT NULL UNIQUE,
   PRIMARY KEY (RolleID)
 );
 CREATE TABLE IF NOT EXISTS MineRoller(
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS Adresse(
   Gateadresse varchar(99) NOT NULL,
   Postnummer int NOT NULL,
   Poststed varchar(99) NOT NULL,
-  MedlemID int,
+  MedlemID int UNIQUE,
   PRIMARY KEY (AdresseID),
   FOREIGN KEY (MedlemID) REFERENCES Medlem(MedlemID)
 );
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS Kurs(
 );
 CREATE TABLE IF NOT EXISTS Status(
   Status varchar(99) NOT NULL,
-  MedlemID int,
+  MedlemID int UNIQUE,
   FOREIGN KEY (MedlemID) REFERENCES Medlem(MedlemID)
 );
 INSERT INTO

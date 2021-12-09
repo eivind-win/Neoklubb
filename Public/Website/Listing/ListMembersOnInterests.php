@@ -10,24 +10,28 @@
 
 <body>
     <?php
+    // Relevante include filer
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Database/DatabaseConnection.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LogInChecker.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Public/Resources/Style/Table.html";
 
+    // SQL query for å hente ut informasjon om medlemmet og interesser knyttet til medlemmet
     $sql = "SELECT Medlem.Fornavn, Medlem.Etternavn, Interesser.Interesser 
         FROM Medlem INNER JOIN MineInteresser ON Medlem.MedlemID = MineInteresser.MedlemID 
         INNER JOIN Interesser ON MineInteresser.InteresseID = Interesser.InteresseID WHERE Interesser.InteresseID = :InteresseID";
-
+    // SQL query for å hente ut alle registrerte interesser
     $sql2 = "SELECT InteresseID, Interesser FROM Interesser order by Interesser";
 
+    // Prepared statement
     $sp = $pdo->prepare($sql);
     $sp2 = $pdo->prepare($sql2);
 
+    // Binder parameter med variabler
     $sp->bindParam(":InteresseID", $interesseid);
-
+    // Kjører henting av informasjon om registrerte interesser
     $sp2->execute();
-
+    // Setter informasjon om registrerte interesser i en array
     $muligeInteresser = $sp2->fetchAll();
 
 

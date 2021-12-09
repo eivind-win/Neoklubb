@@ -10,39 +10,38 @@
 
 <body>
     <?php
+    // Relevante include filer
     include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Database/DatabaseConnection.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Include/LoginChecker.php";
 
-
+    // Setter variabler basert på input i form
     $medlemid = $_POST['MedlemID'];
     $status = $_POST['Status'];
-
+    // Query for å hente ut informasjon om medlem
     $sql = "SELECT MedlemID, Fornavn, Etternavn FROM Medlem order by Fornavn";
-
+    // Query for å oppdatere status til angitt medlem
     $sql2 = "UPDATE Status SET Status = :Status WHERE MedlemID = :MedlemID";
 
-
+    // Prepare statement for å unngå SQL injections
     $sp = $pdo->prepare($sql);
     $update = $pdo->prepare($sql2);
 
     $sp->execute();
-
+    // Henter ut informasjonen om objektet og plasserer i en array
     $medlemmer = $sp->fetchAll();
 
+    // Binder parameter med variabler for SQL query
     $update->bindParam(":MedlemID", $medlemid);
     $update->bindParam(":Status", $status);
 
     if (isset($_POST["OppdaterStatus"])) {
-        $medlemid = $_POST['MedlemID'];
-        $status = $_POST['Status'];
 
         try {
             $update->execute();
         } catch (PDOException $e) {
             echo $e->getMessage() . "<br>";
         }
-        //$update->debugDumpParams();
 
         if ($update->rowCount() > 0) {
             echo $update->rowCount() . " oppføring" . ($update->rowCount() > 1 ? "er" : "") . " ble oppdatert.";
@@ -51,6 +50,7 @@
         }
     }
     ?>
+    <!-- Form som henter inn nødvendig informasjon for å oppdatere et medlem sin status -->
 
     <body>
         <h1> Rediger roller og ansvarsområder </h1>
@@ -75,9 +75,6 @@
                 <button type="Submit" name="OppdaterStatus">Lagre status</button>
             </p>
         </form>
-
-
-
     </body>
 
 </html>

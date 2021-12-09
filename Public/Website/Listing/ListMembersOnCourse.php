@@ -10,24 +10,28 @@
 
 <body>
     <?php
+    // Diverse include filer
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Database/DatabaseConnection.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LogInChecker.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Public/Resources/Style/Table.html";
 
+    // SQL query for å hente ut informaskon om medlemmet som er relevant
     $sql = "SELECT Medlem.Fornavn, Medlem.Etternavn, Aktivitet.AktivitetID, Aktivitet, Beskrivelse 
         FROM Medlem INNER JOIN Kurs ON Medlem.MedlemID = Kurs.MedlemID 
-        INNER JOIN Aktivitet on Kurs.AktivitetID = Aktivitet.AktivitetID WHERE Aktivitet.AktivitetID = :AktivitetID";
-
+        INNER JOIN Aktivitet on Kurs.AktivitetID = Aktivitet.AktivitetID WHERE Aktivitet.AktivitetID = :AktivitetID order by Aktivitet.Aktivitet";
+    // SQL query for å hente ut aktiviteter som er registrerts
     $sql2 = "SELECT AktivitetID, Aktivitet FROM Aktivitet order by Aktivitet";
 
+    // Prepared statements
     $sp = $pdo->prepare($sql);
     $sp2 = $pdo->prepare($sql2);
 
+    // Binder parameter med vabiabel
     $sp->bindParam(":AktivitetID", $aktivitetid);
 
+    // Kjører query og henter ut data i en array
     $sp2->execute();
-
     $muligeAktiviteter = $sp2->fetchAll();
 
 
@@ -64,13 +68,14 @@
             }
             echo "</table>";
         } else {
-            echo "Det er ingen medlemmer som interesserer seg for dette!";
+            echo "Det er ingen medlemmer som har meldt seg på!";
         }
     }
     ?>
+    <!-- Form som tar input fra bruker om hva de vil se -->
     <form method="POST" action="">
-
         <div>
+            <br>
             <select name="AktivitetID">
                 <?php foreach ($muligeAktiviteter as $muligAktivitet) : ?>
                     <option value="<?= $muligAktivitet['AktivitetID']; ?>"><?= $muligAktivitet['Aktivitet']; ?></option>

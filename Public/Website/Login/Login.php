@@ -6,17 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logg inn</title>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
 </head>
 
 <body>
     <?php
-    session_start();
-
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Database/DatabaseConnection.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LogoutHeader.php";
 
@@ -36,6 +30,7 @@
 
                 //metode som sjekker passord mot databasen
                 if (password_verify($_POST["Passord"], $hashedpassword)) {
+                    session_start();
                     $_SESSION["Epost"] = $Medlem->Epost;
                     $_SESSION["Fornavn"] = $Medlem->Fornavn;
                     $_SESSION["Etternavn"] = $Medlem->Etternavn;

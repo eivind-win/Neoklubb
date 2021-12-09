@@ -7,17 +7,17 @@
 </head>
 
 <body>
-
     <div class="navbar">
         <a href="../Index/FrontPage.php">Hjem</a>
         <div class="subnav">
             <button class="subnavbtn">Profil <i class="fa fa-caret-down"></i></button>
             <div class="subnav-content">
                 <a href="../Index/MyProfile.php">Min profil</a>
-                <a href="../Editing/EditMember.php">Endre opplysninger </a>
                 <a href="../Listing/ListMyInterests.php">Mine interesser </a>
-                <a href="../Registering/registermyinterests.php">Legg til interesser </a>
                 <a href="../Simulating/ContigentPayment.php">Betal Kontigent </a>
+                <a href="../Editing/EditMember.php">Endre opplysninger </a>
+                <a href="../Registering/registermyinterests.php">Legg til dine interesser </a>
+                <a href="../Sending/Feedback.php">Gi feedback</a>
             </div>
         </div>
         <div class="subnav">
@@ -43,6 +43,7 @@
             <button class="subnavbtn">Kurs <i class="fa fa-caret-down"></i></button>
             <div class="subnav-content">
                 <a href="../Listing/ListActivities.php">Bli med på kurs</a>
+                <a href="../Listing/ListMembersOnCourse.php">Oversikt kursdeltagere</a>
                 <a href="../Registering/RegisterActivity.php">Registrer kurs </a>
             </div>
         </div>

@@ -1,5 +1,6 @@
 <?php
-//logout.php  
+
+// Starter en session for å unsette session variabler forså å ødelegge session og redirecte til login siden
 session_start();
 unset($_SESSION['Fornavn']);
 unset($_SESSION["Epost"]);

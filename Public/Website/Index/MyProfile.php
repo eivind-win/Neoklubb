@@ -10,17 +10,15 @@
 
 <body>
     <?php
+    // Relevante include filer
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LogInChecker.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Public/Resources/Style/Css/Profil.html";
-
-    $medlemid = $_SESSION['MedlemID'];
-
     ?>
     <h2 style="text-align:center">Min profil</h2>
     <!-- Printer ut variabler i profile card basert på session -->
     <div class="card">
-        <img class="avatar" width="200" height="200" src="../../Resources/Image/<?php echo $medlemid ?>.jpeg" alt="Not Found" onerror="this.onerror=null; this.src='../../Resources/Image/avatar.jpeg'">
+        <img class="avatar" width="200" height="200" src="../../Resources/Image/<?php echo $_SESSION['MedlemID'] ?>.jpeg" alt="Not Found" onerror="this.onerror=null; this.src='../../Resources/Image/avatar.jpeg'">
         <br>
         <u><a href="../Index/ProfilePicture.php">Bytt profilbilde</a></u>
         <h1> <?php echo $_SESSION["Fornavn"] ?></h1>

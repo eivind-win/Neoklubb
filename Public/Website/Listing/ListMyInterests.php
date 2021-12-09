@@ -52,7 +52,7 @@
         }
         echo "</table>";
     } else {
-        echo "Det er ingen medlemmer som matcher denne beskrivelsen";
+        echo "Du har ikke registrert noen interesser!";
     }
     ?>
 </body>

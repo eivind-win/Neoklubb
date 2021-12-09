@@ -9,14 +9,39 @@
 </head>
 
 <body>
-    <?php
-    include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
-    ?>
     <h1> Registrer aktivitet for Neo Ungdomsklubb </h1>
 
     <?php
+    include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Database/DatabaseConnection.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LogInChecker.php";
+
+
+    if (isset($_POST["Registreraktivitet"])) {
+        $messages = array();
+
+        if (empty($_POST['Aktivitet'])) {
+            $messages[] = 'Husk en tittel på aktiviteten';
+        }
+        if (empty($_POST['Beskrivelse'])) {
+            $messages[] = 'Vennligst gi en beskrivelse';
+        }
+        if (empty($_POST['StartDato'])) {
+            $messages[] = 'Vennligst fyll inn når det starter!';
+        }
+        if (empty($_POST['SluttDato'])) {
+            $messages[] = 'Vennligst fyll inn når det slutter!';
+        }
+        // om det ikke forekommer noen feilmelding så skjer det ingenting, men om for loopen teller over og finner noe så vil den sende ut den spesifikke advarselen
+        if (empty($messages)) {
+        } else {
+            for ($i = 0; $i < count($messages); $i++) {
+                echo $messages[$i] . "<br>";
+            }
+        }
+    }
+
+    $kursansvarlig = $_SESSION['Fornavn'];
 
     $sql = "INSERT INTO NeoKlubb.Aktivitet (Aktivitet, Beskrivelse, StartDato, SluttDato) 
     VALUES (:Aktivitet, :Beskrivelse, :StartDato, :SluttDato)";
@@ -29,8 +54,6 @@
     $sp->bindParam(":SluttDato", $sluttdato);
 
 
-
-
     $aktivitet = isset($_POST['Aktivitet']) ? $_POST['Aktivitet'] : "";
     $beskrivelse = isset($_POST['Beskrivelse']) ? $_POST['Beskrivelse'] : "";
     $startpunkt = isset($_POST['StartDato']) ? $_POST['StartDato'] : "";
@@ -40,7 +63,7 @@
     $startdato = date("Y-m-d\TH:i:s", strtotime($startpunkt));
     $sluttdato = date("Y-m-d\TH:i:s", strtotime($sluttpunkt));
 
-    if (isset($_POST["Registreraktivitet"])) {
+    if (isset($_POST["Registreraktivitet"]) && empty($messages)) {
 
 
         try {

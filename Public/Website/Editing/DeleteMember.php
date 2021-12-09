@@ -1,10 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slett medlem</title>
+</head>
+
 <body>
     <?php
-
     //Include for å liste opp eksisterende medlemmer
     include_once "../Listing/ListMembers.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
-
+    include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LogInChecker.php";
     ?>
     <h3> Her kan du slette all informasjon om profilen din fra databasen </h3>
     <?php
@@ -33,24 +42,17 @@
         } catch (PDOException $e) {
             echo $e->getMessage() . "<br>";
         }
-        //$sp->debugDumpParams();
     }
     ?>
     <!-- HTML form for å hente ID -->
     <form method="POST" action="">
-
         <p>
             <label for="MedlemID">Medlemmets ID</label>
             <input name="MedlemID" type="text" required oninvalid="this.setCustomValidity('Medlemmets ID kan ikke være blank!')" onchange="this.setCustomValidity('')">
         </p>
-
-
         <p>
-
             <button type="Submit" name="SlettMedlem">Slett medlem</button>
         </p>
-
-
 </body>
 
 </html>

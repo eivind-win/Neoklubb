@@ -14,6 +14,22 @@
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LogInChecker.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
 
+    // Sjekker at variablene ikke er tom
+    if (isset($_POST["RegistrerInteresse"])) {
+        $messages = array();
+
+        if (empty($_POST['Interesser'])) {
+            $messages[] = 'Vennligst fyll inn en interesse';
+        }
+        // om det ikke forekommer noen feilmelding så skjer det ingenting, men om for loopen teller over og finner noe så vil den sende ut den spesifikke advarselen
+        if (empty($messages)) {
+        } else {
+            for ($i = 0; $i < count($messages); $i++) {
+                echo $messages[$i] . "<br>";
+            }
+        }
+    }
+
 
     $sql = "INSERT INTO INTERESSER(INTERESSER) VALUES (:Interesser);";
 
@@ -23,7 +39,7 @@
 
     $interesser = isset($_POST['Interesser']) ? $_POST['Interesser'] : "";
 
-    if (isset($_POST["RegistrerInteresse"])) {
+    if (isset($_POST["RegistrerInteresse"]) && empty($messages)) {
 
         try {
             $sp->execute();

@@ -9,12 +9,11 @@ include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/Log
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>send email</title>
+    <title>Send enkelt mail</title>
 </head>
 
 <body>
     <?php
-    //require_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Public/Resources/Style/style.html";
     require_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Include/PHPMailer/src/PHPMailer.php";
     require_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Include/PHPMailer/src/Exception.php";
     require_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Include/PHPMailer/src/SMTP.php";
@@ -25,14 +24,25 @@ include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/Log
     $fornavn = $_POST['Fornavn'];
     $epost = $_POST['Epost'];
     $emne = $_POST['Emne'];
+    // Format for HTML melding
     $mld = " Hei ";
     $mld .= $_POST['Fornavn'];
-    $mld .= " , ";
+    $mld .= ", ";
     $mld .= $_POST['Melding'];
-    $amld = $_POST['Melding'];
+    $mld .= "<br><br>";
+    $mld .= "Vennlig hilsen Neo Ungdomsklubb!";
+
+    // Format for klienter som ikke klarer å tolke HTML
+    $amld = " Hei ";
+    $amld .= $_POST['Fornavn'];
+    $amld .= ", ";
+    $amld .= $_POST['Melding'];
+    $amld .= "\n\n";
+    $amld .= "Vennlig hilsen Neo Ungdomsklubb!";
+
+
 
     // Om knappen "SendMail" blir trykket, vil koden under kjøre
-    // Definerer div som få være på plass for at mail protocol skal fungere. 
     if (isset($_POST["SendMail"])) {
         try {
             $mail->IsSMTP();
@@ -46,7 +56,7 @@ include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/Log
 
 
             $mail->isHTML(true);
-            $mail->From = "eivind@gmail.com";
+            $mail->From = "neoklubboe@gmail.com";
             $mail->FromName = "Neo Ungdomsklubb";
             $mail->addAddress($epost, $fornavn . " " . $etternavn);
             $mail->Subject = $emne;

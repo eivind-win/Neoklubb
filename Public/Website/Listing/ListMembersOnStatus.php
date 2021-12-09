@@ -10,11 +10,13 @@
 
 <body>
     <?php
+    // Relevante include filer
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Database/DatabaseConnection.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LogInChecker.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Public/Resources/Style/Table.html";
 
+    // Kjører en query som henter ut alle medlemmer som er registrert som aktive
     if (isset($_POST["ListeAktive"])) {
 
         $sql = "SELECT * FROM Medlem INNER JOIN Status ON Medlem.MedlemID = Status.MedlemID
@@ -70,6 +72,7 @@
         }
     }
 
+    // Kjører en query som henter ut informasjonen om medlemmer som er registrerte som inaktive
     if (isset($_POST["ListeInaktive"])) {
 
         $sql = "SELECT * FROM Medlem INNER JOIN Status ON Medlem.MedlemID = Status.MedlemID 

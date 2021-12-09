@@ -62,11 +62,14 @@
     if (isset($_POST["LeggTilInteresse"])) {
         $interesseID = $_POST['interesseID'];
         $medlemid = $_SESSION['MedlemID'];
-        // sett inn spørring her
+
         $sql = "INSERT INTO MineInteresser (MedlemID, InteresseID) VALUES (:MedlemID, :InteresseID)";
+
         $sp = $pdo->prepare($sql);
+
         $sp->bindParam(":InteresseID", $interesseID, PDO::PARAM_INT);
         $sp->bindParam(":MedlemID", $medlemid, PDO::PARAM_INT);
+
         try {
             $sp->execute();
         } catch (PDOException $e) {
