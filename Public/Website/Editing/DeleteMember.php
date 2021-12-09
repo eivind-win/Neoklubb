@@ -11,9 +11,10 @@
 <body>
     <?php
     //Include for å liste opp eksisterende medlemmer
-    include_once "../Listing/ListMembers.php";
-    include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LogInChecker.php";
+    include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
+    include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Database/DatabaseConnection.php";
+    include_once "../Listing/ListMembers.php";
     ?>
     <h3> Her kan du slette all informasjon om profilen din fra databasen </h3>
     <?php

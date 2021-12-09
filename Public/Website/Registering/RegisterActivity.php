@@ -9,19 +9,23 @@
 </head>
 
 <body>
-    <h1> Registrer aktivitet for Neo Ungdomsklubb </h1>
-
     <?php
-    include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
-    include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Database/DatabaseConnection.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LogInChecker.php";
+    include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
+    include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Database/DatabaseConnection.php";
+    ?>
+    <h1> Registrer aktivitet for Neo Ungdomsklubb </h1>
+    <?php
 
-
+    // Sjekker at input i form ikke er tomme
     if (isset($_POST["Registreraktivitet"])) {
         $messages = array();
 
         if (empty($_POST['Aktivitet'])) {
             $messages[] = 'Husk en tittel på aktiviteten';
+        }
+        if (empty($_POST['Ansvarlig'])) {
+            $messages[] = 'Vennligst gi aktiviteten en ansvarlig';
         }
         if (empty($_POST['Beskrivelse'])) {
             $messages[] = 'Vennligst gi en beskrivelse';
@@ -41,20 +45,20 @@
         }
     }
 
-    $kursansvarlig = $_SESSION['Fornavn'];
-
-    $sql = "INSERT INTO NeoKlubb.Aktivitet (Aktivitet, Beskrivelse, StartDato, SluttDato) 
-    VALUES (:Aktivitet, :Beskrivelse, :StartDato, :SluttDato)";
+    $sql = "INSERT INTO NeoKlubb.Aktivitet (Aktivitet, Ansvarlig, Beskrivelse, StartDato, SluttDato) 
+    VALUES (:Aktivitet, :Ansvarlig, :Beskrivelse, :StartDato, :SluttDato)";
 
     $sp = $pdo->prepare($sql);
 
     $sp->bindParam(":Aktivitet", $aktivitet, PDO::PARAM_STR);
+    $sp->bindParam(":Ansvarlig", $ansvarlig, PDO::PARAM_STR);
     $sp->bindParam(":Beskrivelse", $beskrivelse, PDO::PARAM_STR);
     $sp->bindParam(":StartDato", $startdato);
     $sp->bindParam(":SluttDato", $sluttdato);
 
 
     $aktivitet = isset($_POST['Aktivitet']) ? $_POST['Aktivitet'] : "";
+    $ansvarlig = isset($_POST['Ansvarlig']) ? $_POST['Ansvarlig'] : "";
     $beskrivelse = isset($_POST['Beskrivelse']) ? $_POST['Beskrivelse'] : "";
     $startpunkt = isset($_POST['StartDato']) ? $_POST['StartDato'] : "";
     $sluttpunkt = isset($_POST['SluttDato']) ? $_POST['SluttDato'] : "";
@@ -64,7 +68,6 @@
     $sluttdato = date("Y-m-d\TH:i:s", strtotime($sluttpunkt));
 
     if (isset($_POST["Registreraktivitet"]) && empty($messages)) {
-
 
         try {
             $sp->execute();
@@ -80,12 +83,19 @@
         }
     }
     ?>
+    <!-- Form for input fra brukeren -->
     <form method="POST" action="">
         <p>
             <label for="Aktivitet">Aktivitet</label>
             <input name="Aktivitet" type="text" required oninvalid="this.setCustomValidity('Aktivitet kan ikke være blank!')" onchange="this.setCustomValidity('')" value="<?php if (isset($_POST["Aktivitet"])) {
                                                                                                                                                                                 echo $_POST["Aktivitet"];
                                                                                                                                                                             } ?>">
+        </p>
+        <p>
+            <label for="Ansvarlig">Ansvarlig</label>
+            <input name="Ansvarlig" type="text" required oninvalid="this.setCustomValidity('Kurset må ha en ansvarlig!')" onchange="this.setCustomValidity('')" value="<?php if (isset($_POST["Ansvarlig"])) {
+                                                                                                                                                                            echo $_POST["Ansvarlig"];
+                                                                                                                                                                        } ?>">
         </p>
         <p>
             <label for="Beskrivelse">Beskrivelse</label>

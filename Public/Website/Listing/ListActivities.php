@@ -11,9 +11,9 @@
 <body>
     <?php
     //Diverse include filer
-    include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Database/DatabaseConnection.php";
+    include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LogInChecker.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
-    include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Include/LoginChecker.php";
+    include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Database/DatabaseConnection.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Public/Resources/Style/Table.html";
 
     //Spørring som henter ut aktiviteter fra nå eller i fremtiden. 
@@ -31,6 +31,7 @@
         echo "<tr>";
         echo "<th> AktivitetID </th>";
         echo "<th> Aktivitet </th>";
+        echo "<th> Ansvarlig </th>";
         echo "<th> Beskrivelse </th>";
         echo "<th> Starter </th>";
         echo "<th> Slutter </th>";
@@ -42,6 +43,7 @@
             echo "<tr>";
             echo "<td>" . $Aktivitet->AktivitetID . "</td>";
             echo "<td>" . $Aktivitet->Aktivitet . "</td>";
+            echo "<td>" . $Aktivitet->Ansvarlig . "</td>";
             echo "<td>" . $Aktivitet->Beskrivelse . "</td>";
             echo "<td>" . date("d-m-Y k\l. H:i", strtotime($Aktivitet->StartDato)) . "</td>";
             echo "<td>" . date("d-m-Y k\l. H:i", strtotime($Aktivitet->SluttDato)) . "</td>";

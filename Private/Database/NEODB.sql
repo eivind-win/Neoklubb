@@ -52,6 +52,7 @@ CREATE TABLE IF NOT EXISTS Adresse(
 CREATE TABLE IF NOT EXISTS Aktivitet(
   AktivitetID int NOT NULL AUTO_INCREMENT,
   Aktivitet varchar(99) NOT NULL,
+  Ansvarlig varchar(99) NOT NULL,
   Beskrivelse varchar(255) NOT NULL,
   StartDato DATETIME NOT NULL,
   SluttDato DATETIME NOT NULL,

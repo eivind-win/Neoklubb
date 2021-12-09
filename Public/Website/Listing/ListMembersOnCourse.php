@@ -11,13 +11,13 @@
 <body>
     <?php
     // Diverse include filer
-    include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Database/DatabaseConnection.php";
-    include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LogInChecker.php";
+    include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
+    include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Database/DatabaseConnection.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Public/Resources/Style/Table.html";
 
     // SQL query for å hente ut informaskon om medlemmet som er relevant
-    $sql = "SELECT Medlem.Fornavn, Medlem.Etternavn, Aktivitet.AktivitetID, Aktivitet, Beskrivelse 
+    $sql = "SELECT Medlem.Fornavn, Medlem.Etternavn, Aktivitet.AktivitetID, Aktivitet, Ansvarlig, Beskrivelse 
         FROM Medlem INNER JOIN Kurs ON Medlem.MedlemID = Kurs.MedlemID 
         INNER JOIN Aktivitet on Kurs.AktivitetID = Aktivitet.AktivitetID WHERE Aktivitet.AktivitetID = :AktivitetID order by Aktivitet.Aktivitet";
     // SQL query for å hente ut aktiviteter som er registrerts
@@ -53,6 +53,7 @@
             echo "<th> Etternavn </th>";
             echo "<th> AktivitetID </th>";
             echo "<th> Aktivitet </th>";
+            echo "<th> Ansvarlig </th>";
             echo "<th> Beskrivelse </th>";
             echo "</tr>";
 
@@ -63,6 +64,7 @@
                 echo "<td>" . $medlemsAktivitet->Etternavn . "</td>";
                 echo "<td>" . $medlemsAktivitet->AktivitetID . "</td>";
                 echo "<td>" . $medlemsAktivitet->Aktivitet . "</td>";
+                echo "<td>" . $medlemsAktivitet->Ansvarlig . "</td>";
                 echo "<td>" . $medlemsAktivitet->Beskrivelse . "</td>";
                 echo "</tr>";
             }

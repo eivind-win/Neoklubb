@@ -12,11 +12,13 @@
 
     <?php
     //Diverse include filer
-    include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Database/DatabaseConnection.php";
+    include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LogInChecker.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
-    include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Include/LoginChecker.php";
+    include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Database/DatabaseConnection.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Public/Resources/Style/Table.html";
 
+    $interesseID = $_POST['interesseID'];
+    $medlemid = $_SESSION['MedlemID'];
 
     $sql = "SELECT * FROM interesser order by InteresseID";
     $sp = $pdo->prepare($sql);
@@ -60,9 +62,6 @@
     }
 
     if (isset($_POST["LeggTilInteresse"])) {
-        $interesseID = $_POST['interesseID'];
-        $medlemid = $_SESSION['MedlemID'];
-
         $sql = "INSERT INTO MineInteresser (MedlemID, InteresseID) VALUES (:MedlemID, :InteresseID)";
 
         $sp = $pdo->prepare($sql);
@@ -72,6 +71,7 @@
 
         try {
             $sp->execute();
+            echo "Interesse registrert!";
         } catch (PDOException $e) {
             echo $e->getMessage() . "<br>";
         }
