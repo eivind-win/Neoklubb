@@ -50,9 +50,6 @@
         if (empty($_POST['BekreftPassord'])) {
             $messages[] = 'Vennligst bekreft passord!';
         }
-        if (strlen($passord) < 6) {
-            $messages[] = "Passordet må være lenger enn 6 tegn!";
-        }
         // om det ikke forekommer noen feilmelding så skjer det ingenting, men om for loopen teller over og finner noe så vil den sende ut den spesifikke advarselen
         if (empty($messages)) {
         } else {

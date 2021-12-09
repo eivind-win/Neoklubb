@@ -14,20 +14,21 @@
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Include/LoginChecker.php";
 
-    $medlemid = $medlem['MedlemID'];
-    $rolleid = $rolle['RolleID'];
+    $medlemid = $_POST['MedlemID'];
+    $rolleid = $_POST['RolleID'];
 
-    $sql = "SELECT MedlemID, Fornavn FROM Medlem order by Fornavn";
+    $sql = "SELECT MedlemID, Fornavn, Etternavn FROM Medlem order by Fornavn";
 
     $sql2 = "SELECT RolleID, Rolle FROM Roller order by Rolle";
 
-    $sql3 = "INSERT INTO MineRoller VALUES :MedlemID, :RolleID";
+    $sql3 = "INSERT INTO MineRoller (MedlemID, RolleID) VALUES (:MedlemID, :RolleID)";
 
-    $sql4 = "DELETE FROM MineRoller VALUES :MedlemID, :RolleID";
+    $sql4 = "DELETE FROM MineRoller WHERE MedlemID = :MedlemID and RolleID = :RolleID";
 
     $sp = $pdo->prepare($sql);
     $sp2 = $pdo->prepare($sql2);
     $update = $pdo->prepare($sql3);
+    $delete = $pdo->prepare($sql4);
 
     $sp->execute();
     $sp2->execute();
@@ -35,19 +36,24 @@
     $medlemmer = $sp->fetchAll();
     $roller = $sp2->fetchAll();
 
-    $update->bindParam(":MedlemID", $medlemid, PDO::PARAM_STR);
-    $update->bindParam(":RolleID", $rolleid, PDO::PARAM_STR);
+    $update->bindParam(":MedlemID", $medlemid);
+    $update->bindParam(":RolleID", $rolleid);
+
+    $delete->bindParam(":MedlemID", $medlemid);
+    $delete->bindParam(":RolleID", $rolleid);
 
 
 
     if (isset($_POST["LagreRolle"])) {
+        $medlemid = $_POST['MedlemID'];
+        $rolleid = $_POST['RolleID'];
 
         try {
             $update->execute();
         } catch (PDOException $e) {
             echo $e->getMessage() . "<br>";
         }
-        $update->debugDumpParams();
+        //$update->debugDumpParams();
 
         if ($update->rowCount() > 0) {
             echo $update->rowCount() . " oppføring" . ($update->rowCount() > 1 ? "er" : "") . " ble oppdatert.";
@@ -56,48 +62,54 @@
         }
     }
     if (isset($_POST["FjernRolle"])) {
-
-        echo $medlemid;
-        echo $rolleid;
+        $medlemid = $_POST['MedlemID'];
+        $rolleid = $_POST['RolleID'];
 
         try {
-            $update->execute();
+            $delete->execute();
         } catch (PDOException $e) {
             echo $e->getMessage() . "<br>";
         }
-        $update->debugDumpParams();
+        //$delete->debugDumpParams();
 
-        if ($update->rowCount() > 0) {
-            echo $update->rowCount() . " oppføring" . ($update->rowCount() > 1 ? "er" : "") . " ble oppdatert.";
+        if ($delete->rowCount() > 0) {
+            echo $delete->rowCount() . " oppføring" . ($delete->rowCount() > 1 ? "er" : "") . " ble oppdatert.";
         } else {
             echo "Oppdatering feilet, ingen endringer er lagret";
         }
     }
 
     ?>
-    <br>
-    <select>
-        <?php foreach ($medlemmer as $medlem) : ?>
-            <option value="<?= $medlem['MedlemID']; ?>"><?= $medlem['Fornavn']; ?></option>
-        <?php endforeach; ?>
-    </select>
-    <br>
-    <br>
-    <select>
-        <?php foreach ($roller as $rolle) : ?>
-            <option value="<?= $rolle['RolleID']; ?>"><?= $rolle['Rolle']; ?></option>
-        <?php endforeach; ?>
-    </select>
-    <p>
-        <button type="Submit" name="LagreRolle">Lagre rolle</button>
-    </p>
 
-    <p>
-        <button type="Submit" name="FjernRolle">Fjern rolle</button>
-    </p>
+    <body>
+        <h1> Rediger roller og ansvarsområder </h1>
+        <form method="POST" action="">
+            <div>
+                <select name="MedlemID">
+                    <?php foreach ($medlemmer as $medlem) : ?>
+                        <option value="<?= $medlem['MedlemID']; ?>"><?= $medlem['Fornavn']; ?> <?= $medlem['Etternavn']; ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <br>
+            <div>
+                <select name="RolleID">
+                    <?php foreach ($roller as $rolle) : ?>
+                        <option value="<?= $rolle['RolleID']; ?>"><?= $rolle['Rolle']; ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <p>
+                <button type="Submit" name="LagreRolle">Lagre rolle</button>
+            </p>
+
+            <p>
+                <button type="Submit" name="FjernRolle">Fjern rolle</button>
+            </p>
+        </form>
 
 
 
-</body>
+    </body>
 
 </html>
