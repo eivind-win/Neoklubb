@@ -14,8 +14,8 @@
     include_once "/Applications/XAMPP/xamppfiles/htdocs/Neoklubb/Private/Include/LoginHeader.php";
     include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Private/Include/LoginChecker.php";
 
-    $medlemid = $medlem['MedlemID'];
-    $rolleid = $rolle['RolleID'];
+    $medlemid = $_POST['MedlemID'];
+    $rolleid = $_POST['RolleID'];
 
     $sql = "SELECT MedlemID, Fornavn FROM Medlem order by Fornavn";
 
@@ -56,6 +56,9 @@
         }
     }
     if (isset($_POST["FjernRolle"])) {
+
+        echo $medlemid;
+        echo $rolleid;
 
         try {
             $update->execute();
