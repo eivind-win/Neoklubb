@@ -18,7 +18,7 @@
     include_once "/Applications/XAMPP/xamppfiles/htdocs/NeoKlubb/Public/Resources/Style/Table.html";
 
 
-    $sql = "SELECT * FROM interesser";
+    $sql = "SELECT * FROM interesser order by InteresseID";
     $sp = $pdo->prepare($sql);
     try {
         $sp->execute();
@@ -31,7 +31,6 @@
     if ($sp->rowCount() > 0) {
         echo "<table>";
         echo "<tr>";
-        echo "<th> InteresseID </th>";
         echo "<th> Interesser </th>";
         echo "<th> Bli med </th>";
         echo "</tr>";
@@ -39,7 +38,6 @@
         //foreach som itererer gjennom alle feltene og printer ut i en tabell
         foreach ($Interesser as $Interesser) {
             echo "<tr>";
-            echo "<td>" . $Interesser->InteresseID . "</td>";
             echo "<td>" . $Interesser->Interesser . "</td>";
             echo "<td>"
     ?>

@@ -23,9 +23,9 @@
             <button class="subnavbtn">Medlemmer <i class="fa fa-caret-down"></i></button>
             <div class="subnav-content">
                 <a href="../Listing/ListMembersOnStatus.php">Medlemsstatus</a>
-                <a href="../Listing/ListMembers">Medlems interesser</a>
-                <a href="#package">Endre roller</a>
-                <a href="#express">Slett medlemmer</a>
+                <a href="../Listing/ListMembersOnInterests.php">Medlems interesser</a>
+                <a href="../Editing/EditRoles.php">Endre roller</a>
+                <a href="../Editing/DeleteMember.php">Slett medlemmer</a>
             </div>
         </div>
         <div class="subnav">
@@ -99,7 +99,7 @@
         display: none;
         position: absolute;
         left: 0;
-        background-color: green;
+        background-color: #04AA6D;
         width: 100%;
         z-index: 1;
     }

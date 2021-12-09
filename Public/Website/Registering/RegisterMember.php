@@ -47,6 +47,12 @@
         if (empty($_POST['Passord'])) {
             $messages[] = 'Du må fylle inn passord!';
         }
+        if (empty($_POST['BekreftPassord'])) {
+            $messages[] = 'Vennligst bekreft passord!';
+        }
+        if (strlen($passord) < 6) {
+            $messages[] = "Passordet må være lenger enn 6 tegn!";
+        }
         // om det ikke forekommer noen feilmelding så skjer det ingenting, men om for loopen teller over og finner noe så vil den sende ut den spesifikke advarselen
         if (empty($messages)) {
         } else {
@@ -104,11 +110,17 @@
     $postnummer = isset($_POST['Postnummer']) ? $_POST['Postnummer'] : "";
 
     //Hasher passord som blir lagt inn i databasen gjennom form
-    $passord = password_hash($passord, PASSWORD_DEFAULT);
+    $passord = isset($_POST['Passord']) ? $_POST['Passord'] : "";
+    $bekreftpassord = isset($_POST['BekreftPassord']) ? $_POST['BekreftPassord'] : "";
+
+    if ($passord != $bekreftpassord) {
+        echo "Passordene matcher ikke!";
+    }
 
 
-    if (isset($_POST["Registrerdeg"]) && empty($messages)) {
+    if (isset($_POST["Registrerdeg"]) && empty($messages) && $passord === $bekreftpassord) {
 
+        $passord = password_hash($passord, PASSWORD_DEFAULT);
 
         try {
             $sp->execute();
@@ -197,6 +209,10 @@
             <input name="Passord" type="Password" required oninvalid="this.setCustomValidity('Passord kan ikke være blankt!')" onchange="this.setCustomValidity('')" value="<?php if (isset($_POST["Passord"])) {
                                                                                                                                                                                 echo $_POST["Passord"];
                                                                                                                                                                             } ?>">
+        </p>
+        <p>
+            <label for="BekreftPassord">Bekreft passord</label>
+            <input name="BekreftPassord" type="Password" required oninvalid="this.setCustomValidity('Vennligst bekreft passord!')" onchange="this.setCustomValidity('')" value="">
         </p>
         <p>
             <button type="Submit" name="Registrerdeg">Registrer deg</button>
